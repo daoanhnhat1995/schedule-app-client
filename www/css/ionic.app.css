@@ -28,7 +28,7 @@ $dark:                            #444 !default;
 */
 .splash-bg {
   background: url('../img/home.png');
-  background-size: cover; 
+  background-size: cover;
 }
 .intro-buttons {
   position: absolute;
@@ -4562,9 +4562,11 @@ ion-tabs.tabs-color-active-dark .tab-item {
     width: 100%; }
 
 .popup-head {
-  padding: 15px 10px;
+  padding: 80px 50px;
   border-bottom: 1px solid #eee;
-  text-align: center; }
+  text-align: center;
+  width: 100%;
+ }
 
 .popup-title {
   margin: 0;
@@ -6610,6 +6612,13 @@ progress {
     float: right;
     padding-right: 0;
     padding-left: .2em; }
+  .button.button-generate{
+    margin-left: 120px;
+    position: relative;
+    width: 60%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
   .button.button-block, .button.button-full {
     margin-top: 10px;
     margin-bottom: 10px; }
@@ -7714,4 +7723,3 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
-

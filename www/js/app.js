@@ -1,4 +1,4 @@
-angular.module('parse-starter', ['ionic', 'parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-starter.factories'])
   .config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('login');
     $stateProvider
@@ -18,6 +18,11 @@ angular.module('parse-starter', ['ionic', 'parse-starter.controllers', 'parse-st
         templateUrl: 'templates/reset.html',
         controller: 'ResetCtrl'
       })
+      .state('generate-schedule',{
+        url: '/schedule/generate',
+        templateUrl: 'templates/schedule/generate.html',
+        controller:'GenerateCtrl'
+      })
       .state('home', {
         url: '/home',
         templateUrl: 'templates/home.html'
@@ -25,7 +30,8 @@ angular.module('parse-starter', ['ionic', 'parse-starter.controllers', 'parse-st
   })
   .run(function ($ionicPlatform, $state) {
 
-    Parse.initialize("ApplicationID", "JavaScriptKey");
+    // params[application_id, javascript_key]
+    Parse.initialize("maP05W7Q8wmbpr7JI7lPMzv9ZCq2LsPwSTm2yB6D", "lLCbV1F8fGFeNLjlKJCEbwweRhc8DWijylFXyEZq");
 
     //Todo
     //window.fbAsyncInit = function () {
