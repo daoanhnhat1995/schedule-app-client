@@ -2,7 +2,21 @@ angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-sta
   .config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('login');
     $stateProvider
-
+      .state('main', {
+      	url: '/main',
+      	cache: false,
+      	templateUrl: 'templates/side-menu.html',
+      	abstract: true
+      })
+      .state('main.my-schedule',{
+        url:'/schedule/my-schedule',
+        views:{
+          'menuContent':{
+            templateUrl: 'templates/schedule/detail-view.html',
+            controller: 'myScheduleCtrl'
+          }
+        }
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: 'templates/signup.html',
@@ -18,14 +32,22 @@ angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-sta
         templateUrl: 'templates/reset.html',
         controller: 'ResetCtrl'
       })
-      .state('generate-schedule',{
+      .state('main.generate-schedule',{
         url: '/schedule/generate',
+        views:{
+          'menuContent':{
         templateUrl: 'templates/schedule/generate.html',
         controller:'GenerateCtrl'
+      }
+      }
       })
-      .state('home', {
+      .state('main.home', {
         url: '/home',
-        templateUrl: 'templates/home.html'
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/home.html'
+           }
+        }
       })
   })
   .run(function ($ionicPlatform, $state) {

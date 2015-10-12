@@ -17,7 +17,6 @@ angular.module("parse-starter.controllers")
           okType: 'button-balanced'
       }).then(function(res) {
           if(res) {
-
             Schedule.addClass($scope.item.department,$scope.item.class);
           } else {
           }
