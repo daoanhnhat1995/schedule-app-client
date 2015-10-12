@@ -11,6 +11,9 @@ angular.module('parse-starter.factories')
       },
       getListClass: function(){
         return listClass;
+      },
+      removeClass: function(classname){
+        listClass.splice(listClass.indexOf(classname),1);
       }
     }
   });

@@ -2,9 +2,12 @@ angular.module("parse-starter.controllers")
   .controller("GenerateCtrl", function($scope,$state,$ionicPopup,Schedule){
     $scope.listClass = Schedule.getListClass();
 
-    $scope.remove = function(){
-      Schedule.remove();
-    }
+    // remove class from list
+    $scope.remove = function(each){
+      Schedule.removeClass(each);
+    };
+
+    //add class to list
     $scope.add = function(){
       $scope.item = {};
       $ionicPopup.confirm({
@@ -15,7 +18,6 @@ angular.module("parse-starter.controllers")
       }).then(function(res) {
           if(res) {
 
-            //add class to list
             Schedule.addClass($scope.item.department,$scope.item.class);
           } else {
           }

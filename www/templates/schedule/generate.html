@@ -9,11 +9,11 @@
        </div>
 
      </div>
-     <div class = "list card" ng-repeat = "class in listClass">
+     <div class = "list card" ng-repeat = "each in listClass">
        <div class = "item item-icon-right ">
-         <i class = "icon ion-ios-trash"> </i>
+         <i class = "icon ion-ios-trash" ng-click = "remove(each)"> </i>
 
-      <h2> {{class.department | uppercase}} {{class.class | uppercase}} </h2>
+      <h2> {{each.department | uppercase}} {{each.class | uppercase}} </h2>
 
      </div>
      </div>
