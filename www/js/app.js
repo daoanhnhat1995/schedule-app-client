@@ -8,6 +8,23 @@ angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-sta
       	templateUrl: 'templates/side-menu.html',
       	abstract: true
       })
+      .state('main.home', {
+        url: '/home',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/home.html'
+           }
+        }
+      })
+      .state('main.dashboard',{
+        url:'/dashboard',
+        views:{
+          'menuContent':{
+            templateUrl:'templates/dashboard.html',
+            controller: 'dashboardCtrl'
+          }
+        }
+      })
       .state('main.my-schedule',{
         url:'/schedule/my-schedule',
         views:{
@@ -41,14 +58,7 @@ angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-sta
       }
       }
       })
-      .state('main.home', {
-        url: '/home',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/home.html'
-           }
-        }
-      })
+
   })
   .run(function ($ionicPlatform, $state) {
 
