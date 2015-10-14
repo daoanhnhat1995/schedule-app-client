@@ -3376,8 +3376,12 @@ body.grade-c {
   padding-top: 1px;
   margin-bottom: -1px;
   width: auto;
-  height: auto; }
-
+  height: auto;
+  background-color: #F7F7F7;
+}
+.scroll-content.dashboard-body{
+  background-color: black;
+};
 .menu .scroll-content.scroll-content-false {
   z-index: 11; }
 

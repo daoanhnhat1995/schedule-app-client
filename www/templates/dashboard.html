@@ -1,32 +1,43 @@
 <ion-view title = "My Dashboard">
-  <ion-content class = "scroll-content dashboad-body"padding = "true">
+    <ion-content class = "scroll-content dashboad-body" padding = "true">
     <div class="row" padding = "true">
-      <div class="custom-card col col-50">
-            <i class = "icon ion-home custom-icon "> </i>
-            <h3> MY SCHEDULE </h3>
+      <div class="custom-card top-card col col-50">
+            <i class = "icon ion-ios-home-outline custom-icon dark " ui-sref = "main.dashboard"> </i>
+            <h4 class = 'dark'> Home </h4>
 
         </div>
-        <div class="custom-card col col-50">
-            <i class="custom-icon icon ion-ios-calendar-outline" width="100%" /></i>
-            <h3> MY SCHEDULE </h3>
+        <div class="custom-card top-card col col-50" ui-sref = "main.my-schedule">
+            <i class="custom-icon icon ion-ios-calendar-outline dark" width="100%" /></i>
+            <h4 class = 'dark'> My Schedule </h4>
 
         </div>
 
     </div>
 
     <div class="row">
+      <div class="custom-card col col-50" ui-sref = "main.home">
+        <i class = "icon ion-ios-gear-outline custom-icon dark"> </i>
+        <h4 class = 'dark'> Settings </h4>
+
+        </div>
+
+        <div class="custom-card col col-50" ui-sref = "#">
+          <i class = "icon ion-ios-book-outline custom-icon dark"> </i>
+          <h4 class = 'dark'> Course Catalog </h4>
+
+          </div>
+
+
+
+    </div>
+    <div class="row">
       <div class="custom-card col col-50">
-        <i class = "icon ion-gear-a custom-icon "> </i>
-        <h3> SETTINGS </h3>
 
-        </div>
-        <div class="custom-card col col-50">
-
-          <i class = "icon  ion-search custom-icon "> </i>
-          <h3> MAKE SCHEDULE </h3>
+        <i ui-sref = "main.generate-schedule"class = "icon  ion-ios-paper-outline custom-icon dark  "> </i>
+        <h4 class = 'dark'> Make Schedule </h4>
 
 
-        </div>
+      </div>
 
     </div>
   </ion-content>

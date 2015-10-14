@@ -1,6 +1,6 @@
-angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', ['ionic','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
   .config(function ($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('login');
+    $urlRouterProvider.otherwise('main/dashboard');
     $stateProvider
       .state('main', {
       	url: '/main',
@@ -50,7 +50,7 @@ angular.module('parse-starter', ['ionic','parse-starter.controllers', 'parse-sta
         controller: 'ResetCtrl'
       })
       .state('main.generate-schedule',{
-        url: '/schedule/generate',
+        url: '/generate',
         views:{
           'menuContent':{
         templateUrl: 'templates/schedule/generate.html',
