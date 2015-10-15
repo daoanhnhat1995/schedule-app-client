@@ -1,12 +1,16 @@
-<div class = "list">
+<div ng-controller = "FilterData" class = "list">
 
   <label class="item item-input item-floating-label">
-      <span class="input-label">Department</span>
-      <input type="text" placeholder="Department name" ng-model = "item.department">
+      <!-- <span class="input-label">Department</span> -->
+      <input type="search" placeholder="Department name" ng-change = "search()" ng-model = "data.search">
+
   </label>
+  <div class = "list">
+    <li class="item" ng-repeat="dept in data.departments">{{dept.name}}</li>
+  </div>
   <label class="item item-input item-floating-label">
       <span class="input-label">Class</span>
-      <input type="text" placeholder="Class" ng-model = "item.class">
+      <input type="text" placeholder="Class" ng-click = 'change()' ng-model = "item.class">
   </label>
 
 

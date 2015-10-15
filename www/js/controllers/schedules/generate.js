@@ -1,5 +1,5 @@
 angular.module("parse-starter.controllers")
-  .controller("GenerateCtrl", function($scope,$state,$ionicPopup,Schedule){
+  .controller("GenerateCtrl", function($scope,$state,$ionicPopup,Schedule,Department){
     $scope.listClass = Schedule.getListClass();
 
     // remove class from list
@@ -25,4 +25,27 @@ angular.module("parse-starter.controllers")
 
     };
 
-});
+})
+
+  .controller('FilterData',function($scope,Department){
+    //filter
+    $scope.data = {'departments': [], 'search': ''}
+    $scope.change = function(){
+      $scope.data.departments = [];
+    }
+    $scope.search = function(){
+      Department.searchDepartment($scope.data.search).then(
+        function(matches){
+          if($scope.data.search !== '')
+          { $scope.data.departments = matches;
+        }
+        else{
+          $scope.data.departments = [];
+        }
+        }
+
+      )
+    };
+
+    console.log(Department.getDepartments());
+  })
