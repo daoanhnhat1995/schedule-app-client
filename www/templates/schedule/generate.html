@@ -1,0 +1,23 @@
+<ion-view title = "List of classes" >
+
+	<ion-content scroll = "false">
+
+	   <div class = "list card">
+       <div class = "item item-icon-right">
+         <h2>  Add a class </h2>
+         <i class = "icon ion-plus assertive" ng-click = "add()"></i>
+       </div>
+
+     </div>
+     <div class = "list card" ng-repeat = "each in listClass">
+       <div class = "item item-icon-right ">
+         <i class = "icon ion-ios-trash" ng-click = "remove(each)"> </i>
+
+      <h2> {{each.department | uppercase}} {{each.class | uppercase}} </h2>
+
+     </div>
+     </div>
+
+     <button class = "button button-generate button-assertive" ng-click = "show()"> Generate schedule </button>
+	</ion-content>
+</ion-view>

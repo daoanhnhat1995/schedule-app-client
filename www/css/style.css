@@ -1,1 +1,26 @@
 /* Empty. Add your own CSS if you like */
+
+.home {
+
+}
+.custom-icon{
+	font-size: 55px;
+	padding-left: relative;
+	padding-right: relative;
+}
+
+.custom-card{
+	/*border-radius: 10px;
+	border-style: solid;
+	border-width: thin;
+	border-color: #5F5F5F;*/
+	margin-left: relative;
+	text-align: center;
+	margin-bottom: 60px;
+	margin-right: relative;
+	width: 85px;
+	height: 100px;
+}
+.top-card{
+	margin-top: 50px;
+}

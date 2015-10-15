@@ -1,8 +1,39 @@
-angular.module('parse-starter', ['ionic', 'parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', ['ionic','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
   .config(function ($urlRouterProvider, $stateProvider) {
-    $urlRouterProvider.otherwise('login');
+    $urlRouterProvider.otherwise('main/dashboard');
     $stateProvider
-
+      .state('main', {
+      	url: '/main',
+      	cache: false,
+      	templateUrl: 'templates/side-menu.html',
+      	abstract: true
+      })
+      .state('main.home', {
+        url: '/home',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/home.html'
+           }
+        }
+      })
+      .state('main.dashboard',{
+        url:'/dashboard',
+        views:{
+          'menuContent':{
+            templateUrl:'templates/dashboard.html',
+            controller: 'dashboardCtrl'
+          }
+        }
+      })
+      .state('main.my-schedule',{
+        url:'/schedule/my-schedule',
+        views:{
+          'menuContent':{
+            templateUrl: 'templates/schedule/detail-view.html',
+            controller: 'myScheduleCtrl'
+          }
+        }
+      })
       .state('signup', {
         url: '/signup',
         templateUrl: 'templates/signup.html',
@@ -18,14 +49,21 @@ angular.module('parse-starter', ['ionic', 'parse-starter.controllers', 'parse-st
         templateUrl: 'templates/reset.html',
         controller: 'ResetCtrl'
       })
-      .state('home', {
-        url: '/home',
-        templateUrl: 'templates/home.html'
+      .state('main.generate-schedule',{
+        url: '/generate',
+        views:{
+          'menuContent':{
+        templateUrl: 'templates/schedule/generate.html',
+        controller:'GenerateCtrl'
+      }
+      }
       })
+
   })
   .run(function ($ionicPlatform, $state) {
 
-    Parse.initialize("ApplicationID", "JavaScriptKey");
+    // params[application_id, javascript_key]
+    Parse.initialize("maP05W7Q8wmbpr7JI7lPMzv9ZCq2LsPwSTm2yB6D", "lLCbV1F8fGFeNLjlKJCEbwweRhc8DWijylFXyEZq");
 
     //Todo
     //window.fbAsyncInit = function () {
