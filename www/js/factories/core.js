@@ -16,7 +16,7 @@ angular.module('parse-starter.factories')
 
             user.signUp(null, {
                 success: function(user) {
-                  $state.go('home');
+                  $state.go('login');
                 },
                 error: function(user, error) {
                     $ionicPopup.alert({
@@ -37,7 +37,7 @@ angular.module('parse-starter.factories')
             Parse.User.logIn(username, password, {
                 success: function(user) {
                     $ionicLoading.hide();
-                    $state.go('home');
+                    $state.go('main.home');
                 },
                 error: function(user, error) {
                     $ionicLoading.hide();

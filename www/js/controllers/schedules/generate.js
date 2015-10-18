@@ -33,6 +33,8 @@ angular.module("parse-starter.controllers")
     $scope.change = function(){
       $scope.data.departments = [];
     }
+    $scope.in = Department.getDepartments()[0]['name'];
+
     $scope.search = function(){
       Department.searchDepartment($scope.data.search).then(
         function(matches){
