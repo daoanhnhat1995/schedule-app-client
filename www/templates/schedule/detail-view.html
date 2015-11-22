@@ -1,5 +1,11 @@
 <ion-view title = "My Schedule">
   <ion-content scroll = 'false'>
-    <h1> {{view}} </h1>
+    <div class="list" ng-repeat="schedule in data">
+    	<li class = "item" href = "#">
+    		<h2>{{schedule['class_name']}}</h2>
+    		<h2> {{schedule['section_type']}} </h2>
+    		 <p> {{schedule['section_id']}} </p>
+    	</li>
+    </div>
   </ion-content>
 </ion-view>

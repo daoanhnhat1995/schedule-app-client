@@ -2,22 +2,32 @@
 
 	<ion-content scroll = "false">
 
-	   <div class = "list card">
-       <div class = "item item-icon-right">
-         <h2>  Add a class </h2>
-         <i class = "icon ion-plus assertive" ng-click = "add()"></i>
-       </div>
+	   <div class = "list">
+       
+			 <div class = "item item-icon-right" ng-click = "showBlockTime()">
+				 View Block Time
+				 <i class = "icon ion-ios-grid-view"></i>
+
+
+			 </div>
 
      </div>
-     <div class = "list card" ng-repeat = "each in listClass">
+		 <div ng-show = "listClass.length > 0"class = "item item-divider"> Your list</div>
+
+     <div class = "list" ng-repeat = "each in listClass">
        <div class = "item item-icon-right ">
          <i class = "icon ion-ios-trash" ng-click = "remove(each)"> </i>
 
       <h2> {{each.department | uppercase}} {{each.class | uppercase}} </h2>
 
      </div>
-     </div>
 
-     <button class = "button button-generate button-assertive" ng-click = "show()"> Generate schedule </button>
+     </div>
+     <div class = "item item-icon-right">
+         Add a class
+         <i class = "icon ion-plus" ng-click = "add()"></i>
+       </div>
+
+     <button class = "button button-block button-generate button-dark" ng-click = "generate()"> Generate Schedule </button>
 	</ion-content>
 </ion-view>

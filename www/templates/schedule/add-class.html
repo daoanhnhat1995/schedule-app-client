@@ -1,17 +1,28 @@
-<div ng-controller = "FilterData" class = "list">
-  <h2> {{in}} </h2>
+<div class = "list">
   <label class="item item-input item-floating-label">
-      <!-- <span class="input-label">Department</span> -->
-      <input type="search" placeholder="Department name" ng-change = "search()" ng-model = "data.search">
-
+      <span class="input-label">Semester</span>
+      <input type="text" placeholder="Semester" ng-click = 'change()' ng-model = "data.semester">
   </label>
+
+  <label class="item item-input item-floating-label">
+      <span class="input-label">Department</span>
+      <input type="search" placeholder="Department name" ng-click = 'change()' ng-change = "searchDepartment()" ng-model = "data.dept">
+  </label>
+
   <div class = "list">
-    <li class="item" ng-repeat="dept in data.departments">{{dept.name}}</li>
+    <li class="item" ng-repeat="dept in data.resultDept | limitTo: 3">
+      {{dept.name}}
+    </li>
   </div>
+
   <label class="item item-input item-floating-label">
       <span class="input-label">Class</span>
-      <input type="text" placeholder="Class" ng-click = 'change()' ng-model = "item.class">
+      <input type="text" placeholder="Course" ng-click = 'change()' ng-change = "searchCourse()" ng-model = "data.course">
   </label>
+
+  <li class="item" ng-repeat="course in data.resultCourse | limitTo: 3">
+    {{course.name}}
+  </li>
 
 
 </div>

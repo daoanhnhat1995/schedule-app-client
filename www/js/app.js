@@ -1,4 +1,4 @@
-angular.module('parse-starter', ['ionic','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', ['ionic','ionic-timepicker','ngResource','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
   .config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('main/dashboard');
     $stateProvider
@@ -14,6 +14,15 @@ angular.module('parse-starter', ['ionic','ionic-material','parse-starter.control
           'menuContent': {
             templateUrl: 'templates/home.html'
            }
+        }
+      })
+      .state('main.block-time',{
+        url: '/block-time',
+        views:{
+          'menuContent':{
+            templateUrl:'templates/schedule/block-time.html',
+            controller: 'blockTimeCtrl'
+          }
         }
       })
       .state('main.dashboard',{
