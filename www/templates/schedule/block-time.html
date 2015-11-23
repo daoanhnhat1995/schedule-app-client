@@ -1,9 +1,82 @@
-<ion-view title = "Block time preferences">
+<ion-view title = "Add Block Time">
+	<ion-nav-buttons side = "right">
+		 <button class="button-clear" ng-click="saveBlock()">
+        	<h4>Done</h4>
+      	  </button>
+	</ion-nav-buttons>
 	<ion-content scroll= 'false'>
-			<ionic-timepicker input-obj="timePickerObject24Hour">
-	          <button class="button button-block button-positive overflowShow">
-	            <strong etime="timePickerObject24Hour.inputEpochTime" class="ng-binding">12:21</strong>
-	          </button>
-	        </ionic-timepicker>
+
+	    <div class="list">
+	    <label class="item item-input item-floating-label">
+		    	
+		            <input placeholder = "Block Time Name" type='text' ng-model = "block.name">
+		            	
+		            </input>
+		   		 </ionic-timepicker>
+		   </label>
+
+  			
+  			<label class="item item-input item-floating-label">
+		    	<ionic-timepicker input-obj="startTime">
+		            <input placeholder = "From" type='text' etime="startTime.inputEpochTime" class="ng-binding">
+		            	{{block.startT}}
+		            </input>
+		   		 </ionic-timepicker>
+		   </label>
+
+  			<label class="item item-input item-floating-label">
+			    <ionic-timepicker input-obj="endTime">
+			            <input placeholder = "To" type='text' etime="endTime.inputEpochTime" class="ng-binding">
+			            	{{block.endT}}
+			            </input>
+			    </ionic-timepicker>
+		   </label>
+		  
+		</div>
+	        <div class = "list">
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.M">
+		        	</label>
+		        	Monday
+	        	</li>
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.Tu">
+		        	</label>
+		        	Tuesday
+	        	</li>
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.We">
+		        	</label>
+		        	Wednesday
+	        	</li>
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.Th">
+		        	</label>
+		        	Thursday
+	        	</li>
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.Fr">
+		        	</label>
+		        	Friday
+	        	</li>
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.Sat">
+		        	</label>
+		        	Saturday
+	        	</li>
+	        	<li class = "item item-checkbox">
+		        	<label class="checkbox">
+		        	<input type="checkbox" ng-model = "block.dayList.S">
+		        	</label>
+		        	Sunday
+	        	</li>
+
+	        </div>
 	</ion-content>
 </ion-view>

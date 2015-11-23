@@ -17,11 +17,21 @@ angular.module('parse-starter', ['ionic','ionic-timepicker','ngResource','ionic-
         }
       })
       .state('main.block-time',{
-        url: '/block-time',
+        url: '/time-setting/block-time',
         views:{
           'menuContent':{
             templateUrl:'templates/schedule/block-time.html',
             controller: 'blockTimeCtrl'
+          }
+        }
+      })
+      .state('main.time-setting',{
+        url:'/time-setting',
+        views:
+        {
+          'menuContent':{
+            templateUrl:'templates/schedule/time-setting.html',
+            controller:'timeSettingCtrl'
           }
         }
       })
