@@ -7,7 +7,8 @@
 		
 		<div class = "item item-avatar">
 			<h2> {{b.name}} </h2>
-			<p> From {{b.startT}} To {{b.endT}} </p>
+			<p> From {{b.startT |date:'h:mm a'}} </p>
+			<p> To {{b.endT |date:'h:mm a'}} </p>
 			<p>{{b.days}}</p>
 			
 		</div>

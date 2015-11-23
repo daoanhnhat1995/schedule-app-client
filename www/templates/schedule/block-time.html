@@ -15,23 +15,20 @@
 		   		 </ionic-timepicker>
 		   </label>
 
-  			
-  			<label class="item item-input item-floating-label">
-		    	<ionic-timepicker input-obj="startTime">
-		            <input placeholder = "From" type='text' etime="startTime.inputEpochTime" class="ng-binding">
-		            	{{block.startT}}
-		            </input>
-		   		 </ionic-timepicker>
+		   <label class="item item-input item-floating-label">
+		   		<label class = "input label"> From </label>
+		    	<input placeholder = "From" type='time' ng-model = 'block.startT'>
+
+		    	</input>
 		   </label>
 
-  			<label class="item item-input item-floating-label">
-			    <ionic-timepicker input-obj="endTime">
-			            <input placeholder = "To" type='text' etime="endTime.inputEpochTime" class="ng-binding">
-			            	{{block.endT}}
-			            </input>
-			    </ionic-timepicker>
+		    <label class="item item-input item-floating-label">
+		   		<label class = "input label"> From </label>
+		    	<input placeholder = "From" type='time' ng-model = 'block.endT'>
+
+		    	</input>
 		   </label>
-		  
+  			
 		</div>
 	        <div class = "list">
 	        	<li class = "item item-checkbox">

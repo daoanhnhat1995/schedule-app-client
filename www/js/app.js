@@ -1,4 +1,4 @@
-angular.module('parse-starter', ['ionic','ionic-timepicker','ngResource','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
   .config(function ($urlRouterProvider, $stateProvider, $ionicConfigProvider) {
     $ionicConfigProvider.backButton.previousTitleText(false).text('');
     $urlRouterProvider.otherwise('main/dashboard');
