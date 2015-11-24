@@ -2,14 +2,15 @@ angular.module('parse-starter.controllers')
 
 	/* index */
 	.controller('courseListCtrl',function($scope,courseData){
-		console.log(courseData.getCourseList());
+		console.log(courseData.getCartList());
+		$scope.selected = courseData.getCartList();
 	})
 
 
 	/* edit */
 
-	.controller('editCourseCtrl',
-		function($scope,$state,$ionicPopup,Filter,Schedule,Course,Department,
+	.controller('cartCtrl',
+		function($scope,$state,$ionicPopup,Filter,courseData,Course,Department,
 			semesterData,scheduleData)
 		{
 			$scope.semesterData = semesterData.getListSemester();
@@ -20,7 +21,7 @@ angular.module('parse-starter.controllers')
 		    }
 
 
-		    $scope.listClass = Schedule.getListClass();
+		    $scope.listClass = courseData.getCartList();
 
 		    $scope.selectSemester = function(){
 		      $ionicPopup.confirm({
@@ -37,7 +38,7 @@ angular.module('parse-starter.controllers')
 		    };
 		    /* remove class from list of classes */
 		    $scope.remove = function(each){
-		      Schedule.removeClass(each);
+		      courseData.removeClass(each);
 		    };
 
 		    /* add class to list of classes */
@@ -51,7 +52,7 @@ angular.module('parse-starter.controllers')
 		          controller: 'GenerateCtrl'
 		      }).then(function(res) {
 		          if(res) {
-		            Schedule.addClass($scope.data.dept,$scope.data.course);
+		            courseData.addClass($scope.data.dept,$scope.data.course);
 		            $scope.data.dept = '';
 		            $scope.data.course = '';
 		          } 

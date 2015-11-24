@@ -4,28 +4,20 @@
 
 
      <div class = "list">
-      <div class = "item" ng-click="selectSemester()">
-        {{semester.name}}
+      <div class = "item item-icon-right" ui-sref='main.block-time-index'>
+        Your Block Times
+        <i class = "icon ion-ios-timer-outline"> </i>
+
+      </div>
+      <div class = "item item-icon-right"  ui-sref = "main.course-index">
+        Selected classes
+        <i class = "icon ion-ios-list-outline"> </i>
+
       </div>
      </div>
 
     
-     <div ng-show = "listClass.length > 0"class = "item item-divider"> Your list</div>
-
-     <div class = "list" ng-repeat = "each in listClass">
-       <div class = "item item-icon-right ">
-         <i class = "icon ion-ios-trash" ng-click = "remove(each)"> </i>
-
-      <h2> {{each.department | uppercase}} {{each.class | uppercase}} </h2>
-
-     </div>
-
-     </div>
-     <div  ng-show = 'semester.name != "Select semester"' class = "item item-icon-right">
-         Add a class
-         <i class = "icon ion-plus" ng-click = "add()"></i>
-       </div>
-
-     <!-- <button class = "button button-block button-generate button-dark" ng-click = "generate()"> Generate Schedule </button> -->
+    
+     <button class = "button button-block button-generate button-dark" ng-click = "generate()"> Generate Schedule </button>
 	</ion-content>
 </ion-view>

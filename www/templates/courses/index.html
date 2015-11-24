@@ -1,3 +1,16 @@
-<ion-view title ="Your course cart">
-  
+<ion-view title = "Your classes" >
+
+	<ion-content scroll = "false">
+
+
+     <div class = "list" ng-repeat = "each in selected">
+      <div class = "item">
+        <ion-checkbox ng-model="isChecked">{{each.department}} {{each.class}}</ion-checkbox>
+      </div>
+     </div>
+
+    
+
+	</ion-content>
 </ion-view>
+

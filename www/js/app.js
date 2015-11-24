@@ -26,7 +26,7 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
           }
         }
       })
-      .state('main.course-list',{
+      .state('main.course-index',{
         url: '/course/index',
         views:{
           'menuContent':{
@@ -35,12 +35,12 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
           }
         }
       })
-      .state('main.edit-course',{
-        url: '/course/edit',
+      .state('main.course-cart',{
+        url: '/course/cart',
         views:{
           'menuContent':{
             templateUrl: 'templates/courses/edit.html',
-            controller: 'editCourseCtrl'
+            controller: 'cartCtrl'
           }
         }
       })
