@@ -16,7 +16,7 @@ angular.module('parse-starter.factories')
 
             user.signUp(null, {
                 success: function(user) {
-                  $state.go('home');
+                  $state.go('login');
                 },
                 error: function(user, error) {
                     $ionicPopup.alert({
@@ -37,7 +37,7 @@ angular.module('parse-starter.factories')
             Parse.User.logIn(username, password, {
                 success: function(user) {
                     $ionicLoading.hide();
-                    $state.go('home');
+                    $state.go('main.home');
                 },
                 error: function(user, error) {
                     $ionicLoading.hide();
@@ -75,4 +75,20 @@ angular.module('parse-starter.factories')
 
 
         return core;
-    });
+    })
+
+
+    // Local Storage data service
+    app.factory('sessionService',['$http',function($http){
+      return {
+         set:function(key,value){
+         return localStorage.setItem(key,JSON.stringify(value));
+       },
+       get:function(key){
+         return JSON.parse(localStorage.getItem(key));
+       },
+       destroy:function(key){
+         return localStorage.removeItem(key);
+       },
+     };
+    }])

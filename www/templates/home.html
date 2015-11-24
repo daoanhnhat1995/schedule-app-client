@@ -1,16 +1,20 @@
-<ion-view title = 'Setting'>
+<ion-view title = 'Settings'>
 	<ion-content scroll = "false">
 		<div class = "list">
 
 			<div class = "item item-divider"> Account </div>
-			   <a class = "item item-icon-right" ng-click = "">
-			      <i class = "icon ion-trash-a assertive"></i>
+			   <a class = "item item-icon-left" ng-click = "">
+			      <i class = "icon ion-trash-a"></i>
 						 Delete Account
-					 </a>
+					</a>
 			<div class = "item item-divider"> App Settings</div>
-			    <a class = "item item-icon-right" ng-click = "">
+			    <a class = "item item-icon-left" ui-sref = "login" ng-click = "">
+						<i class = "icon ion-refresh"></i>
 						Clear All Data
-
+					</a>
+					<a class = "item item-icon-left" ui-sref = "main.time-setting">
+						<i class = "icon ion-edit"></i>
+						Time settings
 					</a>
 
 

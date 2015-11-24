@@ -1,5 +1,6 @@
-angular.module('parse-starter', ['ionic','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
-  .config(function ($urlRouterProvider, $stateProvider) {
+angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
+  .config(function ($urlRouterProvider, $stateProvider, $ionicConfigProvider) {
+    $ionicConfigProvider.backButton.previousTitleText(false).text('');
     $urlRouterProvider.otherwise('main/dashboard');
     $stateProvider
       .state('main', {
@@ -14,6 +15,25 @@ angular.module('parse-starter', ['ionic','ionic-material','parse-starter.control
           'menuContent': {
             templateUrl: 'templates/home.html'
            }
+        }
+      })
+      .state('main.block-time',{
+        url: '/time-setting/block-time',
+        views:{
+          'menuContent':{
+            templateUrl:'templates/schedule/block-time.html',
+            controller: 'blockTimeCtrl'
+          }
+        }
+      })
+      .state('main.time-setting',{
+        url:'/time-setting',
+        views:
+        {
+          'menuContent':{
+            templateUrl:'templates/schedule/time-setting.html',
+            controller:'timeSettingCtrl'
+          }
         }
       })
       .state('main.dashboard',{
