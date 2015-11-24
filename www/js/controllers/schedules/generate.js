@@ -1,8 +1,28 @@
 angular.module("parse-starter.controllers")
-  .controller("GenerateCtrl", function($scope,$state,$ionicPopup,Filter,Schedule,Course,Department,scheduleData){
+  .controller("GenerateCtrl", function($scope,$state,$ionicPopup,Filter,Schedule,Course,Department,semesterData,scheduleData){
+    $scope.semesterData = semesterData.getListSemester();
+
+    $scope.semester = {};
+    if(typeof($scope.semester.name) == "undefined"){
+      $scope.semester.name = "Select semester";
+    }
+
 
     $scope.listClass = Schedule.getListClass();
 
+    $scope.selectSemester = function(){
+      $ionicPopup.confirm({
+        title: 'Select a semester',
+        templateUrl:'templates/schedule/pick-semester.html',
+        scope: $scope,
+        okType: 'button-dark',
+        controller: 'GenerateCtrl'
+      }).then(function(r){
+        semesterData.setSemester($scope.semester.name);
+        console.log(semesterData.getSemester());
+        
+      });
+    };
     /* remove class from list of classes */
     $scope.remove = function(each){
       Schedule.removeClass(each);
@@ -10,20 +30,19 @@ angular.module("parse-starter.controllers")
 
     /* add class to list of classes */
     $scope.add = function(){
-      console.log("classes picked are : ", $scope.listClass);
+
       $ionicPopup.confirm({
           title: 'Add class',
           templateUrl: "templates/schedule/add-class.html",
           scope: $scope,
-          okType: 'button-balanced',
+          okType: 'button-dark',
           controller: 'GenerateCtrl'
       }).then(function(res) {
           if(res) {
             Schedule.addClass($scope.data.dept,$scope.data.course);
             $scope.data.dept = '';
             $scope.data.course = '';
-          } else {
-          }
+          } 
       });
     };
 
