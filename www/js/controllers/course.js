@@ -29,7 +29,7 @@ angular.module('parse-starter.controllers')
 		        templateUrl:'templates/schedule/pick-semester.html',
 		        scope: $scope,
 		        okType: 'button-dark',
-		        controller: 'GenerateCtrl'
+		        controller: 'cartCtrl'
 		      }).then(function(r){
 		        semesterData.setSemester($scope.semester.name);
 		        console.log(semesterData.getSemester());
@@ -49,7 +49,7 @@ angular.module('parse-starter.controllers')
 		          templateUrl: "templates/schedule/add-class.html",
 		          scope: $scope,
 		          okType: 'button-dark',
-		          controller: 'GenerateCtrl'
+		          controller: 'cartCtrl'
 		      }).then(function(res) {
 		          if(res) {
 		            courseData.addClass($scope.data.dept,$scope.data.course);

@@ -17,6 +17,32 @@ angular.module('parse-starter.controllers')
 
 	    };
 
+	    $scope.option = {};
+	    if( typeof($scope.block.name) == "undefined"){
+	    	$scope.block.name = "Select block time name";
+	    }
+
+	    $scope.optionList = blockTimeData.options();
+
+	    console.log($scope.optionList);
+
+	    $scope.selectName = function(){
+	    	 $ionicPopup.confirm({
+		        title: 'Select a name',
+		        templateUrl:'templates/blocktimes/pick-name.html',
+		        scope: $scope,
+		        okType: 'button-dark',
+		        controller: 'editBlockTimeCtrl'
+		      }).then(function(r){
+		        
+		        console.log($scope.option.name);
+		        $scope.block.name = $scope.option.name;
+		        
+		      });
+	    }
+
+
+
 
 	})
 

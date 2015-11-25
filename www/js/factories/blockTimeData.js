@@ -17,6 +17,11 @@ angular.module("parse-starter.factories")
 			/* return block time list */
 			getBlockTime: function(){
 				return timeData;
+			},
+
+			options: function(){
+				l = ["Commute Time","Study Time","Work Time"];
+				return l;
 			}
 
 
