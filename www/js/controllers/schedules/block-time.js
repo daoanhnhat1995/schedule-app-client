@@ -5,13 +5,8 @@ angular.module('parse-starter.controllers')
 		$scope.block = {};
 		
 
-	    $scope.days = ["M","Tu","W","Th","F","S"];
-
-	    // blockTimeData.addBlock($scope.startT,$scope.endT,["M"]);
-	    // console.log(blockTimeData.getBlockTime());
-
+	   
 	    $scope.saveBlock = function(){
-	    	console.log($scope.block);
 	    	blockTimeData.addBlock($scope.block);
 	    	$state.go("main.block-time-index");
 
@@ -48,7 +43,18 @@ angular.module('parse-starter.controllers')
 
 	/* controller for blocktime setting index page */
 
-	.controller('mainBlockTimeCtrl',function($scope,blockTimeData){
+	.controller('mainBlockTimeCtrl',function($scope,$state,blockTimeData,Schedule){
 		$scope.blocks = blockTimeData.getBlockTime();
+		
+		$scope.save = function(){
+			current = [];
+			angular.forEach($scope.blocks,function(b){
+				if(b.checked == true){
+					current.push(b);
+				}
+			});
+			Schedule.setBlockTime(current);
+			$state.go('main.generate-schedule');
+		}
 
 	})

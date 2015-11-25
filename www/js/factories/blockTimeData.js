@@ -9,7 +9,10 @@ angular.module("parse-starter.factories")
 
 			
 			addBlock: function(block){	/* add a time block to list */
-				
+				block.days = [];
+				angular.forEach(block.dayList,function(value,key){
+					this.push(key);
+				},block.days);
 				timeData.push(block);
 
 			},

@@ -1,11 +1,19 @@
 <ion-view title = "Your classes" >
 
+	<ion-nav-buttons side = "right">
+		 <button class="button-clear"  ng-click="save()">
+        	<h4> Save </h4>
+       	  </button>
+	</ion-nav-buttons>
+
 	<ion-content scroll = "false">
 
 
      <div class = "list" ng-repeat = "each in selected">
       <div class = "item">
-        <ion-checkbox ng-model="isChecked">{{each.department}} {{each.class}}</ion-checkbox>
+        <ion-checkbox ng-checked = "each.checked" ng-model = 'each.checked'>
+        {{each.department}} {{each.course}}</ion-checkbox>
+
       </div>
      </div>
 

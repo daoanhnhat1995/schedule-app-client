@@ -9,10 +9,19 @@
         <i class = "icon ion-ios-timer-outline"> </i>
 
       </div>
+      <div class = "list" ng-repeat = "b in blocks">
+        <div class = "item">
+        {{b.name}}  From {{b.startT}} To {{b.endT}}
+        </div>
+      </div>
       <div class = "item item-icon-right"  ui-sref = "main.course-index">
         Selected classes
         <i class = "icon ion-ios-list-outline"> </i>
-
+        <div class = "list" ng-repeat = "c in classes">
+        <div class = "item">
+        {{c.department}} {{c.course}}
+        </div>
+      </div>
       </div>
      </div>
 

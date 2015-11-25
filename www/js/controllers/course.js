@@ -1,9 +1,26 @@
 angular.module('parse-starter.controllers')
 
 	/* index */
-	.controller('courseListCtrl',function($scope,courseData){
+	.controller('courseListCtrl',function($scope,courseData,Schedule,$state){
 		console.log(courseData.getCartList());
+
 		$scope.selected = courseData.getCartList();
+		
+		$scope.save = function(){
+			current = [];
+			angular.forEach($scope.selected,function(each){
+				if(each.checked == true){
+					current.push(each);
+				}
+			});
+			Schedule.setList(current);
+
+			$state.go("main.generate-schedule");
+
+			
+		};
+
+		
 	})
 
 
