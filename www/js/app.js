@@ -17,22 +17,40 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
            }
         }
       })
-      .state('main.block-time',{
-        url: '/time-setting/block-time',
+      .state('main.block-time-edit',{
+        url: '/blocktimes/edit',
         views:{
           'menuContent':{
-            templateUrl:'templates/schedule/block-time.html',
-            controller: 'blockTimeCtrl'
+            templateUrl:'templates/blocktimes/edit.html',
+            controller: 'editBlockTimeCtrl'
           }
         }
       })
-      .state('main.time-setting',{
-        url:'/time-setting',
+      .state('main.course-index',{
+        url: '/course/index',
+        views:{
+          'menuContent':{
+            templateUrl:'templates/courses/index.html',
+            controller: 'courseListCtrl'
+          }
+        }
+      })
+      .state('main.course-cart',{
+        url: '/course/cart',
+        views:{
+          'menuContent':{
+            templateUrl: 'templates/courses/edit.html',
+            controller: 'cartCtrl'
+          }
+        }
+      })
+      .state('main.block-time-index',{
+        url:'/blocktimes/index',
         views:
         {
           'menuContent':{
-            templateUrl:'templates/schedule/time-setting.html',
-            controller:'timeSettingCtrl'
+            templateUrl:'templates/blocktimes/index.html',
+            controller:'mainBlockTimeCtrl'
           }
         }
       })
@@ -40,8 +58,7 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
         url:'/dashboard',
         views:{
           'menuContent':{
-            templateUrl:'templates/dashboard.html',
-            controller: 'dashboardCtrl'
+            templateUrl:'templates/dashboard.html'
           }
         }
       })
@@ -56,17 +73,17 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
       })
       .state('signup', {
         url: '/signup',
-        templateUrl: 'templates/signup.html',
+        templateUrl: 'templates/authentication/signup.html',
         controller: 'SignupCtrl'
       })
       .state('login', {
         url: '/login',
-        templateUrl: 'templates/login.html',
+        templateUrl: 'templates/authentication/login.html',
         controller: 'LoginCtrl'
       })
       .state('reset', {
         url: '/reset',
-        templateUrl: 'templates/reset.html',
+        templateUrl: 'templates/authentication/reset.html',
         controller: 'ResetCtrl'
       })
       .state('main.generate-schedule',{
