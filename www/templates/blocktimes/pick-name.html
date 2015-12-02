@@ -1,6 +1,6 @@
-<div class = "list" ng-repeat = 's in optionList'>
+<ion-list>
 
-	<ion-radio ng-value='s'
-			   ng-model = 'option.name'> {{s}}</ion-radio>
+	<ion-radio ng-repeat = 's in optionList' ng-value='s'
+			   ng-model = '$parent.$parent.block.name'> {{s}}</ion-radio>
 
-</div>
+</ion-list>

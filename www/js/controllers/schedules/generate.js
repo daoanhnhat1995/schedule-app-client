@@ -3,7 +3,8 @@ angular.module("parse-starter.controllers")
     $scope.classes = Schedule.getListClass();
     $scope.blocks = Schedule.getBlockTime();
     $scope.generate = function(){
-      
+      console.log("Selected classes: " , $scope.classes);
+      console.log("Selected blocks: ", $scope.blocks);
     };
 
 })

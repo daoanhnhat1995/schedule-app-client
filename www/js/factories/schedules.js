@@ -11,7 +11,8 @@ angular.module('parse-starter.factories')
       listClass.push(obj);
     },
     setList: function(l){
-      listClass = l;
+      listClass.splice(0,listClass.length);
+      listClass.push(l);
 
     },
     getListClass: function(){
@@ -21,8 +22,9 @@ angular.module('parse-starter.factories')
       listClass.splice(listClass.indexOf(classname),1);
     },
     setBlockTime: function(bList){
-      blockTime = bList;
-      console.log(bList);
+      blockTime.splice(0,blockTime.length);
+      blockTime.push(bList);
+      console.log(blockTime);
     },
     getBlockTime: function(){
       return blockTime;

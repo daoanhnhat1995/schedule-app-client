@@ -71,6 +71,7 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
           }
         }
       })
+     
       .state('signup', {
         url: '/signup',
         templateUrl: 'templates/authentication/signup.html',
