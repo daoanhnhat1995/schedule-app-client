@@ -22,23 +22,5 @@ angular.module('parse-starter.controllers')
     };
 
 
-    //Todo
-/*    $scope.fbLogin = function () {
-
-      Parse.FacebookUtils.logIn(null, {
-        success: function(user) {
-          if (!user.existed()) {
-            alert("User signed up and logged in through Facebook!");
-          } else {
-            alert("User logged in through Facebook!");
-          }
-        },
-        error: function(user, error) {
-          console.log(user,error)
-        //  alert("User cancelled the Facebook login or did not fully authorize.");
-        }
-      });
-    };*/
-
 
   });

@@ -11,6 +11,7 @@ angular.module('parse-starter.controllers')
 			angular.forEach($scope.selected,function(each){
 				if(each.checked == true){
 					current.push(each);
+					console.log(each);
 				}
 			});
 			Schedule.setList(current);

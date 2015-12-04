@@ -7,17 +7,25 @@ angular.module("parse-starter.factories")
 		var timeData = [];
 		return{
 
-			
-			addBlock: function(block){	/* add a time block to list */
+			/*
+			* Add a block to timeData list
+			*/
+
+			addBlock: function(block){	
 				block.days = [];
 				angular.forEach(block.dayList,function(value,key){
 					this.push(key);
-				},block.days);
-				timeData.push(block);
+				},block.days);	
 
+				if(block.days.length == 0){
+					block.days = "Everyday";
+				}
+
+				timeData.push(block);
+				
 			},
 
-			/* return block time list */
+			
 			getBlockTime: function(){
 				return timeData;
 			},
