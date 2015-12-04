@@ -1,9 +1,9 @@
 angular.module('parse-starter.factories')
 .factory('classData',function(){
-  var classes = [{"id":2172,"class_id":41173,"instructor":"Terrance Moore","section_id":"001                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"19:00:00","end_time":"20:20:00","location":"WH  311","course_id":678,"dates":["Tu","Th"]},{"id":2173,"class_id":24892,"instructor":"Vassilis Athitsos","section_id":"003                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"12:30:00","end_time":"13:50:00","location":"TBA","course_id":678,"dates":["Tu","Th"]},{"id":2174,"class_id":41236,"instructor":"Alexandra Stefan","section_id":"004                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"09:30:00","end_time":"10:50:00","location":"TBA","course_id":678,"dates":["Tu","Th"]},{"id":2175,"class_id":43187,"instructor":"Janice Carter M Tiernan","section_id":"005                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"15:30:00","end_time":"16:50:00","location":"TBA","course_id":678,"dates":["Tu","Th"]}];
+  var classes = [{"id":2172,"class_id":41173,"instructor":"Terrance Moore","section_id":"001                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"19:00:00","end_time":"20:20:00","location":"WH  311","course_id":678,"dates":["Tu","Th"]},{"id":2173,"class_id":24892,"instructor":"Vassilis Athitsos","section_id":"003                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"19:30:00","end_time":"20:50:00","location":"TBA","course_id":678,"dates":["Tu","Th"]},{"id":2174,"class_id":41236,"instructor":"Alexandra Stefan","section_id":"004                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"09:30:00","end_time":"10:50:00","location":"TBA","course_id":678,"dates":["Tu","Th"]},{"id":2175,"class_id":43187,"instructor":"Janice Carter M Tiernan","section_id":"005                 ","section_type":"LEC                 ","meeting_time":"01/19/2016 - 05/06/2016","start_time":"15:30:00","end_time":"16:50:00","location":"TBA","course_id":678,"dates":["Tu","Th"]}];
 
 return {
-  getClasses: function(){
+  getAll: function(){
     return classes;
   }
 }
@@ -34,6 +34,7 @@ return {
       console.log(target);
       return _.findWhere(courses[d],{"course_id":target});
     },
+
     getAll: function(){
       return courses;
     }
