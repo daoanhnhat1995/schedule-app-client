@@ -6,25 +6,19 @@ angular.module('parse-starter.factories')
   var blockTime = [];
 
   return {
-    addClass: function(obj){
-    //add a class to the list view
-      listClass.push(obj);
-    },
-    setList: function(l){
+  
+    setCourses: function(l){
       listClass.splice(0,listClass.length);
-      listClass.push(l);
+      Array.prototype.push.apply(listClass,l);
 
     },
-    getListClass: function(){
+    getCourses: function(){
       return listClass;
     },
-    removeClass: function(classname){
-      listClass.splice(listClass.indexOf(classname),1);
-    },
+    
     setBlockTime: function(bList){
       blockTime.splice(0,blockTime.length);
-      blockTime.push(bList);
-      console.log(blockTime);
+      Array.prototype.push.apply(blockTime,bList);
     },
     getBlockTime: function(){
       return blockTime;

@@ -25,17 +25,28 @@ angular.module('parse-starter.controllers')
 	      var name = newVal[0] != defaultName,
 	      	
 	        startT = newVal[2] != undefined ,
-	        endT = newVal[3] != undefined ;
-	      	$scope.ready = !! ( name && startT && endT );
+	        endT = newVal[3] != undefined 
+	        
+	      	$scope.ready = !! ( name && startT && endT);
 	      	console.log($scope.ready);
 
 
 	    });
 
 	    $scope.saveBlock = function(){
-	    	console.log($scope.block);
-	    	blockTimeData.addBlock($scope.block);
-	    	$state.go("main.block-time-index");
+
+	    	/*
+	    	*  Check if block time is appropriate 
+	    	*/
+
+	    	if($scope.block.startT < $scope.block.endT){
+
+	    		blockTimeData.addBlock($scope.block);
+	    		$state.go("main.block-time-index");
+
+	    	} else {
+	    		alert("Bad time interval!");
+	    	}
 
 	    }
 
@@ -56,7 +67,7 @@ angular.module('parse-starter.controllers')
 
 	/* controller for blocktime setting index page */
 
-	.controller('mainBlockTimeCtrl',function($scope,$state,blockTimeData,Schedule){
+	.controller('mainBlockTimeCtrl',function(Filter,$scope,$state,blockTimeData,Schedule){
 		$scope.blocks = blockTimeData.getBlockTime();
 
 		$scope.save = function(){
@@ -67,6 +78,7 @@ angular.module('parse-starter.controllers')
 				}
 			});
 			Schedule.setBlockTime(current);
+			console.log(Filter.match(current));
 			$state.go('main.generate-schedule');
 		}
 

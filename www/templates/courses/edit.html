@@ -1,15 +1,12 @@
 <ion-view title = "List of classes" >
-  <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-checkmark" ng-click="saveBlock()">
-        </button>
-  </ion-nav-buttons>
+  
   <ion-content scroll = "false">
 
 
      <div class = "list">
     
       <div class = "item" ng-click="selectSemester()">
-       {{semester.name}}
+       {{semester}}
       </div>
      </div>
 
@@ -20,12 +17,13 @@
        <div class = "item item-icon-right ">
          <i class = "icon ion-ios-trash" ng-click = "remove(each)"> </i>
 
-      <h2> {{each.department | uppercase}} {{each.class | uppercase}} </h2>
+      <h2> {{each.course_id }} </h2>
+       <h2> {{each.course_title }} </h2>
 
      </div>
 
      </div>
-     <div  ng-show = 'semester.name != "Select semester"' class = "item item-icon-right">
+     <div  ng-show = '!ready' class = "item item-icon-right">
          Add a class
          <i class = "icon ion-plus" ng-click = "add()"></i>
        </div>

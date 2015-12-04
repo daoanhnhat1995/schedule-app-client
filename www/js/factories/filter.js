@@ -1,5 +1,5 @@
 angular.module('parse-starter.factories')
-  .factory('Filter',function($q,$timeout){
+  .factory('Filter',function($q,$timeout,_){
     var search = function(searchFilter,target) {
 
       console.log('Searching for ' + searchFilter);
@@ -7,7 +7,7 @@ angular.module('parse-starter.factories')
       var deferred = $q.defer();
 
       var matches = target.filter( function(obj) {
-          if(obj.name.toLowerCase().indexOf(searchFilter.toLowerCase()) !== -1 )
+          if(obj.toLowerCase().indexOf(searchFilter.toLowerCase()) !== -1 )
            return true;
       });
 
@@ -20,5 +20,44 @@ angular.module('parse-starter.factories')
 
     };
 
-    return {search: search}
+
+
+    var match = function(arr){
+
+
+      /*
+      * Take  2 times, find 
+      */
+      function compare(a,b){
+        var dates_a = _.pluck(a,'dayList');
+        var dates_b = _.pluck(b,'dayList');
+        var joint_dates = _.intersection(dates_a,dates_b);
+        console.log(joint_dates);
+
+        if(joint_dates.length == 0){
+          return true;
+        
+        } 
+
+        return a.startT > b.endT | a.endT < b.startT 
+      }
+
+      var temp;
+      var l;
+      var res = true;
+      while(arr.length>0){
+        temp = arr.pop();
+        l = _.filter(arr,function(each){return compare(temp,each) == false});
+        if(l.length > 0 ){
+          res = false;
+          break;
+        }
+
+
+      }
+      return res;
+    }
+
+    return {search: search, match: match}
   })
+

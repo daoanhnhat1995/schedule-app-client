@@ -1,19 +1,19 @@
 angular.module('parse-starter.factories')
-	.factory('courseData',function(){
-		 var cartList = [];
+	.factory('Cart',function(_){
+		 var courses = [];
 		  return {
-		    addClass: function(deptName,className){
-		      //add a class to the list view
-		      cartList.push({
-		        department: deptName,
-		        class: className
-		      });
+		    add: function(c){
+		    	if(!_.contains(courses,c)){
+		     	courses.push(c);
+		     }
+		     		      
 		    },
-		    getCartList: function(){
-		      return cartList;
+		    getAll: function(){
+
+		      return courses;
 		    },
-		    removeClass: function(classname){
-		      cartList.splice(cartList.indexOf(classname),1);
+		    remove: function(c){
+		      courses.splice(courses.indexOf(c),1);
 		    }
 		  }
 	})

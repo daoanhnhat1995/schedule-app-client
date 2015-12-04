@@ -1,21 +1,19 @@
 angular.module('parse-starter.controllers')
 
 	/* index */
-	.controller('courseListCtrl',function($scope,courseData,Schedule,$state){
-		console.log(courseData.getCartList());
+	.controller('courseListCtrl',function($scope,Cart,Schedule,$state){
 
-		$scope.selected = courseData.getCartList();
+		$scope.courses = Cart.getAll();
 		
 		$scope.save = function(){
 			current = [];
-			angular.forEach($scope.selected,function(each){
+			angular.forEach(Cart.getAll(),function(each){
 				if(each.checked == true){
 					current.push(each);
-					console.log(each);
 				}
 			});
-			Schedule.setList(current);
-
+			Schedule.setCourses(current);
+			console.log(current);
 			$state.go("main.generate-schedule");
 
 			
@@ -28,18 +26,17 @@ angular.module('parse-starter.controllers')
 	/* edit */
 
 	.controller('cartCtrl',
-		function($scope,$state,$ionicPopup,Filter,courseData,Course,Department,
-			semesterData,scheduleData)
-		{
+		function($scope,$state,$ionicPopup,Schedule,Filter,Cart,Course,Department,semesterData,scheduleData){
+			
 			$scope.semesterData = semesterData.getListSemester();
-
-		    $scope.semester = {};
-		    if(typeof($scope.semester.name) == "undefined"){
-		      $scope.semester.name = "Select semester";
-		    }
+			$scope.semester = "Select Semester";
+		   	$scope.listClass = Cart.getAll();
 
 
-		    $scope.listClass = courseData.getCartList();
+		    $scope.$watch("semester",function(newVal){
+		    	$scope.ready = (newVal == "Select Semester");
+		    	// console.log($scope.ready);
+		    });
 
 		    $scope.selectSemester = function(){
 		      $ionicPopup.confirm({
@@ -48,18 +45,19 @@ angular.module('parse-starter.controllers')
 		        scope: $scope,
 		        okType: 'button-dark',
 		        controller: 'cartCtrl'
-		      }).then(function(r){
-		        semesterData.setSemester($scope.semester.name);
-		        console.log(semesterData.getSemester());
-		        
 		      });
 		    };
-		    /* remove class from list of classes */
+
+		    /*
+		    * Remove a class from list
+		    */
 		    $scope.remove = function(each){
-		      courseData.removeClass(each);
+		      Cart.remove(each);
 		    };
 
-		    /* add class to list of classes */
+		     /*
+		    * Add a class from list
+		    */
 		    $scope.add = function(){
 
 		      $ionicPopup.confirm({
@@ -70,7 +68,20 @@ angular.module('parse-starter.controllers')
 		          controller: 'cartCtrl'
 		      }).then(function(res) {
 		          if(res) {
-		            courseData.addClass($scope.data.dept,$scope.data.course);
+
+		          	/*
+		          	* Query course and if found, add to cart
+		          	*/
+		          	var course = Course.findCourse($scope.data.dept.toUpperCase(),$scope.data.course);
+		          	console.log(course);
+		            if(course != undefined){
+		            	course.checked = true;
+
+		            	Cart.add(course);
+		            }
+
+		            /* reset main list */
+		            Schedule.setCourses(Cart.getAll());
 		            $scope.data.dept = '';
 		            $scope.data.course = '';
 		          } 
@@ -109,10 +120,14 @@ angular.module('parse-starter.controllers')
 		    * e.g... CSE1310,...
 		    */
 		    $scope.searchCourse = function(){
-		      Filter.search($scope.data.course,Course.getCourse($scope.data.dept.toUpperCase())).then(
+
+		      Filter.search($scope.data.dept.toUpperCase()+" " +$scope.data.course,Course.getCourse($scope.data.dept.toUpperCase())).then(
 		        function(matches){
-		          if($scope.data.course !== ''){$scope.data.resultCourse = matches;}
-		          else {
+		          if($scope.data.course !== ''){
+
+		          	$scope.data.resultCourse = matches;
+
+		          }else {
 		            $scope.data.resultCourse = [];
 		          }
 		        }
