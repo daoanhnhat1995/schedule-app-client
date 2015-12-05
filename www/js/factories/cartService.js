@@ -3,7 +3,9 @@ angular.module('parse-starter.factories')
 		 var courses = [];
 		  return {
 		    add: function(val){
+		    	val.checked = true;
 		    	if(!_.contains(courses,val)){
+
 		     	courses.push(val);
 		   		  } 
 		     		      

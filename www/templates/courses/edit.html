@@ -11,7 +11,7 @@
 
   
      <div class = "list" ng-repeat = "each in listClass">
-       <div class = "item item-icon-right ">
+       <div class = "item item-icon-right">
          <i class = "icon ion-ios-trash icon-assertive button-clear button-assertive" ng-click = "remove(each)"> </i>
 
       <h2> {{each.course_id }} </h2>
@@ -23,7 +23,7 @@
 
 
 
-     <button ng-show = "ready" class="button button-royal button-block" modal-select ng-model="course" options="courses"  has-search="true" modal-title="Select Class" on-select = "addClass(course)">
+     <button ng-show = "ready" class="button button-dark button-block" modal-select ng-model="course" options="courses"  has-search="true" modal-title="Select Class" on-select = "addClass(course)">
      Add a class 
     <div class="option">
         {{option.course_id}} {{option.course_title}}

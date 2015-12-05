@@ -7,12 +7,15 @@
 	<ion-content scroll= 'false'>
 
 	    <div class="list">
-	    <label class="item item-input item-floating-label" ng-click = "selectName()">  	
-		            <!-- <input placeholder = "Block Time Name" type='text' ng-model = "block.name">
-		            	
-		            </input> -->
-		            {{block.name}}
-		   </label>
+	
+		    <button class="button button-assertive button-clear button-outline button-block" modal-select ng-model="block.name" options="optionList" modal-title="Select Block" ng-change = "setSemester(semester)">
+		    {{block.name}}
+		    <div class="option">
+		        {{option}}
+		    </div>
+		    </button>
+
+
 
 		   <label class="item item-input item-floating-label">
 		   		<label class = "input label"> From </label>

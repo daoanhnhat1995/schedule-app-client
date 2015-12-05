@@ -1,15 +1,9 @@
 angular.module('parse-starter.controllers')
-	.controller('editBlockTimeCtrl',function($scope,$state,$ionicPopup,blockTimeData){
+	.controller('editBlockTimeCtrl',function($scope,$ionicModal,$state,$ionicPopup,blockTimeData){
 
 		
 		$scope.block = {};
-		
-
-	  
-
 	    $scope.optionList = blockTimeData.options();
-
-	   
 
 	    /*
 	    * enable save button if these fields are filled
@@ -46,26 +40,20 @@ angular.module('parse-starter.controllers')
 
 	    }
 
-	    $scope.selectName = function(){
-	    	 $ionicPopup.confirm({
-		        title: 'Select a name',
-		        templateUrl:'templates/blocktimes/pick-name.html',
-		        scope: $scope,
-		        okType: 'button-dark',
-		        controller: 'editBlockTimeCtrl'
-		      })
-	    }
 
 
+		
 
 
 	})
 
 	/* controller for blocktime setting index page */
 
-	.controller('mainBlockTimeCtrl',function(Filter,$scope,$state,blockTimeData,Schedule){
+	.controller('mainBlockTimeCtrl',function(Filter,$ionicModal,$scope,$state,blockTimeData,Schedule){
 		$scope.blocks = blockTimeData.getBlockTime();
 
+
+	   
 		$scope.save = function(){
 			current = [];
 			angular.forEach($scope.blocks,function(b){
