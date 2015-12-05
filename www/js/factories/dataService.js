@@ -37,7 +37,9 @@ return {
     },
 
     getAll: function(){
-      return courses;
+      var values = _.values(courses);
+      values = _.flatten(values);
+      return values;
     }
   }
 })

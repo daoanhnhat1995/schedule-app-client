@@ -2,14 +2,14 @@ angular.module('parse-starter.factories')
 	.factory('Cart',function(_){
 		 var courses = [];
 		  return {
-		    add: function(c){
-		    	if(!_.contains(courses,c)){
-		     	courses.push(c);
-		     }
+		    add: function(val){
+		    	if(!_.contains(courses,val)){
+		     	courses.push(val);
+		   		  } 
 		     		      
 		    },
 		    getAll: function(){
-
+		    	console.log(courses);
 		      return courses;
 		    },
 		    remove: function(c){
@@ -22,18 +22,27 @@ angular.module('parse-starter.factories')
 
 
 	.factory('semesterData',function(){
-		this.semester = "";
-
+		var semester = "Select Semester";
+		var ready = false;
 		return {
+
 			getSemester: function(){
-				return this.semester;
+				return semester;
 			},
 			setSemester: function(input){
-				this.semester = input;
+				if(input != "Select Semester" | input != ""){
+					ready = false;
+				} else{
+					ready == true;
+				}
+				semester = input;
 			},
 			getListSemester: function(){
 				list = ['Fall 2015','Spring 2017','Summer 2017'];
 				return list;
+			},
+			isAddReady: function(){
+				return ready;
 			}
 		}
 	})
