@@ -74,7 +74,7 @@ angular.module('parse-starter.controllers')
 				}
 			});
 			Schedule.setBlockTime(current);
-			console.log(Filter.match(current));
+			console.log(Filter.isOverLap(current));
 			$state.go('main.generate-schedule');
 		}
 
