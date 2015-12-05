@@ -12,8 +12,16 @@ angular.module("parse-starter.controllers")
       console.log(Filter.isOverLap($scope.blocks));
       var list = Filter.isConflict($scope.blocks, $scope.courses);
       Schedule.setSchedules(list);
-      Schedule.getResult();
-      $state.go('main.my-schedule');
+      Schedule.setSchedule(Schedule.getResult());
+      var list = Schedule.getSchedule();
+
+
+
+      if(list.conflicts.length >0){
+      	console.log(list.conflicts);
+      } else { 
+      	$state.go('main.my-schedule');
+      }
 
     };
 

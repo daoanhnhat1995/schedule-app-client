@@ -1,7 +1,7 @@
 angular.module('parse-starter.factories')
 
 .factory('Schedule',function($ionicPopup,_){
-  var schedule = {};
+  var schedule = {conflicts:[],schedules:[]};
   var listClass = [];
   var blockTime = [];
   var schedules = {};
@@ -34,11 +34,26 @@ angular.module('parse-starter.factories')
     },
     getResult: function(){
       if(schedules.possibleList == 0){
-        return schedules.conflictList;
+        return {
+          conflicts: schedules.conflictList, schedules: []
+
+        }
       } else {
-        return _.sample(schedules.possibleList,1);
+        return {
+          conflicts: [],
+          schedules: _.flatten(_.sample(schedules.possibleList,1))
+        }
       }
+    },
+    setSchedule: function(arr){
+      schedule = arr;
+    },
+    getSchedule: function(){
+
+
+      return schedule;
     }
+
 
   }
 })
