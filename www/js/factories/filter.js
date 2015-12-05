@@ -71,6 +71,8 @@ angular.module('parse-starter.factories')
           // break;
           res = _.toArray([temp,l])
           break;
+        } else {
+          res = array;
         }
 
 

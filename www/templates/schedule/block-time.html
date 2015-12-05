@@ -7,13 +7,12 @@
 	<ion-content scroll= 'false'>
 
 	    <div class="list">
-	    <button class="button button-clear button-dark button-block" modal-select ng-model="block.name" options="optionList" modal-title="Select Block" ng-change = "">
-	    {{block.name}}
-	    <div class="option">
-	        {{option}}
-	    </div>
-	    </button>
-
+	    <label class="item item-input item-floating-label">
+		    	
+		            <input placeholder = "Block Time Name" type='text' ng-model = "block.name">
+		            	
+		            </input>
+		   </label>
 
 		   <label class="item item-input item-floating-label">
 		   		<label class = "input label"> From </label>
@@ -33,7 +32,7 @@
 	        <div class = "list">
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-model = "block.dayList.M">
+		        	<input type="checkbox" ng-model = "block.dayList.Mo">
 		        	</label>
 		        	Monday
 	        	</li>
@@ -69,7 +68,7 @@
 	        	</li>
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-model = "block.dayList.S">
+		        	<input type="checkbox" ng-model = "block.dayList.Su">
 		        	</label>
 		        	Sunday
 	        	</li>
