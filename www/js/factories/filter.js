@@ -20,19 +20,26 @@ angular.module('parse-starter.factories')
 
     };
 
-var match2 = function(arr){
+
+    /**
+     *
+     * Deep copy an object
+     *
+     */
+    
+     function deepCopy(a){
+      return JSON.parse(JSON.stringify(a));
+     }
 
 
       /*
-      * Take  2 times, find 
+      * compare 2 blocks of time
       */
       function compare(a,b){
-        var dates_a = _.pluck(a,'dates');
-        var dates_b = _.pluck(b,'dates');
-        var joint_dates = _.intersection(dates_a,dates_b);
-        console.log(joint_dates);
+        var joint_dates = _.intersection(a["dates"],b["dates"]);
+        // console.log("Join dates are " + joint_dates);
 
-        if(joint_dates.length == 0){
+        if(joint_dates.length == 0 | joint_dates === undefined){
           return true;
         
         } 
@@ -40,14 +47,29 @@ var match2 = function(arr){
         return a.start_time > b.end_time | a.end_time < b.start_time
       }
 
+
+      /**
+       *
+       * check if a list of time blocks overlaps each other
+       * each member needs to be unique
+       */
+      
+    var isOverlap = function(array){
       var temp;
       var l;
       var res = true;
+
+      var arr = deepCopy(array);
+      /*----------  enumerate through each item  ----------*/
       while(arr.length>0){
+
         temp = arr.pop();
+
         l = _.filter(arr,function(each){return compare(temp,each) == false});
         if(l.length > 0 ){
-          res = false;
+          // res = false;
+          // break;
+          res = _.toArray([temp,l])
           break;
         }
 
@@ -56,44 +78,57 @@ var match2 = function(arr){
       return res;
     }
 
+    function jointTable(arr){
+      if(arr.length == 1){
+        return arr[0];
+      } else {
+        var res = [];
+       
+        var restArr = jointTable(arr.slice(1));
 
-    var match = function(list){
-
-
-      /*
-      * Take  2 times, find 
-      */
-      function compare(a,b){
-        var dates_a = _.pluck(a,'dayList');
-        var dates_b = _.pluck(b,'dayList');
-        var joint_dates = _.intersection(dates_a,dates_b);
-        console.log(joint_dates);
-
-        if(joint_dates.length == 0){
-          return true;
-        
-        } 
-
-        return a.startT > b.endT | a.endT < b.startT 
-      }
-
-      var temp;
-      var l;
-      var res = true;
-      var arr = list;
-      while(arr.length>0){
-        temp = arr.pop();
-        l = _.filter(arr,function(each){return compare(temp,each) == false});
-        if(l.length > 0 ){
-          res = false;
-          break;
+       
+        for(var i = 0; i< restArr.length;i ++){
+          for(var j = 0; j < arr[0].length; j++){
+            res.push(_.flatten([arr[0][j],restArr[i]]));
+          }
         }
-
-
+        return res;
       }
-      return res;
     }
 
-    return {search: search, match: match,match2: match2}
+    var isConflict = function(blockArr,Arr){
+      //start with block time interval
+      // add first one to list
+      // var conflict_list;
+
+      // /*----------  deep copy of arrays  ----------*/
+      // var block_list = deepCopy(blockArr);
+      var courses = deepCopy(Arr);
+      var course_list = _.groupBy(Arr,'course_id');
+      delete course_list.undefined;
+      var key_list = _.keys(course_list);
+      console.log(key_list);
+      var list =  jointTable(_.toArray(course_list));
+      var res = [];
+      var temp;
+      angular.forEach(list,function(each){
+        console.log(isOverlap(each.concat(blockArr)));
+        res.push(isOverlap(each.concat(blockArr)));
+      });
+              console.log(list.length);
+              console.log(res.length);
+      return res;
+
+      // var temp_list = deepCopy(blockArr);
+      // var table = [];
+
+      // var temp;
+      /*----------  Create a joint table  ----------*/
+
+    }
+
+
+
+    return {search: search, isOverLap: isOverlap, isConflict: isConflict}
   })
 

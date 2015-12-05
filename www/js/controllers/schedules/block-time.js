@@ -14,7 +14,7 @@ angular.module('parse-starter.controllers')
 	    /*
 	    * enable save button if these fields are filled
 	    */
-	    $scope.$watchGroup(['block.name', 'block.days','block.startT','block.endT'], function (newVal) {
+	    $scope.$watchGroup(['block.name', 'block.days','block.start_time','block.end_time'], function (newVal) {
 	      var defaultName = 'Select time name';
 
 	      if(newVal[0] === undefined){
@@ -25,8 +25,7 @@ angular.module('parse-starter.controllers')
 	      var name = newVal[0] != defaultName,
 	      	
 	        startT = newVal[2] != undefined ,
-	        endT = newVal[3] != undefined 
-	        
+	        endT = newVal[3] != undefined	        
 	      	$scope.ready = !! ( name && startT && endT);
 	      	console.log($scope.ready);
 
@@ -39,11 +38,8 @@ angular.module('parse-starter.controllers')
 	    	*  Check if block time is appropriate 
 	    	*/
 
-	    	if($scope.block.startT < $scope.block.endT){
-
+	    	if($scope.block.start_time < $scope.block.end_time){
 	    		blockTimeData.addBlock($scope.block);
-	    		$state.go("main.block-time-index");
-
 	    	} else {
 	    		alert("Bad time interval!");
 	    	}

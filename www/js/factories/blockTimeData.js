@@ -3,7 +3,7 @@
 */
 
 angular.module("parse-starter.factories")
-	.factory('blockTimeData',function(){
+	.factory('blockTimeData',function($state){
 		var timeData = [];
 		return{
 
@@ -12,16 +12,18 @@ angular.module("parse-starter.factories")
 			*/
 
 			addBlock: function(block){	
-				block.days = [];
+				block.dates = [];
 				angular.forEach(block.dayList,function(value,key){
 					this.push(key);
-				},block.days);	
+				},block.dates);	
 
-				if(block.days.length == 0){
-					block.days = "Everyday";
+			
+				if(!_.contains(timeData,block)){
+					timeData.push(block);
+					$state.go("main.block-time-index");
+				} else {
+					window.alert("Duplication!");
 				}
-
-				timeData.push(block);
 				
 			},
 
