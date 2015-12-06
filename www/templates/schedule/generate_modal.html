@@ -1,11 +1,4 @@
-<ion-modal-view>
-	<ion-header-bar class="bar-royal">
-
-	<h1 class = "title"> Generated schedule </h1>
-	 <div class="button button-clear" ng-click="modal2.hide()"><span class="icon ion-close"></span></div>
-
-	</ion-header-bar>
-<ion-content ng-controller = "myScheduleCtrl">
+<ion-content>
     <div class="list" ng-repeat="schedule in data">
     	<li class = "item" href = "#">
     		<h2>{{schedule['name']}}</h2>
@@ -17,4 +10,3 @@
     	</li>
     </div>
   </ion-content>
-</ion-modal-view>

@@ -9,3 +9,12 @@ angular.module('parse-starter.controllers')
     	$scope.data = _.flatten(list.conflicts[0]);
     }
   })
+
+
+  .controller('conflictMessageCtrl',function($scope,Schedule){
+  	$scope.data= Schedule.getSchedule().conflicts;
+  	$scope.click = function(){
+  		$scope.data = Schedule.getSchedule().conflicts;
+  	}
+
+  })
