@@ -71,7 +71,7 @@ angular.module('parse-starter', ['ionic','underscore','ngResource','ionic-materi
           }
         }
       })
-     
+
       .state('signup', {
         url: '/signup',
         templateUrl: 'templates/authentication/signup.html',
@@ -95,6 +95,15 @@ angular.module('parse-starter', ['ionic','underscore','ngResource','ionic-materi
         controller:'GenerateCtrl'
       }
       }
+      })
+      .state('main.timetable',{
+        url:'/timetable',
+        views:{
+          'menuContent':{
+            templateUrl: 'templates/schedule/timetable.html',
+            controller: 'myTimeTableCtrl'
+          }
+        }
       })
 
   })

@@ -1,5 +1,5 @@
 <ion-view title = "Add Block Time">
-	
+
 	<ion-nav-buttons side="right">
 				<button ng-disabled = "!ready"class="button button-icon button-clear ion-checkmark" ng-click="saveBlock()">
 				</button>
@@ -7,7 +7,11 @@
 	<ion-content scroll= 'false'>
 
 	    <div class="list">
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
 		    <button class="button button-assertive button-clear button-outline button-block" modal-select ng-model="block.name" options="optionList" modal-title="Select Block" ng-change = "setSemester(semester)">
 		    {{block.name}}
 		    <div class="option">
@@ -30,12 +34,12 @@
 
 		    	</input>
 		   </label>
-  			
+
 		</div>
 	        <div class = "list">
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-value = "block.days" ng-model = "block.dayList.M">
+		        	<input type="checkbox" ng-value = "block.days" ng-model = "block.dayList.Mo">
 		        	</label>
 		        	Monday
 	        	</li>
@@ -65,13 +69,13 @@
 	        	</li>
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-model = "block.dayList.Sat">
+		        	<input type="checkbox" ng-model = "block.dayList.Sa">
 		        	</label>
 		        	Saturday
 	        	</li>
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-model = "block.dayList.S">
+		        	<input type="checkbox" ng-model = "block.dayList.Su">
 		        	</label>
 		        	Sunday
 	        	</li>

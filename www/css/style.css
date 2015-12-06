@@ -34,8 +34,8 @@
   font-size: 40px;
   background: $warning;
   position: fixed;
-  bottom: 20px; 
-  right: 20px; 
+  bottom: 20px;
+  right: 20px;
   z-index: 9999;
 }
 
@@ -52,4 +52,228 @@
   text-align: center;
   margin-top: -20px; /* Note, this must be half the font size */
   color: $light;
+}
+
+/*TIMETABLE CSS*/
+.grid-header {
+    background-color:#aaa;
+    background-size: 34px;
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    box-shadow: 0 0 3px 0;
+    position: inherit;
+    top:43px;
+    display:block;
+    z-index:1035;
+}
+/* gray corner*/
+.grid-header-labels {
+    padding-left: 30px;
+}
+/*horizontal mon tues wed*/
+.grid-header-label {
+    width: 50px;
+    float: left;
+    padding: 10px 0px;
+    height: 40px;
+    text-align: center;
+    background: #009d97;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+}
+
+.grid-header-label-divider{
+    border-right: 1px solid #cbcbcb;
+    position: static ;
+    right:0;
+    bottom:0;
+    height:22px;
+}
+
+.grid-header-Clock {
+       text-align:left;
+  background-color:#aaa;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    font-size:40px;
+}
+
+.grid-body {
+
+    position: absolute;
+    top: 40px !important;
+    background: #f7f7f7;
+}
+.ui-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* time column*/
+.grid-times-holder {
+    position: absolute;
+    overflow: hidden;
+    width: 45px;
+    top: 0;
+    display:block;
+    z-index: 200;
+    border-right: 1px solid #ddd;
+    background: #eee;
+    text-align: center;
+}
+
+.grid-date-holder {
+    position: absolute;
+    overflow: hidden;
+    left:60px;
+    top:0px;
+    display:block;
+    z-index: 200;
+    border-right: 1px solid #ddd;
+    background: #eee;
+    text-align: center;
+}
+
+
+/*left time column*/
+.grid-time-label {
+    height: 60px;
+    top:10px;
+    line-height: 25px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 0;
+		font-size: 16px;
+}
+
+.grid-times {
+  }
+.grid-body-labels {
+    padding-left: 0px;
+}
+.grid-body-cell {
+    width:110px;
+    float: left;
+    padding: 10px 5px;
+    height: 50px;
+    line-height: 49px;
+    border-bottom: 1px solid #ddd;
+    padding-left: 0;
+
+    text-align: center;
+    color: #fff;
+    background-color:#fff;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #ddd;
+}
+.grid-sessions {
+    position: relative;
+    min-width:100%;
+		height: 100px;
+
+}
+
+/*background grid*/
+.grid-sessions-day {
+    position: relative;
+    height: 2900px;
+    min-width: 100%;
+		background-size: 260px 60px;
+		background-image:repeating-linear-gradient(0deg, #bbb, #bbb 1px, transparent 1px, transparent 60px),
+		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 260px) ;
+		background-position: 30px 0px;
+}
+
+
+/* cell vertical mon tues wed*/
+.grid-session-cell {
+    position: absolute;
+    width: 315px;
+    overflow: hidden;
+    border-right: 1px solid #cbcbcb;
+    font-size: 16px;
+    cursor: pointer;
+    background: rgba(0,157,151,.85);
+    color: #fff;
+    font-family: sans-serif;
+}
+/* icon */
+.grid-session-icon {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size:30px;
+}
+
+.grid-session-title{
+		padding-top:5px;
+    padding-left:10px;
+		padding-right:10px;
+    font-weight:bold;
+}
+.grid-session-time{
+    padding:10px;
+}
+.grid-sessions-all{
+    position: relative;
+    min-width:100%;
+		height: 100px;
+
+}
+.grid-sessions-day-all {
+    position: relative;
+    height: 2900px;
+    min-width: 100%;
+		background-size: 45px 30px;
+		background-image:repeating-linear-gradient(0deg, #bbb, #bbb 1px, transparent 1px, transparent 40px),
+		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 45px) ;
+		background-position: 45px 0px;
+}
+
+.grid-session-cell-all {
+    position: absolute;
+    width: 45px;
+    overflow: hidden;
+    border-right: 1px solid #cbcbcb;
+    font-size: 9px;
+    cursor: pointer;
+    background: rgba(0,157,151,.85);
+    color: #fff;
+    font-family: sans-serif;
+}
+
+
+.slide-tab{
+    overflow: hidden;
+    background-color: #eff0f2;
+
+
+}
+
+.slide-tab li{
+    float: left;
+    line-height: 38px;
+		width: 45px;
+		text-align: center;
+}
+
+.slide-tab a{
+    background-color: #eff0f2;
+    color: #888;
+    display: block;
+    text-decoration: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.current a{
+    color: #fff;
+    background: #00897B;
 }

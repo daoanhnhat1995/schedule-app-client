@@ -8,6 +8,7 @@ angular.module('parse-starter.controllers')
     } else {
     	$scope.data = _.flatten(list.conflicts[0]);
     }
+<<<<<<< HEAD
   })
 
 
@@ -17,4 +18,6 @@ angular.module('parse-starter.controllers')
   		$scope.data = Schedule.getSchedule().conflicts;
   	}
 
+=======
+>>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
   })
