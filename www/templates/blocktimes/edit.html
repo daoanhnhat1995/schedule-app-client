@@ -1,5 +1,5 @@
 <ion-view title = "Add Block Time">
-	
+
 	<ion-nav-buttons side="right">
 				<button ng-disabled = "!ready"class="button button-icon button-clear ion-checkmark" ng-click="saveBlock()">
 				</button>
@@ -7,32 +7,35 @@
 	<ion-content scroll= 'false'>
 
 	    <div class="list">
-	    <label class="item item-input item-floating-label" ng-click = "selectName()">  	
-		            <!-- <input placeholder = "Block Time Name" type='text' ng-model = "block.name">
-		            	
-		            </input> -->
-		            {{block.name}}
-		   </label>
+
+		    <button class="button button-assertive button-clear button-outline button-block" modal-select ng-model="block.name" options="optionList" modal-title="Select Block" ng-change = "setSemester(semester)">
+		    {{block.name}}
+		    <div class="option">
+		        {{option}}
+		    </div>
+		    </button>
+
+
 
 		   <label class="item item-input item-floating-label">
 		   		<label class = "input label"> From </label>
-		    	<input placeholder = "From" type='time' ng-model = 'block.startT'>
+		    	<input placeholder = "From" type='time' ng-model = 'block.start_time'>
 
 		    	</input>
 		   </label>
 
 		    <label class="item item-input item-floating-label">
-		   		<label class = "input label"> From </label>
-		    	<input placeholder = "From" type='time' ng-model = 'block.endT'>
+		   		<label class = "input label"> To </label>
+		    	<input placeholder = "To" type='time' ng-model = 'block.end_time'>
 
 		    	</input>
 		   </label>
-  			
+
 		</div>
 	        <div class = "list">
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-value = "block.days" ng-model = "block.dayList.M">
+		        	<input type="checkbox" ng-value = "block.days" ng-model = "block.dayList.Mo">
 		        	</label>
 		        	Monday
 	        	</li>
@@ -62,13 +65,13 @@
 	        	</li>
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-model = "block.dayList.Sat">
+		        	<input type="checkbox" ng-model = "block.dayList.Sa">
 		        	</label>
 		        	Saturday
 	        	</li>
 	        	<li class = "item item-checkbox">
 		        	<label class="checkbox">
-		        	<input type="checkbox" ng-model = "block.dayList.S">
+		        	<input type="checkbox" ng-model = "block.dayList.Su">
 		        	</label>
 		        	Sunday
 	        	</li>

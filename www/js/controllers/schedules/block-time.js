@@ -1,20 +1,14 @@
 angular.module('parse-starter.controllers')
-	.controller('editBlockTimeCtrl',function($scope,$state,$ionicPopup,blockTimeData){
+	.controller('editBlockTimeCtrl',function($scope,$ionicModal,$state,$ionicPopup,blockTimeData){
 
 		
 		$scope.block = {};
-		
-
-	  
-
 	    $scope.optionList = blockTimeData.options();
-
-	   
 
 	    /*
 	    * enable save button if these fields are filled
 	    */
-	    $scope.$watchGroup(['block.name', 'block.days','block.startT','block.endT'], function (newVal) {
+	    $scope.$watchGroup(['block.name', 'block.days','block.start_time','block.end_time'], function (newVal) {
 	      var defaultName = 'Select time name';
 
 	      if(newVal[0] === undefined){
@@ -25,40 +19,41 @@ angular.module('parse-starter.controllers')
 	      var name = newVal[0] != defaultName,
 	      	
 	        startT = newVal[2] != undefined ,
-	        endT = newVal[3] != undefined ;
-	      	$scope.ready = !! ( name && startT && endT );
+	        endT = newVal[3] != undefined	        
+	      	$scope.ready = !! ( name && startT && endT);
 	      	console.log($scope.ready);
 
 
 	    });
 
 	    $scope.saveBlock = function(){
-	    	console.log($scope.block);
-	    	blockTimeData.addBlock($scope.block);
-	    	$state.go("main.block-time-index");
+
+	    	/*
+	    	*  Check if block time is appropriate 
+	    	*/
+
+	    	if($scope.block.start_time < $scope.block.end_time){
+	    		blockTimeData.addBlock($scope.block);
+	    	} else {
+	    		alert("Bad time interval!");
+	    	}
 
 	    }
 
-	    $scope.selectName = function(){
-	    	 $ionicPopup.confirm({
-		        title: 'Select a name',
-		        templateUrl:'templates/blocktimes/pick-name.html',
-		        scope: $scope,
-		        okType: 'button-dark',
-		        controller: 'editBlockTimeCtrl'
-		      })
-	    }
 
 
+		
 
 
 	})
 
 	/* controller for blocktime setting index page */
 
-	.controller('mainBlockTimeCtrl',function($scope,$state,blockTimeData,Schedule){
+	.controller('mainBlockTimeCtrl',function(Filter,$ionicModal,$scope,$state,blockTimeData,Schedule){
 		$scope.blocks = blockTimeData.getBlockTime();
 
+
+	   
 		$scope.save = function(){
 			current = [];
 			angular.forEach($scope.blocks,function(b){
@@ -67,6 +62,7 @@ angular.module('parse-starter.controllers')
 				}
 			});
 			Schedule.setBlockTime(current);
+			console.log(Filter.isOverLap(current));
 			$state.go('main.generate-schedule');
 		}
 

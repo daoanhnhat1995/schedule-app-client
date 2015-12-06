@@ -8,10 +8,12 @@
 	<ion-content scroll = "false">
 
 
-     <div class = "list" ng-repeat = "each in selected">
+     <div class = "list" ng-repeat = "each in courses">
       <div class = "item">
         <ion-checkbox ng-checked = "each.checked" ng-model = 'each.checked'>
-        {{each.department}} {{each.course}}</ion-checkbox>
+        {{each.course_id}} 
+        {{each.course_title}}
+        </ion-checkbox>
 
       </div>
      </div>

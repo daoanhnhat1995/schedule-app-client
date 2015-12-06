@@ -1,21 +1,19 @@
 angular.module('parse-starter.controllers')
 
 	/* index */
-	.controller('courseListCtrl',function($scope,courseData,Schedule,$state){
-		console.log(courseData.getCartList());
+	.controller('courseListCtrl',function($scope,Cart,Schedule,$state){
 
-		$scope.selected = courseData.getCartList();
+		$scope.courses = Cart.getAll();
 		
 		$scope.save = function(){
 			current = [];
-			angular.forEach($scope.selected,function(each){
+			angular.forEach(Cart.getAll(),function(each){
 				if(each.checked == true){
 					current.push(each);
-					console.log(each);
 				}
 			});
-			Schedule.setList(current);
-
+			Schedule.setCourses(current);
+			console.log(current);
 			$state.go("main.generate-schedule");
 
 			
@@ -28,95 +26,38 @@ angular.module('parse-starter.controllers')
 	/* edit */
 
 	.controller('cartCtrl',
-		function($scope,$state,$ionicPopup,Filter,courseData,Course,Department,
-			semesterData,scheduleData)
-		{
+		function($scope,$state,$ionicPopup,Schedule,Filter,Cart,Course,Department,semesterData,scheduleData){
+			
 			$scope.semesterData = semesterData.getListSemester();
-
-		    $scope.semester = {};
-		    if(typeof($scope.semester.name) == "undefined"){
-		      $scope.semester.name = "Select semester";
-		    }
-
-
-		    $scope.listClass = courseData.getCartList();
-
-		    $scope.selectSemester = function(){
-		      $ionicPopup.confirm({
-		        title: 'Select a semester',
-		        templateUrl:'templates/schedule/pick-semester.html',
-		        scope: $scope,
-		        okType: 'button-dark',
-		        controller: 'cartCtrl'
-		      }).then(function(r){
-		        semesterData.setSemester($scope.semester.name);
-		        console.log(semesterData.getSemester());
-		        
-		      });
-		    };
-		    /* remove class from list of classes */
+			$scope.semester = "Select semester";
+		   	$scope.listClass = Cart.getAll();
+		   	$scope.ready = false;
+		   	$scope.courses = Course.getAll();
+		   	$scope.course;
+		   	/**
+		   	 *
+		   	 * Watch semester and add button
+		   	 *
+		   	 */
+		   	
+		   	$scope.setSemester = function(){
+		   		semesterData.setSemester(this.semester);
+		   		if(this.semester!= "Select semester" && this.semester.length > 0 ){
+		   			$scope.ready = true;
+		   		} else {
+		   			$scope.ready = false;
+		   		}
+		   		console.log($scope.ready);
+		   	}
+		   	$scope.addClass = function(a){
+		   		Cart.add(a);
+		   		// console.log($scope.listClass);
+		   	};
+		    /*
+		    * Remove a class from list
+		    */
 		    $scope.remove = function(each){
-		      courseData.removeClass(each);
-		    };
-
-		    /* add class to list of classes */
-		    $scope.add = function(){
-
-		      $ionicPopup.confirm({
-		          title: 'Add class',
-		          templateUrl: "templates/schedule/add-class.html",
-		          scope: $scope,
-		          okType: 'button-dark',
-		          controller: 'cartCtrl'
-		      }).then(function(res) {
-		          if(res) {
-		            courseData.addClass($scope.data.dept,$scope.data.course);
-		            $scope.data.dept = '';
-		            $scope.data.course = '';
-		          } 
-		      });
-		    };
-
-
-		    $scope.data = {'resultDept': [], 'dept': '','course':'','resultCourse':[]}
-
-		    $scope.change = function(){
-		      $scope.data.resultDept = [];
-		      $scope.data.resultCourse = [];
-
-		    }
-
-		    /* filter search for department name
-		    * e.g... CSE,MATH,...
-		    */
-		    $scope.searchDepartment = function(){
-		      Filter.search($scope.data.dept,Department.getDepartments()).then(
-		        function(matches){
-		          if($scope.data.dept !== '')    { $scope.data.resultDept = matches;  }
-		        /*
-		        * If done with search, refresh search queue
-		        */
-		        else
-		          {
-		           $scope.data.resultDept = [];
-		           }
-
-		        })
-		    };
-
-
-		    /* filter search for department name
-		    * e.g... CSE1310,...
-		    */
-		    $scope.searchCourse = function(){
-		      Filter.search($scope.data.course,Course.getCourse($scope.data.dept.toUpperCase())).then(
-		        function(matches){
-		          if($scope.data.course !== ''){$scope.data.resultCourse = matches;}
-		          else {
-		            $scope.data.resultCourse = [];
-		          }
-		        }
-		      )
+		      Cart.remove(each);
 		    };
 
 

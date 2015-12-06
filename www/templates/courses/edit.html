@@ -1,36 +1,40 @@
 <ion-view title = "List of classes" >
-  <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-checkmark" ng-click="saveBlock()">
-        </button>
-  </ion-nav-buttons>
+  
   <ion-content scroll = "false">
 
+     <button class="button button-clear button-dark button-block" modal-select ng-model="semester" options="semesterData" modal-title="Select Semester" ng-change = "setSemester(semester)">
+    {{semester}}
+    <div class="option">
+        {{option}}
+    </div>
+    </button>
 
-     <div class = "list">
-    
-      <div class = "item" ng-click="selectSemester()">
-       {{semester.name}}
-      </div>
-     </div>
-
-    
-     <div ng-show = "listClass.length > 0"class = "item item-divider"> Your list</div>
-
+  
      <div class = "list" ng-repeat = "each in listClass">
-       <div class = "item item-icon-right ">
-         <i class = "icon ion-ios-trash" ng-click = "remove(each)"> </i>
+       <div class = "item item-icon-right">
+         <i class = "icon ion-ios-trash icon-assertive button-clear button-assertive" ng-click = "remove(each)"> </i>
 
-      <h2> {{each.department | uppercase}} {{each.class | uppercase}} </h2>
+      <h2> {{each.course_id }} </h2>
+       <p> {{each.course_title }} </p>
 
      </div>
 
      </div>
-     <div  ng-show = 'semester.name != "Select semester"' class = "item item-icon-right">
-         Add a class
-         <i class = "icon ion-plus" ng-click = "add()"></i>
-       </div>
 
-     <!-- <button class = "button button-block button-generate button-dark" ng-click = "generate()"> Generate Schedule </button> -->
+
+
+     <button ng-show = "ready" class="button button-dark button-block" modal-select ng-model="course" options="courses"  has-search="true" modal-title="Select Class" on-select = "addClass(course)">
+     Add a class 
+    <div class="option">
+        {{option.course_id}} {{option.course_title}}
+    </div>
+    </button>
+
+
+
+
+
+
   </ion-content>
 </ion-view>
 

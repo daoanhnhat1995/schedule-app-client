@@ -1,4 +1,4 @@
-angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', ['ionic','underscore','ngResource','ionic-material','ionic-modal-select','parse-starter.controllers', 'parse-starter.factories'])
   .config(function ($urlRouterProvider, $stateProvider, $ionicConfigProvider) {
     $ionicConfigProvider.backButton.previousTitleText(false).text('');
     $urlRouterProvider.otherwise('main/dashboard');
@@ -71,7 +71,7 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
           }
         }
       })
-     
+
       .state('signup', {
         url: '/signup',
         templateUrl: 'templates/authentication/signup.html',
@@ -95,6 +95,15 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
         controller:'GenerateCtrl'
       }
       }
+      })
+      .state('main.timetable',{
+        url:'/timetable',
+        views:{
+          'menuContent':{
+            templateUrl: 'templates/schedule/timetable.html',
+            controller: 'myTimeTableCtrl'
+          }
+        }
       })
 
   })
@@ -135,6 +144,8 @@ angular.module('parse-starter', ['ionic','ngResource','ionic-material','parse-st
       if (window.StatusBar) {
         StatusBar.styleDefault();
       }
+
+
 
       // if (Parse.User.current()) {
       //   $state.go('home')
