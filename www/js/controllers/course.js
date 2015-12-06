@@ -1,7 +1,7 @@
 angular.module('parse-starter.controllers')
 
 	/* index */
-	.controller('courseListCtrl',function($scope,Cart,Schedule,$state){
+	.controller('courseListCtrl',function(_,scheduleAPI,sessionService,$scope,Cart,Schedule,$state){
 
 		$scope.courses = Cart.getAll();
 		
@@ -13,7 +13,22 @@ angular.module('parse-starter.controllers')
 				}
 			});
 			Schedule.setCourses(current);
-			console.log(current);
+			var temp;
+			angular.forEach(current,function(course){
+				scheduleAPI.get(course.course_id).then(function(d){
+					console.log(course.course_id);
+					console.log(d.data);
+					temp = sessionService.get('scheduleList');
+					if (temp == null){
+						temp = [];
+					}
+					temp.push(d.data);
+					sessionService.set("scheduleList",_.flatten(temp));
+
+				})
+			});
+
+			console.log(sessionService.get("scheduleList"));
 			$state.go("main.generate-schedule");
 
 			
@@ -26,28 +41,34 @@ angular.module('parse-starter.controllers')
 	/* edit */
 
 	.controller('cartCtrl',
-		function($scope,$state,$ionicPopup,Schedule,Filter,Cart,Course,Department,semesterData,scheduleData){
+		function($scope,$state,_,sessionService,classAPI,semesterAPI,Schedule,Filter,Cart,Course,Department,semesterData,scheduleData){
 			
-			$scope.semesterData = semesterData.getListSemester();
-			$scope.semester = "Select semester";
+
+
+			
+			$scope.semesterList = sessionService.get("semesterData");
+			$scope.courses = sessionService.get("classData");
+
+			$scope.semester = semesterData.getSemester();
 		   	$scope.listClass = Cart.getAll();
 		   	$scope.ready = false;
-		   	$scope.courses = Course.getAll();
+
+
 		   	$scope.course;
 		   	/**
 		   	 *
 		   	 * Watch semester and add button
 		   	 *
 		   	 */
-		   	
+	
 		   	$scope.setSemester = function(){
 		   		semesterData.setSemester(this.semester);
-		   		if(this.semester!= "Select semester" && this.semester.length > 0 ){
+		   		if(this.semester.name!= "Select semester" && this.semester.name != undefined ){
 		   			$scope.ready = true;
 		   		} else {
 		   			$scope.ready = false;
 		   		}
-		   		console.log($scope.ready);
+
 		   	}
 		   	$scope.addClass = function(a){
 		   		Cart.add(a);

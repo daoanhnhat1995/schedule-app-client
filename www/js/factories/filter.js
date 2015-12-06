@@ -110,10 +110,13 @@ angular.module('parse-starter.factories')
       delete course_list.undefined;
       var key_list = _.keys(course_list);
       console.log(key_list);
+      console.log(_.toArray(course_list));
       var list =  jointTable(_.toArray(course_list));
+      console.log(list);
       var res = [];
       var temp;
       angular.forEach(list,function(each){
+        each = _.flatten([each]);
         console.log(isOverlap(each.concat(blockArr)));
         res.push(isOverlap(each.concat(blockArr)));
       });

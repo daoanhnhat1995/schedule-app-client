@@ -1,12 +1,9 @@
 angular.module("parse-starter.controllers")
-  .controller("GenerateCtrl", function($scope,$ionicModal,$state,$ionicPopup,Filter,Schedule,Course,classData,scheduleData){
-
-    $scope.courses = classData.getAll();
+  .controller("GenerateCtrl", function(scheduleAPI,sessionService,departmentAPI,semesterAPI,$scope,$ionicModal,$state,$ionicPopup,Filter,Schedule,Course,classData,scheduleData){
+   
+    $scope.courses = sessionService.get("scheduleList");
+    console.log($scope.courses);
     $scope.blocks = Schedule.getBlockTime();
-
-    $scope.blocks = [{"name":"Commute Time","dates":["Mo","We","Fr"],"start_time":"19:00:00","end_time":"19:50:00"},
-    {"name":"Study Time","dates":["We","Th"],"start_time":"18:00:00","end_time":"19:50:00"}];
-    
 
         // Load the modal from the given template URL
     $ionicModal.fromTemplateUrl('templates/schedule/conflict_messages.html', function($ionicModal) {
@@ -30,8 +27,9 @@ angular.module("parse-starter.controllers")
 
 
 
+
       if(list.conflicts.length >0){
-      	console.log(list.conflicts);
+      	console.log(list.conflicts[0]);
       	$scope.modal.show();
 
       } else { 

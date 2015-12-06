@@ -13,7 +13,7 @@ return {
 
 // .factory('blockTime',fucntion(){
 // })
-.factory('Course',function(_){
+.factory('Course',['Cart','_',function(Cart,_){
 
   var courses = {
     'CSE':[{"course_id":"CSE 1105","course_title":" INTRODUCTION TO COMPUTER SCIENCE AND ENGINEERING "},{"course_id":"CSE 1301","course_title":" COMPUTER LITERACY "},{"course_id":"CSE 1310","course_title":" INTRODUCTION TO COMPUTERS & PROGRAMMING "},{"course_id":"CSE 1311","course_title":" INTRODUCTION TO PROGRAMMING FOR ENGINEERS "},{"course_id":"CSE 1320","course_title":" INTERMEDIATE PROGRAMMING "},{"course_id":"CSE 1325","course_title":""},{"course_id":"CSE 2312","course_title":" COMPUTER ORGANIZATION & ASSEMBLY LANGUAGE PROGRAMMING "},{"course_id":"CSE 2315","course_title":" DISCRETE STRUCTURES "},{"course_id":"CSE 2320","course_title":" ALGORITHMS & DATA STRUCTURES "},{"course_id":"CSE 2441","course_title":" INTRODUCTION TO DIGITAL LOGIC "},{"course_id":"CSE 3310","course_title":" FUNDAMENTALS OF SOFTWARE ENGINEERING "},{"course_id":"CSE 3311","course_title":""},{"course_id":"CSE 3313","course_title":" INTRODUCTION TO SIGNAL PROCESSING "},{"course_id":"CSE 3315","course_title":" THEORETICAL CONCEPTS IN COMPUTER SCIENCE AND ENGINEERING "},{"course_id":"CSE 3320","course_title":" OPERATING SYSTEMS "},{"course_id":"CSE 3323","course_title":" ELECTRONICS FOR COMPUTER ENGINEERING "},{"course_id":"CSE 3330","course_title":" DATABASE SYSTEMS AND FILE STRUCTURES "},{"course_id":"CSE 3380","course_title":" LINEAR ALGEBRA FOR CSE "},{"course_id":"CSE 3442","course_title":" EMBEDDED SYSTEMS I "},{"course_id":"CSE 4191","course_title":" INDIVIDUAL PROJECTS "},{"course_id":"CSE 4303","course_title":" COMPUTER GRAPHICS "},{"course_id":"CSE 4305","course_title":" COMPILERS FOR ALGORITHMIC LANGUAGES "},{"course_id":"CSE 4314","course_title":" PROFESSIONAL PRACTICES "},{"course_id":"CSE 4316","course_title":" COMPUTER SYSTEM DESIGN PROJECT I "},{"course_id":"CSE 4317","course_title":" COMPUTER SYSTEM DESIGN PROJECT II "},{"course_id":"CSE 4321","course_title":" SOFTWARE TESTING & MAINTENANCE "},{"course_id":"CSE 4351","course_title":" PARALLEL PROCESSING "},{"course_id":"CSE 4361","course_title":" SOFTWARE DESIGN PATTERNS "},{"course_id":"CSE 4379","course_title":" UNMANNED VEHICLE SYSTEM DEVELOPMENT "},{"course_id":"CSE 4391","course_title":" INDIVIDUAL PROJECTS "},{"course_id":"CSE 4392","course_title":" SPECIAL TOPICS "},{"course_id":"CSE 5191","course_title":" INDIVIDUAL STUDY IN COMPUTER SCIENCE "},{"course_id":"CSE 5194","course_title":" ORIENTATION SEMINAR "},{"course_id":"CSE 5311","course_title":" DESIGN AND ANALYSIS OF ALGORITHMS "},{"course_id":"CSE 5317","course_title":" DESIGN AND CONSTRUCTION OF COMPILERS "},{"course_id":"CSE 5321","course_title":" SOFTWARE TESTING "},{"course_id":"CSE 5325","course_title":" SOFTWARE ENGINEERING: MANAGEMENT, MAINTENANCE, AND QUALITY ASSURANCE "},{"course_id":"CSE 5328","course_title":" SOFTWARE ENGINEERING TEAM PROJECT I "},{"course_id":"CSE 5329","course_title":" SOFTWARE ENGINEERING TEAM PROJECT II "},{"course_id":"CSE 5331","course_title":" DBMS MODELS AND IMPLEMENTATION TECHNIQUES "},{"course_id":"CSE 5343","course_title":""},{"course_id":"CSE 5369","course_title":" SPECIAL TOPICS IN INTELLIGENT SYSTEMS "},{"course_id":"CSE 5384","course_title":" UNMANNED VEHICLE SYSTEM DEVELOPMENT "},{"course_id":"CSE 5393","course_title":" DIRECTED STUDY IN COMPUTER SCIENCE "},{"course_id":"CSE 5398","course_title":" MASTERS THESIS I "},{"course_id":"CSE 5698","course_title":" MASTERS THESIS II "},{"course_id":"CSE 6197","course_title":" RESEARCH IN COMPUTER SCIENCE "},{"course_id":"CSE 6297","course_title":" RESEARCH IN COMPUTER SCIENCE "},{"course_id":"CSE 6329","course_title":" SPECIAL TOPICS IN ADVANCED SOFTWARE ENGINEERING "},{"course_id":"CSE 6331","course_title":" ADVANCED TOPICS IN DATABASE SYSTEMS "},{"course_id":"CSE 6388","course_title":" SPECIAL TOPICS IN ADVANCED INFORMATION SECURITY "},{"course_id":"CSE 6389","course_title":" SPECIAL TOPICS IN ADVANCED MULTIMEDIA, GRAPHICS, & IMAGE PROCESSING "},{"course_id":"CSE 6392","course_title":" SPECIAL TOPICS IN ADVANCED COMPUTER SCIENCE "},{"course_id":"CSE 6397","course_title":" RESEARCH IN COMPUTER SCIENCE "},{"course_id":"CSE 6399","course_title":" DISSERTATION "},{"course_id":"CSE 6697","course_title":" RESEARCH IN COMPUTER SCIENCE "},{"course_id":"CSE 6699","course_title":" DISSERTATION "},{"course_id":"CSE 6997","course_title":" RESEARCH IN COMPUTER SCIENCE "},{"course_id":"CSE 6999","course_title":" DISSERTATION "}],
@@ -40,9 +40,12 @@ return {
       var values = _.values(courses);
       values = _.flatten(values);
       return values;
+    },
+    load: function(){
+      return Cart.getAll();
     }
   }
-})
+}])
 
   .factory('Department',function($q,$timeout){
 
@@ -72,39 +75,4 @@ return {
   })
 
 
-  .factory('semesterData',function(){
-    var data = [
-  {
-    "id": 1,
-    "name": "2016 Spring",
-    "code": 2162
-  },
-  {
-    "id": 2,
-    "name": "2015 Fall",
-    "code": 2158
-  },
-  {
-    "id": 3,
-    "name": "2015 Summer",
-    "code": 2155
-  },
-  {
-    "id": 4,
-    "name": "2015 Spring",
-    "code": 2152
-  },
-  {
-    "id": 5,
-    "name": "2014 Summer",
-    "code": 2145
-  }
-  ];
-    return {
-      getAll: function(){
-        return data;
-      }
-    }
-  })
-
-
+  

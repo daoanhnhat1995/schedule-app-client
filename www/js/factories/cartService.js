@@ -25,9 +25,11 @@ angular.module('parse-starter.factories')
 
 
 
-	.factory('semesterData',function(){
-		var semester = "Select Semester";
+	.factory('semesterData',function(_){
+		var semester = {};
+		semester.name = "Select Semester";
 		var ready = false;
+		var list = [];
 		return {
 
 			getSemester: function(){
@@ -42,8 +44,10 @@ angular.module('parse-starter.factories')
 				semester = input;
 			},
 			getListSemester: function(){
-				list = ['Fall 2015','Spring 2017','Summer 2017'];
 				return list;
+			},
+			setData: function(data){
+				list = data;
 			},
 			isAddReady: function(){
 				return ready;
@@ -66,6 +70,9 @@ angular.module('parse-starter.factories')
 				angular.forEach(block.dayList,function(value,key){
 					this.push(key);
 				},block.dates);	
+
+				block.start_time = block.startT.getHours()+":"+block.startT.getMinutes()+":"+block.startT.getSeconds();
+				block.end_time = block.endT.getHours()+":"+block.endT.getMinutes()+":"+block.endT.getSeconds();
 
 			
 

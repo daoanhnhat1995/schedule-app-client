@@ -7,10 +7,8 @@
 
 	<ion-content ng-controller="conflictMessageCtrl">
 
-		<h2> Hello we found time conflicts between these classes </h2>
-		<h2> {{data.length}} </h2>
-
-		<button class ="button button-positive" ng-click = "click()"> {{data}}</button> 
+		
+		<button class ="button button-assertive button-block button-clear" ng-click = "click()"> Show conflicts</button> 
 	<ion-list ng-repeat="schedule in data">
     	<li class = "item" href = "#">
     		<h2>{{schedule['name']}}</h2>

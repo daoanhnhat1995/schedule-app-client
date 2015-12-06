@@ -2,10 +2,11 @@
   
   <ion-content scroll = "false">
 
-     <button class="button button-clear button-dark button-block" modal-select ng-model="semester" options="semesterData" modal-title="Select Semester" ng-change = "setSemester(semester)">
-    {{semester}}
+     <button class="button button-clear button-dark button-block" modal-select ng-model="semester" options="semesterList" modal-title="Select Semester" ng-change = "setSemester(semester)">
+    {{semester.name}}
     <div class="option">
-        {{option}}
+        Semester: {{option.name}} 
+        <p> ID: {{option.code}} </p>
     </div>
     </button>
 
