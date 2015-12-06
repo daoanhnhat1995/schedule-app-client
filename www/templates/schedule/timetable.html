@@ -1,6 +1,6 @@
 
 
-<ion-view title = "Timetable Single Day">
+<ion-view title = "Timetable">
   <ion-pane >
       <ion-header-bar class="bar-dark" style="background-color:#009d97">
           <h1 class="title">View Timetable</h1>
@@ -54,7 +54,7 @@
                               <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>
                               <div class="grid-session-title">{{event.eventname}}</div>
                               <div class="grid-session-time">{{event.location}}</div>
-                              <div class="grid-session-time">{{event.starthour.substr(0,5)}}-{{event.endhour.substr(0,5)}}</div>
+                              <div class="grid-session-time">{{event.starthour.substr(0,5)}} - {{event.endhour.substr(0,5)}}</div>
                           </div>
                       </div>
                   </div>
