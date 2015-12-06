@@ -120,7 +120,7 @@
 .grid-times-holder {
     position: absolute;
     overflow: hidden;
-    width: 47px;
+    width: 45px;
     top: 0;
     display:block;
     z-index: 200;
@@ -231,15 +231,15 @@
     position: relative;
     height: 2900px;
     min-width: 100%;
-		background-size: 47px 30px;
+		background-size: 45px 30px;
 		background-image:repeating-linear-gradient(0deg, #bbb, #bbb 1px, transparent 1px, transparent 40px),
-		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 47px) ;
-		background-position: 47px 0px;
+		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 45px) ;
+		background-position: 45px 0px;
 }
 
 .grid-session-cell-all {
     position: absolute;
-    width: 47px;
+    width: 45px;
     overflow: hidden;
     border-right: 1px solid #cbcbcb;
     font-size: 9px;
@@ -260,7 +260,7 @@
 .slide-tab li{
     float: left;
     line-height: 38px;
-		width: 47px;
+		width: 45px;
 		text-align: center;
 }
 

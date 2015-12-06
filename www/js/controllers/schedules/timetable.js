@@ -2,6 +2,8 @@
 angular.module('parse-starter.controllers')
         .controller('myTimeTableCtrl', function ($scope, $ionicScrollDelegate,$ionicSlideBoxDelegate, $filter, Schedule,blockTimeData) {
 
+          $scope.lockSlide = function () {
+              $ionicSlideBoxDelegate.enableSlide( false );}
             var startHour = 6;
             var endHour = 23;
             var usehalfhour = true;
@@ -153,41 +155,18 @@ angular.module('parse-starter.controllers')
             {
               starthour = hmsToHours(start);
               endhour = hmsToHours(end);
-/*
-              if ( endhour < starthour)//special case for blocktime
-              {
-                var start1 = 24-starthour;
-                var start2 = endhour;
-                arr.push({eventname: name,
-                        starthour: start, endhour: end,
-                        eventtype: icon,
-                        left: (47 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
-                        height: ((24-starthour+6) * 120) + 'px', color: color});
-                arr.push({eventname: name,
-                        starthour: start, endhour: end,
-                        eventtype: icon,
-                        left: (47 *left) + 'px', top: ( (0) * 120) + 'px',
-                        height: ((endhour-6) * 120) + 'px', color: color});
-              }
-              else {  //normal case
-                arr.push({eventname: name,
-                        starthour: start, endhour: end,
-                        eventtype: icon,
-                        left: (47 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
-                        height: ((endhour-starthour) * 120) + 'px', color: color});
-              }
-*/
+
             if((starthour > 6 && endhour >6) && (endhour < starthour))//23:30 to 7:00
             {
               arr.push({eventname: name,
                       starthour: start, endhour: end,
                       eventtype: icon,
-                      left: (47 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
+                      left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
                       height: ((24-starthour+6) * 120) + 'px', color: color});
               arr.push({eventname: name,
                       starthour: start, endhour: end,
                       eventtype: icon,
-                      left: (47 *left) + 'px', top: ( (0) * 120) + 'px',
+                      left: (45 *left) + 'px', top: ( (0) * 120) + 'px',
                       height: ((endhour-6) * 120) + 'px', color: color});
             }
             else if (starthour < 6 && endhour >6)//1:30 to 7:30
@@ -195,12 +174,12 @@ angular.module('parse-starter.controllers')
               arr.push({eventname: name,
                       starthour: start, endhour: end,
                       eventtype: icon,
-                      left: (47 *left) + 'px', top: ( (starthour+18) * 120) + 'px',
+                      left: (45 *left) + 'px', top: ( (starthour+18) * 120) + 'px',
                       height: ((6-starthour) * 120) + 'px', color: color});
               arr.push({eventname: name,
                       starthour: start, endhour: end,
                       eventtype: icon,
-                      left: (47 *left) + 'px', top: ( (0) * 120) + 'px',
+                      left: (45 *left) + 'px', top: ( (0) * 120) + 'px',
                       height: ((endhour-6) * 120) + 'px', color: color});
             }
             else //normal case
@@ -208,7 +187,7 @@ angular.module('parse-starter.controllers')
               arr.push({eventname: name,
                       starthour: start, endhour: end,
                       eventtype: icon,
-                      left: (47 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
+                      left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
                       height: ((endhour-starthour) * 120) + 'px', color: color});
             }
 
@@ -229,8 +208,8 @@ angular.module('parse-starter.controllers')
             $scope.slideIndex = 0;
 
                 // Called each time the slide changes
-            $scope.slideChanged = function(index) {
-                $scope.slideIndex = index;
+              $scope.slideChanged = function(index) {
+              $scope.slideIndex = index;
 
             };
 
@@ -238,4 +217,4 @@ angular.module('parse-starter.controllers')
                 $ionicSlideBoxDelegate.slide(index);
             };
 
-        });
+        })
