@@ -71,6 +71,7 @@
     padding-left: 30px;
 }
 /*horizontal mon tues wed*/
+/*
 .grid-header-label {
     width: 50px;
     float: left;
@@ -81,8 +82,8 @@
     color: #fff;
     cursor: pointer;
     position: relative;
-}
-
+}*/
+/*
 .grid-header-label-divider{
     border-right: 1px solid #cbcbcb;
     position: static ;
@@ -90,7 +91,7 @@
     bottom:0;
     height:22px;
 }
-
+*/
 .grid-header-Clock {
        text-align:left;
   background-color:#aaa;
@@ -105,7 +106,7 @@
 .grid-body {
 
     position: absolute;
-    top: 40px !important;
+    top: 45px !important;
     background: #f7f7f7;
 }
 .ui-block {
@@ -259,7 +260,7 @@
 
 .slide-tab li{
     float: left;
-    line-height: 38px;
+    line-height: 43px;
 		width: 45px;
 		text-align: center;
 }

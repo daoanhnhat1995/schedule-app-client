@@ -45,7 +45,7 @@ angular.module('parse-starter.controllers')
 
             var week = ["Mo","Tu","We","Th","Fr","Sa","Su"];
             $scope.week = week;
-            var oneWeek = [];
+            var wholeWeek = [];
             var scheduleData = Schedule.getSchedule().schedules ;//REPLACE THIS
             //console.log(scheduleData);
 
@@ -72,16 +72,8 @@ angular.module('parse-starter.controllers')
                 {
                   if(scheduleData[i].dates[j] == week[k])
                   {
-                    start_time = scheduleData[i].start_time;
-                    end_time = scheduleData[i].end_time;
-                    createTimetableBlock(allWeekData[k],scheduleData[i].class_name,
-                                start_time,end_time,
-                                'ion-university',1,
-                                'rgba(0,157,151,0.75)');
-                    createTimetableBlock(oneWeek,scheduleData[i].class_name,
-                                start_time,end_time,
-                                'ion-university',1+k,
-                                'rgba(0,157,151,0.75)');
+                    createClassBlock(allWeekData[k],scheduleData[i],1);
+                    createClassBlock(wholeWeek,scheduleData[i],1+k);
                   }
                 }
               }
@@ -91,9 +83,9 @@ angular.module('parse-starter.controllers')
             /***
             PUSH BLOCK TIME INTO TABLE
             ***/
-            //var blocktimeData = blockTimeData.getBlockTime();//REPLACE THIS
-            var blocktimeData = [{"name":"Commute Time","dates":["Mo","We","Fr"],"start_time":"6:00:00","end_time":"6:50:00"},
-            {"name":"Study Time","dates":["We","Th"],"start_time":"8:00:00","end_time":"9:50:00"}];
+            var blocktimeData = blockTimeData.getBlockTime();//REPLACE THIS
+            //var blocktimeData = [{"name":"Commute Time","dates":["Mo","We","Fr"],"start_time":"6:00:00","end_time":"6:50:00"},
+              //{"name":"Study Time","dates":["We","Th"],"start_time":"8:00:00","end_time":"9:50:00"}];
             var blocktime_icon;
             var blocktime_color;
 
@@ -105,93 +97,98 @@ angular.module('parse-starter.controllers')
                 {
                   if(blocktimeData[i].dates[j] == week[k] || blocktimeData[i].dates == "Everyday")
                   {
-                    //console.log(blocktimeData[i].start_time);
-                    //console.log(blocktimeData[i].end_time);
-                    block_start_time = $filter('date')(blocktimeData[i].start_time, 'HH:MM:ss');
-                    block_end_time = $filter('date')(blocktimeData[i].end_time, 'HH:MM:ss');
-
-                    if(blocktimeData[i].name == "Commute Time")
-                    {
-                      blocktime_icon =  'ion-model-s';
-                      blocktime_color = 'rgba(18,67,172,0.75)';
-                    }
-                    else if(blocktimeData[i].name == "Sleep Time")
-                    {
-                      blocktime_icon =  'ion-ios-moon';
-                      blocktime_color = 'rgba(62, 10, 102, 1)';
-                    }
-                    else if(blocktimeData[i].name == "Study Time")
-                    {
-                      blocktime_icon =  'ion-ios-bookmarks';
-                      blocktime_color = 'rgba(255,113,0,0.75)';
-                    }
-                    else if(blocktimeData[i].name == "Work Time")
-                    {
-                      blocktime_icon =  'ion-briefcase';
-                      blocktime_color = 'rgba(255,169,0,0.75)';
-                    }
-
-
-                    createTimetableBlock(allWeekData[k],blocktimeData[i].name,
-                                block_start_time,block_end_time,
-                                blocktime_icon,1,
-                                blocktime_color);
-                    createTimetableBlock(oneWeek,blocktimeData[i].name,
-                                block_start_time,block_end_time,
-                                blocktime_icon,1+k,
-                                blocktime_color);
-
+                    createTimeBlock(allWeekData[k],blocktimeData[i],1);
+                    createTimeBlock(wholeWeek,blocktimeData[i],1+k);
                   }
                 }
               }
             }
 
             $scope.allweek = allWeekData;
-            $scope.oneWeek = oneWeek;
+            $scope.wholeWeek = wholeWeek;
+            //console.log(wholeWeek);
 
 
-
-            function createTimetableBlock(arr,name,start,end,icon,left,color)
+            function createClassBlock(arr,classData,left)
             {
-              starthour = hmsToHours(start);
-              endhour = hmsToHours(end);
+              var starthour = hmsToHours(classData.start_time);
+              var endhour = hmsToHours(classData.end_time);
+              var name = classData.course_id +"-"+classData.section_id;
+              var icon = 'ion-university';
+              var class_color = 'rgba(0,157,151,0.75)';
+
+              arr.push({eventname: name,
+                      starthour: classData.start_time, endhour: classData.end_time,
+                      location : classData.location,
+                      eventtype: icon,
+                      left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
+                      height: ((endhour-starthour) * 120) + 'px', color: class_color});
+            };
+
+            function createTimeBlock(arr,blockData,left)
+            {
+              block_start_time = $filter('date')(blockData.start_time, 'HH:mm:ss');
+              block_end_time = $filter('date')(blockData.end_time, 'HH:mm:ss');
+
+              if(blockData.name == "Commute Time")
+              {
+                blocktime_icon =  'ion-model-s';
+                blocktime_color = 'rgba(18,67,172,0.75)';
+              }
+              else if(blockData.name == "Sleep Time")
+              {
+                blocktime_icon =  'ion-ios-moon';
+                blocktime_color = 'rgba(62, 10, 102, 1)';
+              }
+              else if(blockData.name == "Study Time")
+              {
+                blocktime_icon =  'ion-ios-bookmarks';
+                blocktime_color = 'rgba(255,113,0,0.75)';
+              }
+              else if(blockData.name == "Work Time")
+              {
+                blocktime_icon =  'ion-briefcase';
+                blocktime_color = 'rgba(255,169,0,0.75)';
+              }
+
+              starthour = hmsToHours(block_start_time);
+              endhour = hmsToHours(block_end_time);
 
             if((starthour > 6 && endhour >6) && (endhour < starthour))//23:30 to 7:00
             {
-              arr.push({eventname: name,
-                      starthour: start, endhour: end,
-                      eventtype: icon,
+              arr.push({eventname: blockData.name ,
+                      starthour: block_start_time, endhour: block_end_time,
+                      eventtype: blocktime_icon,
                       left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
-                      height: ((24-starthour+6) * 120) + 'px', color: color});
-              arr.push({eventname: name,
-                      starthour: start, endhour: end,
-                      eventtype: icon,
+                      height: ((24-starthour+6) * 120) + 'px', color: blocktime_color});
+              arr.push({eventname: blockData.name ,
+                      starthour: block_start_time, endhour: block_end_time,
+                      eventtype: blocktime_icon,
                       left: (45 *left) + 'px', top: ( (0) * 120) + 'px',
-                      height: ((endhour-6) * 120) + 'px', color: color});
+                      height: ((endhour-6) * 120) + 'px', color: blocktime_color});
             }
             else if (starthour < 6 && endhour >6)//1:30 to 7:30
             {
-              arr.push({eventname: name,
-                      starthour: start, endhour: end,
-                      eventtype: icon,
+              arr.push({eventname: blockData.name,
+                      starthour: block_start_time, endhour: block_end_time,
+                      eventtype: blocktime_icon,
                       left: (45 *left) + 'px', top: ( (starthour+18) * 120) + 'px',
-                      height: ((6-starthour) * 120) + 'px', color: color});
-              arr.push({eventname: name,
-                      starthour: start, endhour: end,
-                      eventtype: icon,
+                      height: ((6-starthour) * 120) + 'px', color: blocktime_color});
+              arr.push({eventname: blockData.name,
+                      starthour: block_start_time, endhour: block_end_time,
+                      eventtype: blocktime_icon,
                       left: (45 *left) + 'px', top: ( (0) * 120) + 'px',
-                      height: ((endhour-6) * 120) + 'px', color: color});
+                      height: ((endhour-6) * 120) + 'px', color: blocktime_color});
             }
             else //normal case
             {
-              arr.push({eventname: name,
-                      starthour: start, endhour: end,
-                      eventtype: icon,
+              arr.push({eventname: blockData.name,
+                      starthour: block_start_time, endhour: block_end_time,
+                      eventtype: blocktime_icon,
                       left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
-                      height: ((endhour-starthour) * 120) + 'px', color: color});
+                      height: ((endhour-starthour) * 120) + 'px', color: blocktime_color});
             }
-
-            };
+          }
 
             function hmsToHours(str) {
               var p = str.split(':'),

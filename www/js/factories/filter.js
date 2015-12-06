@@ -41,8 +41,8 @@ angular.module('parse-starter.factories')
 
         if(joint_dates.length == 0 | joint_dates === undefined){
           return true;
-        
-        } 
+
+        }
 
         return a.start_time > b.end_time | a.end_time < b.start_time
       }
@@ -53,7 +53,7 @@ angular.module('parse-starter.factories')
        * check if a list of time blocks overlaps each other
        * each member needs to be unique
        */
-      
+
     var isOverlap = function(array){
       var temp;
       var l;
@@ -85,10 +85,10 @@ angular.module('parse-starter.factories')
         return arr[0];
       } else {
         var res = [];
-       
+
         var restArr = jointTable(arr.slice(1));
 
-       
+
         for(var i = 0; i< restArr.length;i ++){
           for(var j = 0; j < arr[0].length; j++){
             res.push(_.flatten([arr[0][j],restArr[i]]));
@@ -133,4 +133,3 @@ angular.module('parse-starter.factories')
 
     return {search: search, isOverLap: isOverlap, isConflict: isConflict}
   })
-

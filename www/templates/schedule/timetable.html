@@ -37,7 +37,7 @@
             <ion-slide>
                       <div class="grid-sessions-all" ng-style="{'height' : (60 * hours.length ) + 'px'}">
                           <div class="grid-sessions-day-all" ng-style="{'overflow': 'true', 'width' : (47 * week.length + 47) + 'px'}">
-                              <div ng-repeat="event in oneWeek">
+                              <div ng-repeat="event in wholeWeek">
                                   <div class="grid-session-cell-all" ng-style="{'top':event.top, 'left':event.left, 'height':event.height, 'background-color':event.color}">
                                       <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>
                                   </div>
@@ -45,7 +45,7 @@
                           </div>
                       </div>
             </ion-slide>
-
+            <!--Mon Tue Wed-->
             <ion-slide ng-repeat="day in allweek">
               <div class="grid-sessions" ng-style="{'height' : (30 * hours.length ) + 'px'}">
                   <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (130 * week.length + 60) + 'px'}">
@@ -53,7 +53,8 @@
                           <div class="grid-session-cell" ng-style="{'top':event.top, 'left':event.left, 'height':event.height, 'background-color':event.color}">
                               <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>
                               <div class="grid-session-title">{{event.eventname}}</div>
-                              <div class="grid-session-time">{{event.starthour}}-{{event.endhour}}</div>
+                              <div class="grid-session-time">{{event.location}}</div>
+                              <div class="grid-session-time">{{event.starthour.substr(0,5)}}-{{event.endhour.substr(0,5)}}</div>
                           </div>
                       </div>
                   </div>
