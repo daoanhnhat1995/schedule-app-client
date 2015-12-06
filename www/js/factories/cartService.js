@@ -7,13 +7,10 @@ angular.module('parse-starter.factories')
 		    	if(!_.contains(courses,val)){
 
 		     	courses.push(val);
-<<<<<<< HEAD
 		   		  } 
 		     		      
-=======
-		   		  }
+		   		  
 
->>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
 		    },
 		    getAll: function(){
 		    	console.log(courses);
@@ -64,7 +61,6 @@ angular.module('parse-starter.factories')
 			* Add a block to timeData list
 			*/
 
-<<<<<<< HEAD
 			addBlock: function(block){	
 				block.dates = [];
 				angular.forEach(block.dayList,function(value,key){
@@ -72,49 +68,28 @@ angular.module('parse-starter.factories')
 				},block.dates);	
 
 			
-=======
-			addBlock: function(block){
-				block.dates = [];
-				angular.forEach(block.dayList,function(value,key){
-					this.push(key);
-				},block.dates);
 
-
->>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
 				if(!_.contains(timeData,block)){
 					timeData.push(block);
 					$state.go("main.block-time-index");
 				} else {
 					window.alert("Duplication!");
 				}
-<<<<<<< HEAD
 				
 			},
 
-			
-=======
 
-			},
-
-
->>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
 			getBlockTime: function(){
 				return timeData;
 			},
 
 			options: function(){
-<<<<<<< HEAD
-				l = ["Commute Time","Study Time","Work Time"];
-=======
+
 				l = ["Commute Time","Study Time","Work Time","Sleep Time"];
->>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
 				return l;
 			}
 
 
 		}
-<<<<<<< HEAD
+
 	})
-=======
-	})
->>>>>>> 086bc156526041c97987d5fa9595a3f2570a77c2
