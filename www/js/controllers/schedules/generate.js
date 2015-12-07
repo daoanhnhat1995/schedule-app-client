@@ -1,35 +1,49 @@
 angular.module("parse-starter.controllers")
-  .controller("GenerateCtrl", function(scheduleAPI,sessionService,departmentAPI,semesterAPI,$scope,$ionicModal,$state,$ionicPopup,Filter,Schedule,Course,classData,scheduleData){
+  .controller("GenerateCtrl", function(_,scheduleAPI,$localstorage,
+    $scope,$ionicModal,$state,Filter,Schedule){
    
-    $scope.courses = sessionService.get("scheduleList");
+    $scope.courses = $localstorage.get("schedules");
     console.log($scope.courses);
     $scope.blocks = Schedule.getBlockTime();
 
-        // Load the modal from the given template URL
-    $ionicModal.fromTemplateUrl('templates/schedule/conflict_messages.html', function($ionicModal) {
-        $scope.modal = $ionicModal;
-    }, {
-        // Use our scope for the scope of the modal to keep it simple
-        scope: $scope,
-        // The animation we want to use for the modal entrance
-        animation: 'slide-in-up'
+    /**
+     *
+     * Loading modals from detail view and conflicts ....
+     *
+     */
+  
+
+    $ionicModal.fromTemplateUrl('templates/courses/index.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal2 = modal;
     });
+
+    $ionicModal.fromTemplateUrl('templates/schedule/conflict_messages.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+
+
 
     $scope.generate = function(){
 
-      console.log("Selected classes: " , $scope.courses);
+      console.log("Selected classes: " , $localstorage.get("schedules"));
       console.log("Selected blocks: ", $scope.blocks);
+
+
       console.log(Filter.isOverLap($scope.blocks));
-      var list = Filter.isConflict($scope.blocks, $scope.courses);
+
+      var list = Filter.isConflict($scope.blocks, $localstorage.get("schedules"));
+       console.log("List ");
+      console.log(list);
       Schedule.setSchedules(list);
-      Schedule.setSchedule(Schedule.getResult());
-      var list = Schedule.getSchedule();
+      list = Schedule.getSchedules();
 
-
-
-
-      if(list.conflicts.length >0){
-      	console.log(list.conflicts[0]);
+      if(list.possibles.length == 0){
       	$scope.modal.show();
 
       } else { 

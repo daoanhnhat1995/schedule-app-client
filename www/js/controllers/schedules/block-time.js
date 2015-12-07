@@ -1,5 +1,5 @@
 angular.module('parse-starter.controllers')
-	.controller('editBlockTimeCtrl',function($scope,$ionicModal,$state,$ionicPopup,blockTimeData){
+	.controller('editBlockTimeCtrl',function($scope,$localstorage,$ionicModal,$state,blockTimeData){
 
 		
 		$scope.block = {};
@@ -25,7 +25,7 @@ angular.module('parse-starter.controllers')
 
 
 	    });
-
+	    // console.log(localStorageService.isSupported);
 	    $scope.saveBlock = function(){
 
 	    	/*
@@ -40,11 +40,6 @@ angular.module('parse-starter.controllers')
 
 	    }
 
-
-
-		
-
-
 	})
 
 	/* controller for blocktime setting index page */
@@ -52,8 +47,6 @@ angular.module('parse-starter.controllers')
 	.controller('mainBlockTimeCtrl',function(Filter,$ionicModal,$scope,$state,blockTimeData,Schedule){
 		$scope.blocks = blockTimeData.getBlockTime();
 
-
-	   
 		$scope.save = function(){
 			current = [];
 			angular.forEach($scope.blocks,function(b){
@@ -62,6 +55,8 @@ angular.module('parse-starter.controllers')
 				}
 			});
 			Schedule.setBlockTime(current);
+
+			/* Need to link this to a view */
 			console.log(Filter.isOverLap(current));
 			$state.go('main.generate-schedule');
 		}

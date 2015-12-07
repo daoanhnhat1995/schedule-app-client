@@ -1,7 +1,13 @@
-angular.module('parse-starter', ['ionic','underscore','ngResource','ionic-material','ionic-modal-select','parse-starter.controllers', 'parse-starter.factories'])
+angular.module('parse-starter', 
+  ['ionic','underscore','ionic-material','ionic-modal-select',
+  'parse-starter.controllers', 'parse-starter.factories'])
+
   .config(function ($urlRouterProvider, $stateProvider, $ionicConfigProvider) {
+
     $ionicConfigProvider.backButton.previousTitleText(false).text('');
+
     $urlRouterProvider.otherwise('main/dashboard');
+    
     $stateProvider
       .state('main', {
       	url: '/main',

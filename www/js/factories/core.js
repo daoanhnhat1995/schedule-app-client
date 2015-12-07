@@ -79,7 +79,7 @@ angular.module('parse-starter.factories')
 
 
     // Local Storage data service
-    .factory('sessionService',['$http',function($http){
+    .factory('$localstorage',['$http',function($http){
       return {
          set:function(key,value){
          return localStorage.setItem(key,JSON.stringify(value));
@@ -90,6 +90,9 @@ angular.module('parse-starter.factories')
        destroy:function(key){
          return localStorage.removeItem(key);
        },
+       clear: function(){
+        localStorage.clear();
+       }
      };
     }])
 

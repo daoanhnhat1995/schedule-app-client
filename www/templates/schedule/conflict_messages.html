@@ -1,15 +1,13 @@
-<ion-modal-view>
+<ion-modal-view  ng-controller= "conflictMessageCtrl">
 	<ion-header-bar class="bar-assertive">
 
 		<h1 class = "title"> Detected time conflicts </h1> 
 		 <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
 	</ion-header-bar>
 
-	<ion-content ng-controller="conflictMessageCtrl">
-
-		
-		<button class ="button button-assertive button-block button-clear" ng-click = "click()"> Show conflicts</button> 
-	<ion-list ng-repeat="schedule in data">
+	<ion-content>
+		<div class="button button-outline button-assertive button-clear button-block" ng-click="show()">Load</div>
+		<ion-list ng-repeat="schedule in conflicts">
     	<li class = "item" href = "#">
     		<h2>{{schedule['name']}}</h2>
  	 		<h2> {{schedule['instructor']}} </h2>
@@ -21,6 +19,6 @@
 
 
 
-	</ion-content>
+		</ion-content>
 
 </ion-modal-view>

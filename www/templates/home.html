@@ -1,5 +1,5 @@
 <ion-view title = 'Settings'>
-	<ion-content scroll = "false">
+	<ion-content ng-controller="settingCtrl">
 		<div class = "list">
 
 			<div class = "item item-divider"> Account </div>
@@ -9,13 +9,19 @@
 					</a>
 			<div class = "item item-divider"> App Settings</div>
 			    <a class = "item item-icon-left" ui-sref = "login" ng-click = "">
-						<i class = "icon ion-refresh"></i>
+						<i class = "icon ion-refresh" ng-click="clean()"></i>
 						Clear All Data
 					</a>
 					<a class = "item item-icon-left" ui-sref = "main.block-time-index">
 						<i class = "icon ion-edit"></i>
 						Time settings
 					</a>
+
+					<a class = "item item-icon-left"ng-click = "load()">
+						<i class = "icon ion-refresh" ></i>
+						Load stuffs
+					</a>
+
 
 
 		</div>

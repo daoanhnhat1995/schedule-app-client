@@ -1,31 +1,59 @@
 angular.module('parse-starter.controllers')
-  .controller('myScheduleCtrl', function ($scope,classAPI,sessionService,semesterAPI,Schedule,_){
+  .controller('myScheduleCtrl', function ($scope,Schedule,_){
 
-
-    // allData.loadAll();
-    semesterAPI.getAll().then(function(d){
-                    sessionService.set("semesterData",d.data);
-    });
-    classAPI.getAll().then(function(d){
-      sessionService.set("classData",d.data);
-    });
-    console.log(sessionService.get("classData"));
-    var list = Schedule.getSchedule();
-    $scope.data = [];
-
-    if(list.conflicts.length == 0){
-    	$scope.data = _.flatten(list.schedules);
-    } else {
-    	$scope.data = _.flatten(list.conflicts[0]);
+    var temp = _.sample(Schedule.getSchedules().possibles,1)[0];
+    if(temp != undefined){
+      $scope.schedules = temp.d;
     }
+
   })
 
 
   .controller('conflictMessageCtrl',function(_,$scope,Schedule){
-  	$scope.data= Schedule.getSchedule().conflicts;
-  	$scope.click = function(){
-  		$scope.data = _.flatten(Schedule.getSchedule().conflicts[0]);
-  	}
+    
+    var temp = $scope.conflicts= _.sample(Schedule.getSchedules().conflicts,1);
+    if(temp != undefined){
+      $scope.conflicts = temp.d;
+    }
+
+    $scope.show = function(){
+    $scope.conflicts= _.sample(Schedule.getSchedules().conflicts,1)[0].d;
+
+     };
+      
+  })
 
 
+  .controller('settingCtrl',function($scope,$localstorage,semesterAPI,classAPI){
+    /**
+     *
+     * Cache basic semester and course catalogs to local storage
+     *
+     */
+    
+    $scope.load = function(){
+      console.log("Caching....");
+      semesterAPI.getAll(cache).then(function(d){
+        $localstorage.set('semesters',d.data);
+        cache(d.data);
+
+      });
+
+      classAPI.getAll().then(function(d){
+        $localstorage.set('courses',d.data);
+      });
+      function cache(){
+         console.log("Semesters cached :" + $localstorage.get("semesters").length);
+        console.log("Courses cached :" + $localstorage.get("courses").length);
+        console.log("Done caching...");
+      }
+     
+    }
+
+    $scope.clean =function(){
+      console.log("Clear caching...");
+      $localstorage.clear();
+     
+      console.log("Clear done");
+    }
   })

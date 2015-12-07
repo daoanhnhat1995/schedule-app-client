@@ -1,15 +1,15 @@
 
 <ion-view title = "My Schedule">
   <ion-content>
-    <div class="list" ng-repeat="schedule in data">
+
+    <div class="list" ng-repeat="schedule in schedules">
     	<li class = "item" href = "#">
     		<h2>{{schedule['name']}}</h2>
-<!--     		<h2>{{schedule['class_id']}}</h2>
- -->    		<h2> {{schedule['instructor']}} </h2>
+      		<h2> {{schedule['instructor']}} </h2>
     		 <p> {{schedule['section_type']}} {{schedule['section_id']}} </p>
     		 <p> {{schedule['dates'].toString()}}
     		 <p> From {{schedule['start_time']}} To {{schedule['end_time']}}</p>
     	</li>
     </div>
   </ion-content>
-</ion-modal-view>
+</ion-view>
