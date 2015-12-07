@@ -8,9 +8,7 @@ angular.module('parse-starter.factories')
 
 		     	courses.push(val);
 		   		  } 
-		     		      
-		   		  
-
+		     		     
 		    },
 		    getAll: function(){
 		    	console.log(courses);
@@ -18,6 +16,9 @@ angular.module('parse-starter.factories')
 		    },
 		    remove: function(c){
 		      courses.splice(courses.indexOf(c),1);
+		    },
+		    getSelected: function(){
+		    	return _.filter(courses,function(c){return c.checked == true});
 		    }
 		  }
 	})
@@ -57,7 +58,7 @@ angular.module('parse-starter.factories')
 
 
 
-	.factory('blockTimeData',function($state){
+	.factory('blockTimeData',function($state,$ionicPopup){
 		var timeData = [];
 		return{
 
@@ -80,7 +81,10 @@ angular.module('parse-starter.factories')
 					timeData.push(block);
 					$state.go("main.block-time-index");
 				} else {
-					window.alert("Duplication!");
+					$ionicPopup.alert({
+						title: "Oops",
+						template: "This block time has been reserved"
+					});
 				}
 				
 			},

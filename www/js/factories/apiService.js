@@ -1,5 +1,5 @@
 
-var link = 'https://infinite-beach-4318.herokuapp.com/api/';
+var link = 'https://utamymavschedule.herokuapp.com/api/';
 angular.module('parse-starter.factories')
 	.factory("semesterAPI",function($http){
 		return {

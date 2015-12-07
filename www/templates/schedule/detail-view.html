@@ -2,15 +2,16 @@
 <ion-view title = "My Schedule">
   <ion-content>
 
-    <div class="list" ng-repeat="schedule in schedules">
-    	<li class = "item" href = "#">
+    <ion-list >
+    	<ion-item ng-repeat="schedule in schedules" class = "animate-item item-remove-animate"  type="item-text-wrap">
     		<h2>{{schedule['course_title']}}</h2>
-        <h2>{{schedule.name}}</h2>
+        <h2>{{schedule.name.toUpperCase()}}</h2>
       		<h3> {{schedule['instructor']}} </h3>
     		 <p> {{schedule['section_type']}} {{schedule['section_id']}} </p>
     		 <p> {{schedule['dates'].toString()}}
     		 <p> From {{schedule['start_time']}} To {{schedule['end_time']}}</p>
-    	</li>
-    </div>
+        </ion-item>
+    	</ion-list>
+   
   </ion-content>
 </ion-view>

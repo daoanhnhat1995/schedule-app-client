@@ -1,6 +1,6 @@
 angular.module("parse-starter.controllers")
   .controller("GenerateCtrl", function(_,scheduleAPI,$localstorage,
-    $scope,$ionicModal,$state,Filter,Schedule){
+    $scope,$ionicModal,$state,Filter,Schedule,Cart,$ionicPopup){
    
     $scope.courses = $localstorage.get("schedules");
     console.log($scope.courses);
@@ -36,21 +36,28 @@ angular.module("parse-starter.controllers")
 
 
       console.log(Filter.isOverLap($scope.blocks));
+      if(Cart.getAll().length == 0){
+        $ionicPopup.alert({
+          title: "Oops",
+          template: "You have not selected any class",
+          okType: 'button-clear'
+        });
+      } else {
+              var list = Filter.isConflict($scope.blocks, $localstorage.get("schedules"));
+               console.log("List ");
+              console.log(list);
+              Schedule.setSchedules(list);
+              list = Schedule.getSchedules();
 
-      var list = Filter.isConflict($scope.blocks, $localstorage.get("schedules"));
-       console.log("List ");
-      console.log(list);
-      Schedule.setSchedules(list);
-      list = Schedule.getSchedules();
+              if(list.possibles.length == 0){
+              	$scope.modal.show();
 
-      if(list.possibles.length == 0){
-      	$scope.modal.show();
+              } else { 
+                Schedule.setSchedule(_.sample(list.possibles,1)[0]);
+              	$state.go('main.my-schedule');
+              }
 
-      } else { 
-      	
-      	$state.go('main.my-schedule');
-      }
-
-    };
+            }
+          };
 
 })

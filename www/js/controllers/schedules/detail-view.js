@@ -1,24 +1,29 @@
 angular.module('parse-starter.controllers')
   .controller('myScheduleCtrl', function ($scope,Schedule,_,Cart){
+    var temp = Schedule.getSchedule();
+    var classList = Cart.getAll();
 
-    var temp = _.sample(Schedule.getSchedules().possibles,1)[0];
-    if(temp != undefined){
-      var classList = Cart.getAll();
-      console.log("Cart");
-      console.log(classList);
-      var tempTitle = "";
-      var s;
-      angular.forEach(temp.d,function(c){
-     	console.log(_.where(classList,{id:c.course_id}));
-      	if(c.course_id != undefined){
-      		c.course_title = _.where(classList,{id:c.course_id})[0].course_title;
-      	}
-      
+
+    /**
+     *
+     * Bassically find course title of each schedule generated 
+     *
+     */
+    
+    if(temp.length > 0){
+      angular.forEach(temp,function(c){
+        if(c.course_id != undefined){
+          c.course_title = _.where(classList,{id:c.course_id})[0].course_title;
+        }
       });
-      $scope.schedules = temp.d;
+
+      Schedule.setSchedule2(temp);
+    }
+   
+      $scope.schedules = Schedule.getSchedule();
       console.log("Schedules are:....");
       console.log($scope.schedules);
-    }
+    
 
   })
 

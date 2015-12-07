@@ -20,9 +20,9 @@ angular.module('parse-starter.factories')
                 },
                 error: function(user, error) {
                     $ionicPopup.alert({
-                        title: 'Sorry',
-                        template: error.message,
-                        okType: 'button-balanced'
+                        title: 'Oops',
+                        template: user.message,
+                        okType: 'button-clear'
                     });
                 }
             });
@@ -41,10 +41,11 @@ angular.module('parse-starter.factories')
                 },
                 error: function(user, error) {
                     $ionicLoading.hide();
+                    console.log(user);
                     $ionicPopup.alert({
-                        title: 'Sorry',
-                        template: error.message,
-                        okType: 'button-balanced'
+                        title: 'Oops',
+                        content:user.message,
+                        okType: 'button-clear'
                     });
                 }
             });
@@ -58,18 +59,16 @@ angular.module('parse-starter.factories')
                     // Password reset request was sent successfully
                     $ionicPopup.alert({
                         title: 'Success',
-                        template: 'password was sent to '+email,
-                        okType: 'button-balanced'
+                        content: 'password was sent to '+email,
+                        okType: 'button-clear'
                     });
+                    $state.go('login');
                 },
                 error: function(error) {
                     // Password reset failed
-                    $ionicPopup.alert({
-                        title: 'Sorry',
-                        template: error.message,
-                        okType: 'button-balanced'
-                    });
-                }
+                     $state.go('login');
+
+                }   
             });
         };
 

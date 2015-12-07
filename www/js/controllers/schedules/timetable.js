@@ -46,8 +46,10 @@ angular.module('parse-starter.controllers')
             var week = ["Mo","Tu","We","Th","Fr","Sa","Su"];
             $scope.week = week;
             var oneWeek = [];
-            var scheduleData = Schedule.getSchedule().schedules ;//REPLACE THIS
-            //console.log(scheduleData);
+            var scheduleData = Schedule.getSchedule() ;//REPLACE THIS
+
+            console.log("Schedules generated are :....");
+            console.log(scheduleData);
 
             var mon = [];
             var tue = [];

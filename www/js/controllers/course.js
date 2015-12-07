@@ -32,7 +32,7 @@ angular.module('parse-starter.controllers')
 
 					function callback(){
 						console.log("Courses selected are : ")
-						console.log(current);
+						console.log(Cart.getSelected());
 						console.log("Fetched schedules ....");
 						console.log($localstorage.get("schedules"));
 					}
