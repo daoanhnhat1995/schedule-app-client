@@ -4,8 +4,9 @@
 
     <div class="list" ng-repeat="schedule in schedules">
     	<li class = "item" href = "#">
-    		<h2>{{schedule['name']}}</h2>
-      		<h2> {{schedule['instructor']}} </h2>
+    		<h2>{{schedule['course_title']}}</h2>
+        <h2>{{schedule.name}}</h2>
+      		<h3> {{schedule['instructor']}} </h3>
     		 <p> {{schedule['section_type']}} {{schedule['section_id']}} </p>
     		 <p> {{schedule['dates'].toString()}}
     		 <p> From {{schedule['start_time']}} To {{schedule['end_time']}}</p>
