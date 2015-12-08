@@ -1,0 +1,24 @@
+<ion-modal-view  ng-controller= "conflictMessageCtrl">
+	<ion-header-bar class="bar-assertive">
+
+		<h1 class = "title"> Detected time conflicts </h1> 
+		 <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+	</ion-header-bar>
+
+	<ion-content>
+		<div class="button button-outline button-assertive button-clear button-block" ng-click="show()">Load</div>
+		<ion-list ng-repeat="schedule in conflicts">
+    	<li class = "item" href = "#">
+    		<h2>{{schedule['name']}}</h2>
+ 	 		<h2> {{schedule['instructor']}} </h2>
+    		 <p> {{schedule['section_type']}} {{schedule['section_id']}} </p>
+    		 <p> {{schedule['dates'].toString()}}
+    		 <p> From {{schedule['start_time']}} To {{schedule['end_time']}}</p>
+    	</li>
+   	 </ion-list>
+
+
+
+		</ion-content>
+
+</ion-modal-view>

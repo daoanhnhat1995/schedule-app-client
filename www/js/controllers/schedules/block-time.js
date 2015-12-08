@@ -1,14 +1,14 @@
 angular.module('parse-starter.controllers')
-	.controller('editBlockTimeCtrl',function($scope,$ionicModal,$state,$ionicPopup,blockTimeData){
+	.controller('editBlockTimeCtrl',function($scope,$localstorage,$ionicModal,$state,blockTimeData){
 
-		
+
 		$scope.block = {};
 	    $scope.optionList = blockTimeData.options();
 
 	    /*
 	    * enable save button if these fields are filled
 	    */
-	    $scope.$watchGroup(['block.name', 'block.days','block.start_time','block.end_time'], function (newVal) {
+	    $scope.$watchGroup(['block.name', 'block.days','block.startT','block.endT'], function (newVal) {
 	      var defaultName = 'Select time name';
 
 	      if(newVal[0] === undefined){
@@ -17,33 +17,28 @@ angular.module('parse-starter.controllers')
 	      }
 
 	      var name = newVal[0] != defaultName,
-	      	
+
 	        startT = newVal[2] != undefined ,
-	        endT = newVal[3] != undefined	        
+	        endT = newVal[3] != undefined
 	      	$scope.ready = !! ( name && startT && endT);
 	      	console.log($scope.ready);
 
 
 	    });
-
+	    // console.log(localStorageService.isSupported);
 	    $scope.saveBlock = function(){
 
 	    	/*
-	    	*  Check if block time is appropriate 
+	    	*  Check if block time is appropriate
 	    	*/
 
-	    	if($scope.block.start_time < $scope.block.end_time){
+	    	//if($scope.block.startT < $scope.block.endT){
 	    		blockTimeData.addBlock($scope.block);
-	    	} else {
-	    		alert("Bad time interval!");
-	    	}
+	    	//} else {
+	    	//	alert("Bad time interval!");
+	    	//}
 
 	    }
-
-
-
-		
-
 
 	})
 
@@ -52,8 +47,6 @@ angular.module('parse-starter.controllers')
 	.controller('mainBlockTimeCtrl',function(Filter,$ionicModal,$scope,$state,blockTimeData,Schedule){
 		$scope.blocks = blockTimeData.getBlockTime();
 
-
-	   
 		$scope.save = function(){
 			current = [];
 			angular.forEach($scope.blocks,function(b){
@@ -62,10 +55,12 @@ angular.module('parse-starter.controllers')
 				}
 			});
 			Schedule.setBlockTime(current);
+
+			/* Need to link this to a view */
 			console.log(Filter.isOverLap(current));
 			$state.go('main.generate-schedule');
 		}
 
-		
+
 
 	})

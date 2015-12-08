@@ -1,18 +1,23 @@
-<ion-view title = "Add Block Time">
-	<ion-nav-buttons side = "right">
-		 <button class="button-clear" ng-click="saveBlock()">
-        	<h4>Done</h4>
-      	  </button>
-	</ion-nav-buttons>
-	<ion-content scroll= 'false'>
+<ion-view-modal ng-model="editBlockTimeCtrl">
+
+	<ion-header-bar class="bar-assertive">
+
+		<h1 class = "title"> Detected time conflicts </h1> 
+		 <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+		 <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-check"></span></div>
+	</ion-header-bar>
+
+	
+	<ion-content>
 
 	    <div class="list">
-	    <label class="item item-input item-floating-label">
-
-		            <input placeholder = "Block Time Name" type='text' ng-model = "block.name">
-
-		            </input>
-		   </label>
+	    
+		    <button class="button button-assertive button-clear button-outline button-block" modal-select ng-model="block.name" options="optionList" modal-title="Select Block" ng-change = "setSemester(semester)">
+		    {{block.name}}
+		    <div class="option">
+		        {{option}}
+		    </div>
+		    </button>
 
 		   <label class="item item-input item-floating-label">
 		   		<label class = "input label"> From </label>
@@ -75,4 +80,4 @@
 
 	        </div>
 	</ion-content>
-</ion-view>
+</ion-modal-view>

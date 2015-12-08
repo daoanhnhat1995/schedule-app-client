@@ -7,8 +7,8 @@ angular.module('parse-starter.factories')
 		    	if(!_.contains(courses,val)){
 
 		     	courses.push(val);
-		   		  }
-
+		   		  } 
+		     		     
 		    },
 		    getAll: function(){
 		    	console.log(courses);
@@ -16,6 +16,9 @@ angular.module('parse-starter.factories')
 		    },
 		    remove: function(c){
 		      courses.splice(courses.indexOf(c),1);
+		    },
+		    getSelected: function(){
+		    	return _.filter(courses,function(c){return c.checked == true});
 		    }
 		  }
 	})
@@ -23,9 +26,11 @@ angular.module('parse-starter.factories')
 
 
 
-	.factory('semesterData',function(){
-		var semester = "Select Semester";
+	.factory('semesterData',function(_){
+		var semester = {};
+		semester.name = "Select Semester";
 		var ready = false;
+		var list = [];
 		return {
 
 			getSemester: function(){
@@ -40,8 +45,10 @@ angular.module('parse-starter.factories')
 				semester = input;
 			},
 			getListSemester: function(){
-				list = ['Fall 2015','Spring 2017','Summer 2017'];
 				return list;
+			},
+			setData: function(data){
+				list = data;
 			},
 			isAddReady: function(){
 				return ready;
@@ -51,7 +58,7 @@ angular.module('parse-starter.factories')
 
 
 
-	.factory('blockTimeData',function($state){
+	.factory('blockTimeData',function($state,$ionicPopup){
 		var timeData = [];
 		return{
 
@@ -59,20 +66,27 @@ angular.module('parse-starter.factories')
 			* Add a block to timeData list
 			*/
 
-			addBlock: function(block){
+			addBlock: function(block){	
 				block.dates = [];
 				angular.forEach(block.dayList,function(value,key){
 					this.push(key);
-				},block.dates);
+				},block.dates);	
 
+				block.start_time = block.startT.getHours()+":"+block.startT.getMinutes()+":"+block.startT.getSeconds();
+				block.end_time = block.endT.getHours()+":"+block.endT.getMinutes()+":"+block.endT.getSeconds();
+
+			
 
 				if(!_.contains(timeData,block)){
 					timeData.push(block);
 					$state.go("main.block-time-index");
 				} else {
-					window.alert("Duplication!");
+					$ionicPopup.alert({
+						title: "Oops",
+						template: "This block time has been reserved"
+					});
 				}
-
+				
 			},
 
 
@@ -81,10 +95,12 @@ angular.module('parse-starter.factories')
 			},
 
 			options: function(){
+
 				l = ["Commute Time","Study Time","Work Time","Sleep Time"];
 				return l;
 			}
 
 
 		}
+
 	})

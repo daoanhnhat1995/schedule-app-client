@@ -1,28 +1,63 @@
 angular.module("parse-starter.controllers")
-  .controller("GenerateCtrl", function($scope,$state,$ionicPopup,Filter,Schedule,Course,classData,semesterData,scheduleData){
-    $scope.courses = classData.getAll();
+  .controller("GenerateCtrl", function(_,scheduleAPI,$localstorage,
+    $scope,$ionicModal,$state,Filter,Schedule,Cart,$ionicPopup){
+   
+    $scope.courses = $localstorage.get("schedules");
+    console.log($scope.courses);
     $scope.blocks = Schedule.getBlockTime();
 
-    $scope.blocks = [{"name":"Commute Time","dates":["Mo","We","Fr"],"start_time":"19:00:00","end_time":"19:50:00"},
-    {"name":"Study Time","dates":["We","Th"],"start_time":"18:00:00","end_time":"18:50:00"}];
+    /**
+     *
+     * Loading modals from detail view and conflicts ....
+     *
+     */
+  
+
+    $ionicModal.fromTemplateUrl('templates/courses/index.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.modal2 = modal;
+    });
+
+    $ionicModal.fromTemplateUrl('templates/schedule/conflict_messages.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+
+
+
     $scope.generate = function(){
 
-      console.log("Selected classes: " , $scope.courses);
+      console.log("Selected classes: " , $localstorage.get("schedules"));
       console.log("Selected blocks: ", $scope.blocks);
+
+
       console.log(Filter.isOverLap($scope.blocks));
-      var list = Filter.isConflict($scope.blocks, $scope.courses);
-      Schedule.setSchedules(list);
-      Schedule.setSchedule(Schedule.getResult());
-      var list = Schedule.getSchedule();
-
-
-
-      if(list.conflicts.length >0){
-      	console.log(list.conflicts);
+      if(Cart.getAll().length == 0){
+        $ionicPopup.alert({
+          title: "Oops",
+          template: "You have not selected any class",
+          okType: 'button-clear'
+        });
       } else {
-      	$state.go('main.my-schedule');
-      }
+              var list = Filter.isConflict($scope.blocks, $localstorage.get("schedules"));
+               console.log("List ");
+              console.log(list);
+              Schedule.setSchedules(list);
+              list = Schedule.getSchedules();
 
-    };
+              if(list.possibles.length == 0){
+              	$scope.modal.show();
+
+              } else { 
+                Schedule.setSchedule(_.sample(list.possibles,1)[0]);
+              	$state.go('main.my-schedule');
+              }
+
+            }
+          };
 
 })

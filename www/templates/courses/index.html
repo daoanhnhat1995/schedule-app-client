@@ -1,25 +1,30 @@
-<ion-view title = "Your classes" >
-
-	<ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-checkmark" ng-click="save()">
-        </button>
-  </ion-nav-buttons>
-
-	<ion-content scroll = "false">
+<ion-modal-view ng-controller = "courseListCtrl">
 
 
-     <div class = "list" ng-repeat = "each in courses">
-      <div class = "item">
-        <ion-checkbox ng-checked = "each.checked" ng-model = 'each.checked'>
-        {{each.course_id}} 
+  <ion-header-bar class="bar-royal">
+    <h1 class="title"> Your Cart</h1>
+    <div class="button button-clear" ng-click="modal2.hide();save();test();"><span class="icon ion-checkmark"></span></div>
+  </ion-header-bar>
+
+	<ion-content>
+
+
+     <ion-list ng-repeat = "each in courses">
+      <ion-item>
+
+         <item="item" class="checkbox-royal">
+        <label class="checkbox">
+        <input type="checkbox"  ng-checked = "each.checked" ng-model = 'each.checked'>
+        </label>
+
+         {{each.course_id}} 
         {{each.course_title}}
-        </ion-checkbox>
+        <ion-item>
 
-      </div>
-     </div>
+     </ion-list>
 
     
 
 	</ion-content>
-</ion-view>
+</ion-modal-view>
 

@@ -5,23 +5,24 @@
       <ion-header-bar class="bar-dark" style="background-color:#009d97">
           <h1 class="title">View Timetable</h1>
       </ion-header-bar>
-
+<ion-header-bar class="bar-subheader ">
       <div id="gridHeader" class="grid-header"  ng-style="{'overflow': 'false', 'width' : (200 * week.length + 60) + 'px', 'left':'-'+timerleft}">
 
 
         <ul class="slide-tab">
-          <li ng-class="slideIndex == 0 ? 'current':''"><a href="#" ng-click="activeSlide(0)">ALL</a></li>
-          <li ng-class="slideIndex == 1 ? 'current':''"><a href="#" ng-click="activeSlide(1)">Mon</a></li>
-          <li ng-class="slideIndex == 2 ? 'current':''"><a href="#" ng-click="activeSlide(2)">Tue</a></li>
-          <li ng-class="slideIndex == 3 ? 'current':''"><a href="#" ng-click="activeSlide(3)">Wed</a></li>
-          <li  ng-class="slideIndex == 4 ? 'current':''"><a href="#" ng-click="activeSlide(4)">Thu</a></li>
-          <li  ng-class="slideIndex == 5 ? 'current':''"><a href="#" ng-click="activeSlide(5)">Fri</a></li>
-          <li ng-class="slideIndex == 6 ? 'current':''"><a href="#" ng-click="activeSlide(6)">Sat</a></li>
-          <li ng-class="slideIndex == 7 ? 'current':''"><a href="#" ng-click="activeSlide(7)">Sun</a></li>
+          <li ng-class="slideTimetableIndex == 0 ? 'current':''"><a ng-click="activeTimetableSlide(0)">ALL</a></li>
+          <li ng-class="slideTimetableIndex == 1 ? 'current':''"><a ng-click="activeTimetableSlide(1)">Mon</a></li>
+          <li ng-class="slideTimetableIndex == 2 ? 'current':''"><a  ng-click="activeTimetableSlide(2)">Tue</a></li>
+          <li ng-class="slideTimetableIndex == 3 ? 'current':''"><a  ng-click="activeTimetableSlide(3)">Wed</a></li>
+          <li  ng-class="slideTimetableIndex == 4 ? 'current':''"><a ng-click="activeTimetableSlide(4)">Thu</a></li>
+          <li  ng-class="slideTimetableIndex == 5 ? 'current':''"><a  ng-click="activeTimetableSlide(5)">Fri</a></li>
+          <li ng-class="slideTimetableIndex == 6 ? 'current':''"><a ng-click="activeTimetableSlide(6)">Sat</a></li>
+          <li ng-class="slideTimetableIndex == 7 ? 'current':''"><a ng-click="activeTimetableSlide(7)">Sun</a></li>
         </ul> <!-- / tabs -->
 
 
       </div>
+</ion-header-bar>
 
       <ion-content scroll="true" direction="y"  has-bouncing="false"  on-scroll="gotScrolled()"  delegate-handle="mainScroll">
 
@@ -32,11 +33,11 @@
                     </div>
                 </div>
 
-          <ion-slide-box on-slide-changed="slideChanged(index)" active-slide="slideIndex" show-pager="false" ng-init="lockSlide()">
+          <ion-slide-box on-slide-changed="slideTimetableChanged(index)" active-slide="slideTimetableIndex" show-pager="false" ng-init="lockSlide()">
             <!--ALL-->
             <ion-slide>
                       <div class="grid-sessions-all" ng-style="{'height' : (60 * hours.length ) + 'px'}">
-                          <div class="grid-sessions-day-all" ng-style="{'overflow': 'true', 'width' : (47 * week.length + 47) + 'px'}">
+                          <div class="grid-sessions-day-all" ng-style="{'overflow': 'true', 'width' : (40 * week.length + 40) + 'px'}">
                               <div ng-repeat="event in wholeWeek">
                                   <div class="grid-session-cell-all" ng-style="{'top':event.top, 'left':event.left, 'height':event.height, 'background-color':event.color}">
                                       <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>
@@ -48,7 +49,7 @@
             <!--Mon Tue Wed-->
             <ion-slide ng-repeat="day in allweek">
               <div class="grid-sessions" ng-style="{'height' : (30 * hours.length ) + 'px'}">
-                  <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (130 * week.length + 60) + 'px'}">
+                  <div class="grid-sessions-day" ng-style="{'overflow': 'true', 'width' : (40 * week.length + 40) + 'px'}">
                       <div ng-repeat="event in day">
                           <div class="grid-session-cell" ng-style="{'top':event.top, 'left':event.left, 'height':event.height, 'background-color':event.color}">
                               <i class="icon  grid-session-icon" ng-class="event.eventtype"></i>

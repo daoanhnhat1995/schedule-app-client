@@ -55,6 +55,7 @@
 }
 
 /*TIMETABLE CSS*/
+/*
 .grid-header {
     background-color:#aaa;
     background-size: 34px;
@@ -62,28 +63,31 @@
     overflow: hidden;
     box-shadow: 0 0 3px 0;
     position: inherit;
-    top:43px;
+
     display:block;
     z-index:1035;
 }
+*/
+
+/*  top:64px;*/
 /* gray corner*/
 .grid-header-labels {
     padding-left: 30px;
 }
 /*horizontal mon tues wed*/
-/*
 .grid-header-label {
     width: 50px;
     float: left;
     padding: 10px 0px;
     height: 40px;
     text-align: center;
-    background: #009d97;
+
     color: #fff;
     cursor: pointer;
     position: relative;
-}*/
-/*
+}
+/*background: #009d97;*/
+
 .grid-header-label-divider{
     border-right: 1px solid #cbcbcb;
     position: static ;
@@ -91,10 +95,10 @@
     bottom:0;
     height:22px;
 }
-*/
+
 .grid-header-Clock {
        text-align:left;
-  background-color:#aaa;
+
     width: 60px;
     height: 60px;
     position: fixed;
@@ -102,13 +106,15 @@
     top: 0;
     font-size:40px;
 }
+/* background-color:#aaa;*/
 
 .grid-body {
 
     position: absolute;
-    top: 45px !important;
+
     background: #f7f7f7;
 }
+/*top: 40px !important;*/
 .ui-block {
     position: absolute;
     top: 0;
@@ -121,7 +127,7 @@
 .grid-times-holder {
     position: absolute;
     overflow: hidden;
-    width: 45px;
+    width: 40px;
     top: 0;
     display:block;
     z-index: 200;
@@ -150,7 +156,7 @@
     line-height: 25px;
     border-bottom: 1px solid #ddd;
     padding-left: 0;
-		font-size: 16px;
+		font-size: 15px;
 }
 
 .grid-times {
@@ -186,20 +192,20 @@
     position: relative;
     height: 2900px;
     min-width: 100%;
-		background-size: 260px 60px;
+		background-size: 320px 60px;
 		background-image:repeating-linear-gradient(0deg, #bbb, #bbb 1px, transparent 1px, transparent 60px),
-		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 260px) ;
-		background-position: 30px 0px;
+		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 320px) ;
+		background-position: 0px 0px;
 }
 
 
 /* cell vertical mon tues wed*/
 .grid-session-cell {
     position: absolute;
-    width: 315px;
+    width: 280px;
     overflow: hidden;
     border-right: 1px solid #cbcbcb;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     background: rgba(0,157,151,.85);
     color: #fff;
@@ -232,15 +238,15 @@
     position: relative;
     height: 2900px;
     min-width: 100%;
-		background-size: 45px 30px;
+		background-size: 40px 30px;
 		background-image:repeating-linear-gradient(0deg, #bbb, #bbb 1px, transparent 1px, transparent 40px),
-		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 45px) ;
-		background-position: 45px 0px;
+		repeating-linear-gradient(-90deg, #bbb, #bbb 1px, transparent 1px, transparent 40px) ;
+		background-position: 0px 0px;
 }
 
 .grid-session-cell-all {
     position: absolute;
-    width: 45px;
+    width: 40px;
     overflow: hidden;
     border-right: 1px solid #cbcbcb;
     font-size: 9px;
@@ -253,20 +259,21 @@
 
 .slide-tab{
     overflow: hidden;
-    background-color: #eff0f2;
+    background-color: #eee;
+		font-size: 14px;
 
 
 }
 
 .slide-tab li{
     float: left;
-    line-height: 43px;
-		width: 45px;
+    line-height: 44px;
+		width: 40px;
 		text-align: center;
 }
 
 .slide-tab a{
-    background-color: #eff0f2;
+
     color: #888;
     display: block;
     text-decoration: none;
@@ -274,7 +281,21 @@
     -moz-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
 }
+/*background-color: #eff0f2;*/
 .current a{
     color: #fff;
     background: #00897B;
+}
+
+.animate-item.ng-enter{
+    -webkit-animation: fadeInLeft 1s;
+    animation: fadeInLeft 1s;
+}
+.animate-item.ng-enter-stagger {
+  -webkit-animation-delay:200ms;
+  animation-delay:200ms;
+
+  /* override to make sure it's not inherited from other styles */
+  -webkit-animation-duration:0;
+  animation-duration:0;
 }

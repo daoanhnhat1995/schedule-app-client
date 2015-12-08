@@ -1,10 +1,10 @@
 angular.module('parse-starter.factories')
 
 .factory('Schedule',function($ionicPopup,_){
-  var schedule = {conflicts:[],schedules:[]};
+  var schedules = {};
+  var schedule = [];
   var listClass = [];
   var blockTime = [];
-  var schedules = {};
   return {
   
     setCourses: function(l){
@@ -24,36 +24,26 @@ angular.module('parse-starter.factories')
       return blockTime;
     },
     setSchedules: function(list){
-      schedules.possibleList = _.filter(list,function(each){
-        return each.length != 2 
-      });
-
-      schedules.conflictList = _.filter(list,function(each){
-        return each.length == 2 
-      });
+      console.log("Grouping schedules....");
+      schedules = list;
     },
-    getResult: function(){
-      if(schedules.possibleList == 0){
-        return {
-          conflicts: schedules.conflictList, schedules: []
-
-        }
+    getSchedules: function(){
+      console.log("Got...")
+      console.log(schedules);
+      return schedules;
+    },
+    setSchedule: function(s){
+      if(s === undefined){
+        schedule = [];
       } else {
-        return {
-          conflicts: [],
-          schedules: _.flatten(_.sample(schedules.possibleList,1))
-        }
+        schedule = s.d;
       }
     },
-    setSchedule: function(arr){
-      schedule = arr;
+    setSchedule2: function(s){
+      schedule = s;
     },
     getSchedule: function(){
-
-
       return schedule;
-    }
-
-
+    } 
   }
 })
