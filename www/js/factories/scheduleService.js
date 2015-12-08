@@ -42,8 +42,12 @@ angular.module('parse-starter.factories')
     },
     setScheduleTitles: function(){
       var cart = Cart.getAll();
+
+  
       angular.forEach(schedule,function(each){
+
           if(each.course_id != undefined){
+
             each.course_title = _.where(cart,{id:each.course_id})[0].course_title;
           }
         });

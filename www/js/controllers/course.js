@@ -16,6 +16,16 @@ angular.module('parse-starter.controllers')
 
 			/* Important, have to reset everytime */
 			$localstorage.set('schedules',[]);
+
+			function transform(block){
+				var date = new Date('10/10/2010');
+				date.setHours(block.getHours());
+				date.setMinutes(block.getMinutes());
+				date.setSeconds(block.getSeconds());
+
+				return date;
+
+				}
 			angular.forEach(Cart.getAll(),function(each){
 				/* Check if class is marked selected */
 				if(each.checked == true){
@@ -24,9 +34,11 @@ angular.module('parse-starter.controllers')
 
 					scheduleAPI.get(each.course_id,callback).then(function(d){
 						temp = $localstorage.get('schedules');
+
 						temp.push(d.data);
 						$localstorage.set('schedules',_.flatten(temp));
 						callback(d.data);
+						
 					});
 
 

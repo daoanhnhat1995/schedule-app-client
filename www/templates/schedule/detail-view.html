@@ -13,7 +13,8 @@
           <h3> {{schedule['instructor']}} </h3>
          <p> {{schedule['section_type']}} {{schedule['section_id']}} </p>
          <p> {{schedule['dates'].toString()}}
-         <p> From {{schedule['start_time']|date: 'hh:mm tt'}} To {{schedule['end_time']}}</p>
+         <p> From {{schedule['start_time']|date:'hh:mm a'}} </p>
+         <p>To {{schedule['end_time']|date:'hh:mm a'}}</p>
         </ion-item>
       </ion-list>
    

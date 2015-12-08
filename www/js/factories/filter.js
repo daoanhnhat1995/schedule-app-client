@@ -25,7 +25,19 @@ angular.module('parse-starter.factories')
         
         } 
 
-        return a.start_time > b.end_time | a.end_time < b.start_time
+
+        function interval(a,b){
+          return Date.parse(a)-Date.parse(b);
+        }
+        var in_a = interval(a.end_time,a.start_time);
+        var in_b = interval(b.end_time,b.start_time);
+        if ((a.start_time < b.start_time) &&(interval(b.start_time,a.start_time) < in_a)){
+          return false;
+        } else if ((a.start_time > b.start_time) &&(interval(b.start_time,a.start_time) < in_b)){
+          return false;
+        } else {
+          return true;
+        }
       }
 
 
@@ -84,8 +96,31 @@ angular.module('parse-starter.factories')
     var isConflict = function(blockArr,Arr){
      
       var courses = deepCopy(Arr);
+
+       angular.forEach(Arr,function(each){
+        console.log(each);
+        each.start_time = transform(each.start_time);
+        each.end_time = transform(each.end_time);
+        console.log(each);
+      });
       var course_list = _.groupBy(Arr,'course_id');
       delete course_list.undefined;
+
+
+        function transform(block){
+        var date = new Date("10/10/2010");
+        var arr = block.split(":");
+        console.log(arr);
+        date.setHours(arr[0]);
+        date.setMinutes(arr[1]);
+        date.setSeconds(arr[2]);
+
+        return date;
+
+        }
+
+
+
 
       var course_id_list = _.keys(course_list);
       // console.log(key_list);

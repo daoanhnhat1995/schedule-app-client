@@ -113,7 +113,7 @@ angular.module('parse-starter',
       })
 
   })
-  .run(function ($ionicPlatform, $state) {
+  .run(function ($ionicPlatform, $localstorage,$state) {
 
     // params[application_id, javascript_key]
     Parse.initialize("maP05W7Q8wmbpr7JI7lPMzv9ZCq2LsPwSTm2yB6D", "lLCbV1F8fGFeNLjlKJCEbwweRhc8DWijylFXyEZq");
@@ -152,12 +152,6 @@ angular.module('parse-starter',
       }
 
 
-
-      if (Parse.User.current()) {
-        $state.go('main.dashboard');
-
-      } else {
-        $state.go('login');
-      }
+     $state.go('login');
     });
   });

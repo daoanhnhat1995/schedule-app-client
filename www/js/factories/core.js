@@ -34,16 +34,32 @@ angular.module('parse-starter.factories')
 
         core.userLogin = function (username,password) {
 
+            function cache(){
+                         console.log("Semesters cached :" + $localstorage.get("semesters").length);
+                        console.log("Courses cached :" + $localstorage.get("courses").length);
+                        console.log("Done caching...");
+                         $ionicLoading.hide();
+                          $state.go('main.dashboard');
+                      }
+
 
             $ionicLoading.show({template:'<ion-spinner></ion-spinner>'});
             Parse.User.logIn(username, password, {
                 success: function(user) {
                    
                     console.log("Caching....");
+
+                    if($localstorage.get("semesters") != undefined){
+                        console.log("Data already loaded!");
+                        cache();
+
+                    } else{
+
                    (function(){
                     semesterAPI.getAll(next).then(function(d){
                         $localstorage.set('semesters',d.data);
                         next(loadSchedule);
+
                          });
 
                       function next(loadSchedule){
@@ -64,14 +80,9 @@ angular.module('parse-starter.factories')
                             }
                             cache();
                         }
-                      function cache(){
-                         console.log("Semesters cached :" + $localstorage.get("semesters").length);
-                        console.log("Courses cached :" + $localstorage.get("courses").length);
-                        console.log("Done caching...");
-                         $ionicLoading.hide();
-                          $state.go('main.dashboard');
-                      }
+
                     })();
+                }
 
 
                    
