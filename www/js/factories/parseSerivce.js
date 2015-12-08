@@ -5,18 +5,31 @@ angular.module('parse-starter.factories')
 
 		parse.saveSchedule = function(data){
 			var currentUser = Parse.User.current();
+			console.log(data);
 
-			var obj = {'course_title': data[0].course_title,
-						'instructor': data[0].instructor,
-						'dates': data[0].dates,
-						'location':data[0]['location'],
-						'section_type':data[0].section_type,
-						'section_id':data[0].section_id,
-						'start_time':data[0].start_time,
-						'end_time':data[0].end_time };
+		
+			
 			if (currentUser) {
 
-				currentUser.set('schedule',obj);
+
+				// 	function getJSON(d){
+				// 	var obj = {'course_title': d.course_title,
+				// 			'instructor': d.instructor,
+				// 			'dates': d.dates,
+				// 			'location':d['location'],
+				// 			'section_type':d.section_type,
+				// 			'section_id':d.section_id,
+				// 			'start_time':d.start_time,
+				// 			'end_time':d.end_time };
+				// }
+				// var obj = [];
+				// angular.forEach(data,function(each){
+				// 	obj.push(getJSON(each));
+				// });
+				// obj = JSON.parse(obj);
+				// console.log(obj);
+
+				currentUser.set('schedules',JSON.stringify(data));
 				currentUser.save(null, {
                     success: function(pfuser) {
                     console.log("saved Schedule");

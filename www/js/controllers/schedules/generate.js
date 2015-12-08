@@ -57,6 +57,7 @@ angular.module("parse-starter.controllers")
 
               } else { 
                 Schedule.setSchedule(_.sample(list.possibles,1)[0]);
+                Schedule.setScheduleTitles();
               	$state.go('main.my-schedule');
               }
 

@@ -13,22 +13,25 @@
 	</ion-side-menu-content>
 
 	<ion-side-menu side="left">
-		<ion-header-bar class="bar-calm">
-			<h1 class="title">Menu</h1>
+		<ion-header-bar  style="background-color: #59313c ">
+			<h1 class="title light">Menu</h1>
 		</ion-header-bar>
-		<ion-content>
+		<ion-content style="background-color: #59313c; padding-top: 60px">
 			<ion-list>
-				<ion-item  nav-clear menu-close ui-sref="main.home">
-					<h2> Settings </h2>
+				<ion-item class = "item item-icon-left light" nav-clear menu-close ui-sref="main.home">
+					 <i class="icon ion-gear-a "></i>
+					 <h2> Settings  </h2>
 				</ion-item>
 
-				<ion-item nav-clear menu-close ui-sref="main.dashboard">
+				<ion-item class = "item item-icon-left light"  nav-clear menu-close ui-sref="main.dashboard">
+					<i class="icon  ion-map"></i>
 					<h2>Dashboard</h2>
 				</ion-item>
 
 
-				<ion-item nav-clear menu-close ui-sref="main.my-schedule">
-         		 <h2>My Schedule</h2>
+				<ion-item nav-positive class = "item item-icon-left light" menu-close ui-sref="main.my-schedule">
+				<i class = "icon ion-ios-cart"></i>
+         		 <h2>My Cart</h2>
 				</ion-item>
 
 

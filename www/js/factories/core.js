@@ -1,7 +1,9 @@
 /**
  */
 angular.module('parse-starter.factories')
-.factory('Core', function ($ionicPopup,$state,$ionicLoading) {
+.factory('Core', ['Schedule','$localstorage','semesterAPI',
+    'classAPI','$ionicPopup','$state','$ionicLoading',
+    function (Schedule,$localstorage,semesterAPI,classAPI,$ionicPopup,$state,$ionicLoading) {
 
         var core = {};
 
@@ -36,8 +38,43 @@ angular.module('parse-starter.factories')
             $ionicLoading.show({template:'<ion-spinner></ion-spinner>'});
             Parse.User.logIn(username, password, {
                 success: function(user) {
-                    $ionicLoading.hide();
-                    $state.go('main.home');
+                   
+                    console.log("Caching....");
+                   (function(){
+                    semesterAPI.getAll(next).then(function(d){
+                        $localstorage.set('semesters',d.data);
+                        next(loadSchedule);
+                         });
+
+                      function next(loadSchedule){
+                        classAPI.getAll(cache).then(function(d){
+                        $localstorage.set('courses',d.data);
+                        loadSchedule(cache);
+                         });
+                        }
+
+                        function loadSchedule(cache){
+                            //get current schedule
+                            var schedule = user.get("schedules");
+                            if(schedule != undefined){
+                                Schedule.setSchedule2(JSON.parse(schedule));
+                                console.log(Schedule.getSchedule());
+                            } else {
+                                console.log("Found nothing, you have 0 schedule ....");
+                            }
+                            cache();
+                        }
+                      function cache(){
+                         console.log("Semesters cached :" + $localstorage.get("semesters").length);
+                        console.log("Courses cached :" + $localstorage.get("courses").length);
+                        console.log("Done caching...");
+                         $ionicLoading.hide();
+                          $state.go('main.dashboard');
+                      }
+                    })();
+
+
+                   
                 },
                 error: function(user, error) {
                     $ionicLoading.hide();
@@ -74,7 +111,7 @@ angular.module('parse-starter.factories')
 
 
         return core;
-    })
+    }])
 
 
     // Local Storage data service

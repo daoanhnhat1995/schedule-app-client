@@ -1,13 +1,15 @@
 <ion-view title = "My Dashboard">
     <ion-content class = "scroll-content dashboad-body" padding = "true">
     <div class="row" padding = "true">
-      <div class="custom-card top-card col col-50">
-            <i class = "icon ion-ios-home-outline custom-icon dark " ui-sref = "main.dashboard"> </i>
-            <h4 class = 'dark'> Home </h4>
 
-        </div>
-        <div class="custom-card top-card col col-50" ui-sref = "main.my-schedule">
-            <i class="custom-icon icon ion-ios-calendar-outline dark" width="100%" /></i>
+
+         <div class="custom-card top-card col col-60" ui-sref = "#">
+          <i class = "icon ion-ios-book-outline custom-icon dark"> </i>
+          <h4 class = 'dark'> Course Catalog </h4>
+
+          </div>
+        <div class="custom-card top-card col col-60" ui-sref = "main.my-schedule">
+            <i class="custom-icon icon ion-ios-calendar dark" width="100%" /></i>
             <h4 class = 'dark'> My Schedule </h4>
 
         </div>
@@ -15,31 +17,31 @@
     </div>
 
     <div class="row">
-      <div class="custom-card col col-50" ui-sref = "main.home">
-        <i class = "icon ion-ios-gear-outline custom-icon dark"> </i>
-        <h4 class = 'dark'> Settings </h4>
+      <div class="custom-card  col col-60">
+
+        <i ui-sref = "main.course-cart"class = "icon  ion-ios-paper-outline custom-icon dark  "> </i>
+        <h4 class = 'dark'> Course cart </h4>
+
+
+      </div>
+       <div class="custom-card  col col-60">
+            <i class = "icon ion-clock custom-icon dark " ui-sref = "main.block-time-index"> </i>
+            <h4 class = 'dark'> Block Time </h4>
 
         </div>
 
-        <div class="custom-card col col-50" ui-sref = "#">
-          <i class = "icon ion-ios-book-outline custom-icon dark"> </i>
-          <h4 class = 'dark'> Course Catalog </h4>
-
-          </div>
 
 
 
     </div>
     <div class="row">
-      <div class="custom-card col col-50">
+      <div class="custom-card col col-60" ui-sref = "main.home">
+        <i class = "icon ion-ios-gear-outline custom-icon dark"> </i>
+        <h4 class = 'dark'> Settings </h4>
 
-        <i ui-sref = "main.course-cart"class = "icon  ion-ios-paper-outline custom-icon dark  "> </i>
-        <h4 class = 'dark'> Your cart </h4>
+        </div>
 
-
-      </div>
-
-      <div class = "custom-card col col-50">
+      <div class = "custom-card col col-60">
         <i ui-sref = "main.generate-schedule" class = "ion-arrow-graph-down-right custom-icon dark"></i>
         <h4 class = 'dark'> Generate </h4>
       </div>
