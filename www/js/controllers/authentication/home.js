@@ -9,6 +9,10 @@ angular.module('parse-starter.controllers')
             $ionicHistory.goBack();
         };
 
+        $scope.fetch = function(){
+            console.log( Parse.User.current().get("schedule"));
+        }
+
         $scope.logout = function () {
 
             $ionicPopup.confirm({

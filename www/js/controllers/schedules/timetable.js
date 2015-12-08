@@ -1,6 +1,6 @@
 angular.module('parse-starter.controllers')
        .controller('myTimeTableCtrl', function ($scope, $ionicScrollDelegate,$ionicSlideBoxDelegate, $filter, Schedule,blockTimeData) {
-
+       
          $scope.lockSlide = function () {
              $ionicSlideBoxDelegate.enableSlide( false );}
            var startHour = 6;

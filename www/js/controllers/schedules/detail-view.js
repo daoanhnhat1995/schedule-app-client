@@ -1,5 +1,5 @@
 angular.module('parse-starter.controllers')
-  .controller('myScheduleCtrl', function ($scope,$state,$ionicPopup,$ionicModal,Schedule,_,Cart){
+  .controller('myScheduleCtrl', function (ParseData,$scope,$state,$ionicPopup,$ionicModal,Schedule,_,Cart){
     /*
      *
      */
@@ -16,16 +16,20 @@ angular.module('parse-starter.controllers')
       });
 
       Schedule.setSchedule2(temp);
+
+
       $scope.schedules = Schedule.getSchedule();
       console.log("Schedules are:....");
       console.log($scope.schedules);
 
 
-       $ionicModal.fromTemplateUrl('templates/schedule/timetable.html', {
-          scope: $scope
-        }).then(function(modal) {
-          $scope.modal = modal;
-        });
+      $scope.saveToCloud = function(){
+        ParseData.saveSchedule(Schedule.getSchedule()).then(function(){
+          $state.go("main.dashboard");
+        })
+
+      }
+       
 
     } else {
       $ionicPopup.alert({
