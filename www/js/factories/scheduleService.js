@@ -5,6 +5,7 @@ angular.module('parse-starter.factories')
   var schedule = [];
   var listClass = [];
   var blockTime = [];
+  var conflicts = [];
   return {
   
     setCourses: function(l){
@@ -44,6 +45,14 @@ angular.module('parse-starter.factories')
     },
     getSchedule: function(){
       return schedule;
-    } 
+    }, 
+
+    setConflict: function(s){
+      console.log(s);
+      conflicts = [s[0],s[1][0]];
+    },
+    getConflict: function(){
+      return conflicts;
+    }
   }
 })

@@ -45,16 +45,18 @@ angular.module('parse-starter.controllers')
 
 
   .controller('conflictMessageCtrl',function(_,$scope,Schedule){
+    $scope.conflicts = Schedule.getConflict();
 
-    var temp = $scope.conflicts= _.sample(Schedule.getSchedules().conflicts,1);
-    if(temp != undefined){
-      $scope.conflicts = temp.d;
+    $scope.load = function(){
+      $scope.conflicts = Schedule.getConflict();
+
+
     }
 
-    $scope.show = function(){
-    $scope.conflicts= _.sample(Schedule.getSchedules().conflicts,1)[0].d;
+    $scope.$on("$ionicView.beforeEnter", function () {
+          $scope.conflicts = Schedule.getConflict();
 
-     };
+    }); 
 
   })
 

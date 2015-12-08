@@ -98,6 +98,9 @@ angular.module('parse-starter.factories')
 
 				l = ["Commute Time","Study Time","Work Time","Sleep Time"];
 				return l;
+			},
+			getSelected: function(){
+				return _.filter(timeData,function(each){return each.checked == true});
 			}
 
 

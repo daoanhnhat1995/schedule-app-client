@@ -50,6 +50,9 @@ angular.module("parse-starter.controllers")
               list = Schedule.getSchedules();
 
               if(list.possibles.length == 0){
+                console.log(_.sample(list.conflicts,1))
+                Schedule.setConflict(_.sample(list.conflicts,1)[0].d);
+                console.log(Schedule.getConflict());
               	$scope.modal.show();
 
               } else { 

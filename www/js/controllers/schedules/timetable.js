@@ -87,7 +87,7 @@ angular.module('parse-starter.controllers')
            /***
            PUSH BLOCK TIME INTO TABLE
            ***/
-           var blocktimeData = blockTimeData.getBlockTime();//REPLACE THIS
+           var blocktimeData = blockTimeData.getSelected();//REPLACE THIS
 
            console.log("Blocktime...");
            console.log(blocktimeData);
