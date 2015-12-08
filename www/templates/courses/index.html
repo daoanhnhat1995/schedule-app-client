@@ -10,15 +10,18 @@
 
 
      <ion-list ng-repeat = "each in courses">
-      <ion-item>
+      <ion-item class ="item item-icon-left item-icon-right">
 
-         <item="item" class="checkbox-royal">
+         <i class="icon ion-checkmark-round "></i>
+          <i class = "icon ion-trash-b"> </i>
         <label class="checkbox">
         <input type="checkbox"  ng-checked = "each.checked" ng-model = 'each.checked'>
         </label>
-
+       
          {{each.course_id}} 
         {{each.course_title}}
+
+      
         <ion-item>
 
      </ion-list>

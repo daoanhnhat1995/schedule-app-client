@@ -1,8 +1,7 @@
 angular.module('parse-starter.controllers')
-  .controller('editBlockTimeCtrl',function($scope,$localstorage,$ionicModal,$state,blockTimeData){
+  .controller('editBlockTimeCtrl',function($ionicHistory,$scope,$localstorage,$ionicModal,$state,blockTimeData){
 
-
-    $scope.block = {};
+        $scope.block = {};
       $scope.optionList = blockTimeData.options();
 
       /*
@@ -25,28 +24,24 @@ angular.module('parse-starter.controllers')
 
 
       });
-      // console.log(localStorageService.isSupported);
       $scope.saveBlock = function(){
 
-        /*
-        *  Check if block time is appropriate
-        */
-
-        //if($scope.block.startT < $scope.block.endT){
+     
           blockTimeData.addBlock($scope.block);
-        //} else {
-        //  alert("Bad time interval!");
-        //}
+      };
 
-      }
 
+     
   })
 
   /* controller for blocktime setting index page */
 
   .controller('mainBlockTimeCtrl',function(Filter,$ionicModal,$scope,$state,blockTimeData,Schedule){
     $scope.blocks = blockTimeData.getBlockTime();
-
+    $scope.edit = false;
+    $scope.enableEdit = function(){
+      $scope.edit = true;
+    }
     $scope.save = function(){
       current = [];
       angular.forEach($scope.blocks,function(b){
@@ -60,6 +55,16 @@ angular.module('parse-starter.controllers')
       console.log(Filter.isOverLap(current));
       $state.go('main.generate-schedule');
     };
+     $scope.deleteBlock = function(i){
+        blockTimeData.deleteBlock(i);
+      };  
+
+
+      $scope.$watch('blocks',function(newVal){
+        $scope.blocks = newVal;
+      });
+
+
 
 
 

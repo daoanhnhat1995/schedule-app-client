@@ -70,6 +70,7 @@ angular.module('parse-starter.factories')
 			*/
 
 			addBlock: function(block){	
+				block.id = timeData.length;
 				block.dates = [];
 				angular.forEach(block.dayList,function(value,key){
 					this.push(key);
@@ -82,6 +83,8 @@ angular.module('parse-starter.factories')
 
 				if(!_.contains(timeData,block)){
 					timeData.push(block);
+					console.log("Added block...");
+					console.log(block);
 					$state.go("main.block-time-index");
 				} else {
 					$ionicPopup.alert({
@@ -104,6 +107,11 @@ angular.module('parse-starter.factories')
 			},
 			getSelected: function(){
 				return _.filter(timeData,function(each){return each.checked == true});
+			},
+			deleteBlock: function(i){
+				timeData.splice(timeData.indexOf(i),1);
+				console.log(timeData);
+
 			}
 
 

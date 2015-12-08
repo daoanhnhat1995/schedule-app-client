@@ -2,15 +2,29 @@
 <ion-view title = "Your Block Time" >
 
 
-	<ion-nav-buttons side="right">
+	<ion-nav-buttons side="left">
+
+
 				<button class="button button-icon button-clear ion-checkmark" ng-click="save()">
 				</button>
+
 	</ion-nav-buttons>
+
+	<ion-nav-buttons side="right">
+
+	
+				<button class="button button-icon button-clear ion-compose" ng-click="enableEdit()">
+				</button>
+
+	</ion-nav-buttons>
+
 	<ion-content scroll= 'false'>
 
 	<div class = "list" ng-repeat = "b in blocks">
 		
-		<div class = "item">
+		<div class = "item item-icon-right">
+
+		<i ng-show="edit" class="icon ion-trash-b" ng-click = "deleteBlock(b.id)"></i>
 		 <ion-checkbox ng-checked = "b.checked" ng-model = 'b.checked'>
 
 			<h2> {{b.name}} </h2>
