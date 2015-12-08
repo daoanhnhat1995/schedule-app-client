@@ -18,6 +18,7 @@ angular.module('parse-starter.controllers')
 
 
     $scope.login = function (user) {
+
       Core.userLogin(user.username, user.password);
     };
 

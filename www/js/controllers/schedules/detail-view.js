@@ -1,5 +1,5 @@
 angular.module('parse-starter.controllers')
-  .controller('myScheduleCtrl', function (ParseData,$scope,$state,$ionicPopup,$ionicModal,Schedule,_,Cart){
+  .controller('myScheduleCtrl', function (ParseData,$ionicHistory,$ionicLoading,$scope,$state,$ionicPopup,$ionicModal,Schedule,_,Cart){
     /*
      * prepare to pull schedules data from api
      */
@@ -21,9 +21,22 @@ angular.module('parse-starter.controllers')
        *  Save schedule to current user
       */
         $scope.saveToCloud = function(){
-          ParseData.saveSchedule(Schedule.getSchedule()).then(function(){
-            $state.go("main.dashboard");
-          })}
+
+          setTimeout(function() {
+            $ionicLoading.show({template:'<ion-spinner></ion-spinner>'});
+            ParseData.saveSchedule(Schedule.getSchedule());
+            next();
+          }, 10);
+          function next(){
+          $ionicLoading.hide();
+          $ionicHistory.nextViewOptions({
+            disableBack: true
+          });
+
+          $state.go("main.dashboard");
+          }
+        };
+          
          
 
     } else { 

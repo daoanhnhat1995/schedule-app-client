@@ -1,6 +1,6 @@
 
 angular.module('parse-starter.controllers')
-    .controller('HomeCtrl',function ($scope,$state,$ionicPopup) {
+    .controller('HomeCtrl',function ($scope,Cart,$localstorage,$state,$ionicPopup) {
 
         $scope.currentUser = Parse.User.current()._serverData;
 
@@ -21,6 +21,10 @@ angular.module('parse-starter.controllers')
                 okType: 'button-balanced'
             }).then(function(res) {
                 if(res) {
+                    $localstorage.set("schedules",[]);
+                    $localstorage.set("courses",[]);
+                    Cart.clear();
+
                     Parse.User.logOut();
                     $state.go('login');
                 } else {

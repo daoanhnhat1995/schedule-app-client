@@ -19,6 +19,9 @@ angular.module('parse-starter.factories')
 		    },
 		    getSelected: function(){
 		    	return _.filter(courses,function(c){return c.checked == true});
+		    },
+		    clear: function(){
+		    	courses = [];
 		    }
 		  }
 	})

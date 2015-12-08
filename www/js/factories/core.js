@@ -103,6 +103,11 @@ angular.module('parse-starter.factories')
                 },
                 error: function(error) {
                     // Password reset failed
+                    $ionicPopup.alert({
+                        title: 'Sorry',
+                        content: "Something went wrong",
+                        okType: 'button-clear'
+                    });
                      $state.go('login');
 
                 }   
