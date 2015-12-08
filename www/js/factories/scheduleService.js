@@ -2,7 +2,7 @@ angular.module('parse-starter.factories')
 
 .factory('Schedule',function($ionicPopup,_){
   var schedules = {};
-  var schedule;
+  var schedule = [];
   var listClass = [];
   var blockTime = [];
   return {

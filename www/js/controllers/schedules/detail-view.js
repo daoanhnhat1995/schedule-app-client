@@ -1,15 +1,17 @@
 angular.module('parse-starter.controllers')
-  .controller('myScheduleCtrl', function ($scope,Schedule,_,Cart){
-    var temp = Schedule.getSchedule();
-    var classList = Cart.getAll();
-
+  .controller('myScheduleCtrl', function ($scope,$state,$ionicPopup,$ionicModal,Schedule,_,Cart){
+   
 
     /**
      *
      * Bassically find course title of each schedule generated 
      *
      */
-    
+    $scope.$on("$ionicView.beforeEnter", function () {
+    var temp = Schedule.getSchedule();
+    console.log(temp);
+    var classList = Cart.getAll();
+
     if(temp.length > 0){
       angular.forEach(temp,function(c){
         if(c.course_id != undefined){
@@ -18,12 +20,30 @@ angular.module('parse-starter.controllers')
       });
 
       Schedule.setSchedule2(temp);
-    }
-   
       $scope.schedules = Schedule.getSchedule();
       console.log("Schedules are:....");
       console.log($scope.schedules);
-    
+
+
+       $ionicModal.fromTemplateUrl('templates/schedule/timetable.html', {
+          scope: $scope
+        }).then(function(modal) {
+          $scope.modal = modal;
+        });
+
+    } else {
+      $ionicPopup.alert({
+        title: "Oops",
+        template: "You have no schedule yet",
+        okType:'button button-clear button-outline'
+
+      });
+      $state.go('main.dashboard');
+    }
+   
+    });
+
+
 
   })
 
@@ -75,4 +95,51 @@ angular.module('parse-starter.controllers')
      
       console.log("Clear done");
     }
+  })
+
+
+  .controller('dashBoardCtrl',function($scope,$ionicPopup,$state,Schedule){
+    console.log(Schedule.getSchedule());
+
+    $scope.$on("$ionicView.beforeEnter", function () {
+
+      if($localstorage.get('semesters') === undefined ){
+    console.log("Caching....");
+      semesterAPI.getAll(cache).then(function(d){
+        $localstorage.set('semesters',d.data);
+        cache(d.data);
+
+      });
+
+      classAPI.getAll().then(function(d){
+        $localstorage.set('courses',d.data);
+      });
+      function cache(){
+         console.log("Semesters cached :" + $localstorage.get("semesters").length);
+        console.log("Courses cached :" + $localstorage.get("courses").length);
+        console.log("Done caching...");
+        $ionicPopup.alert({
+          title: "Connection succeeds",
+          content: "Cached",
+          okType: "button button-clear"
+        });
+      }
+     
+    }
+    });
+    // $scope.show = function(state){
+
+    //   /* there s a schedule generate */
+    //    if(Schedule.getSchedule() > 0){
+    //       $state.go(state);
+
+    //    } else {
+    //    $ionicPopup.alert({
+    //      title: "Oops",
+    //      template: "You have no schedule"
+    //    });
+
+    //    }
+
+    // }
   })
