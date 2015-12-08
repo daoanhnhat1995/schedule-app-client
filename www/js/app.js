@@ -153,9 +153,11 @@ angular.module('parse-starter',
 
 
 
-      // if (Parse.User.current()) {
-      //   $state.go('home')
+      if (Parse.User.current()) {
+        $state.go('main.dashboard');
 
-      // }
+      } else {
+        $state.go('login');
+      }
     });
   });
