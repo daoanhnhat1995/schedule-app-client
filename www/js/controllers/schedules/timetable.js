@@ -47,8 +47,6 @@ angular.module('parse-starter.controllers')
            var wholeWeek = [];
            var scheduleData = Schedule.getSchedule() ;//REPLACE THIS
 
-           console.log("Got...");
-           console.log(scheduleData);
 
 
            var mon = [];
@@ -73,9 +71,11 @@ angular.module('parse-starter.controllers')
                for (var k=0; k < week.length;k++)//mo, tu, wed...
                {
                  if(scheduleData[i].dates[j] == week[k])
-                 {  
-                    console.log("sechule added:...");
-                    console.log(scheduleData[i]);
+
+                 {
+                    //console.log("sechule added:...");
+                    //console.log(scheduleData[i]);
+
                    createClassBlock(allWeekData[k],scheduleData[i],1);
                    createClassBlock(wholeWeek,scheduleData[i],1+k);
                  }
@@ -88,8 +88,12 @@ angular.module('parse-starter.controllers')
            PUSH BLOCK TIME INTO TABLE
            ***/
            var blocktimeData = blockTimeData.getBlockTime();//REPLACE THIS
-           //var blocktimeData = [{"name":"Commute Time","dates":["Mo","We","Fr"],"start_time":"6:00:00","end_time":"6:50:00"},
-             //{"name":"Study Time","dates":["We","Th"],"start_time":"8:00:00","end_time":"9:50:00"}];
+
+           console.log("Blocktime...");
+           console.log(blocktimeData);
+           //var blocktimeData = [{"name":"SleepTime","dates":["Mo","We","Fr"],"startT":"23:00:00","endT":"6:50:00"},
+            // {"name":"Study Time","dates":["We","Th"],"startT":"8:00:00","endT":"9:50:00"}];
+
            var blocktime_icon;
            var blocktime_color;
 
@@ -110,7 +114,9 @@ angular.module('parse-starter.controllers')
 
            $scope.allweek = allWeekData;
            $scope.wholeWeek = wholeWeek;
-           //console.log(wholeWeek);
+
+           console.log(wholeWeek);
+           console.log(allWeekData);
 
 
            function createClassBlock(arr,classData,left)
@@ -125,14 +131,16 @@ angular.module('parse-starter.controllers')
                      starthour: classData.start_time, endhour: classData.end_time,
                      location : classData.location,
                      eventtype: icon,
-                     left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
+
+                     left: (40 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
                      height: ((endhour-starthour) * 120) + 'px', color: class_color});
            };
 
            function createTimeBlock(arr,blockData,left)
            {
-             block_start_time = $filter('date')(blockData.start_time, 'HH:mm:ss');
-             block_end_time = $filter('date')(blockData.end_time, 'HH:mm:ss');
+
+             block_start_time = $filter('date')(blockData.startT, 'HH:mm:ss');
+             block_end_time = $filter('date')(blockData.endT, 'HH:mm:ss');
 
              if(blockData.name == "Commute Time")
              {
@@ -163,12 +171,14 @@ angular.module('parse-starter.controllers')
              arr.push({eventname: blockData.name ,
                      starthour: block_start_time, endhour: block_end_time,
                      eventtype: blocktime_icon,
-                     left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
+
+                     left: (40 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
                      height: ((24-starthour+6) * 120) + 'px', color: blocktime_color});
              arr.push({eventname: blockData.name ,
                      starthour: block_start_time, endhour: block_end_time,
                      eventtype: blocktime_icon,
-                     left: (45 *left) + 'px', top: ( (0) * 120) + 'px',
+
+                     left: (40 *left) + 'px', top: ( (0) * 120) + 'px',
                      height: ((endhour-6) * 120) + 'px', color: blocktime_color});
            }
            else if (starthour < 6 && endhour >6)//1:30 to 7:30
@@ -176,12 +186,14 @@ angular.module('parse-starter.controllers')
              arr.push({eventname: blockData.name,
                      starthour: block_start_time, endhour: block_end_time,
                      eventtype: blocktime_icon,
-                     left: (45 *left) + 'px', top: ( (starthour+18) * 120) + 'px',
+
+                     left: (40 *left) + 'px', top: ( (starthour+18) * 120) + 'px',
                      height: ((6-starthour) * 120) + 'px', color: blocktime_color});
              arr.push({eventname: blockData.name,
                      starthour: block_start_time, endhour: block_end_time,
                      eventtype: blocktime_icon,
-                     left: (45 *left) + 'px', top: ( (0) * 120) + 'px',
+
+                     left: (40 *left) + 'px', top: ( (0) * 120) + 'px',
                      height: ((endhour-6) * 120) + 'px', color: blocktime_color});
            }
            else //normal case
@@ -189,7 +201,8 @@ angular.module('parse-starter.controllers')
              arr.push({eventname: blockData.name,
                      starthour: block_start_time, endhour: block_end_time,
                      eventtype: blocktime_icon,
-                     left: (45 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
+
+                     left: (40 *left) + 'px', top: ( (starthour-6) * 120) + 'px',
                      height: ((endhour-starthour) * 120) + 'px', color: blocktime_color});
            }
          }
@@ -206,15 +219,16 @@ angular.module('parse-starter.controllers')
              return s/3600;
            };
 
-           $scope.slideIndex = 0;
+
+           $scope.slideTimetableIndex = 0;
 
                // Called each time the slide changes
-             $scope.slideChanged = function(index) {
-             $scope.slideIndex = index;
+             $scope.slideTimetableChanged = function(index) {
+             $scope.slideTimetableIndex = index;
 
            };
 
-           $scope.activeSlide = function (index) {
+           $scope.activeTimetableSlide = function (index) {
                $ionicSlideBoxDelegate.slide(index);
            };
 
