@@ -127,19 +127,5 @@ angular.module('parse-starter.controllers')
      
     }
     });
-    // $scope.show = function(state){
-
-    //   /* there s a schedule generate */
-    //    if(Schedule.getSchedule() > 0){
-    //       $state.go(state);
-
-    //    } else {
-    //    $ionicPopup.alert({
-    //      title: "Oops",
-    //      template: "You have no schedule"
-    //    });
-
-    //    }
-
-    // }
+   
   })
