@@ -1,18 +1,6 @@
 angular.module('parse-starter.controllers')
   .controller('myScheduleCtrl', function ($scope,$state,$ionicPopup,$ionicModal,Schedule,_,Cart){
-<<<<<<< HEAD
-   
-
-    /**
-     *
-     * Bassically find course title of each schedule generated 
-=======
-
-
-    /**
-     *
-     * Bassically find course title of each schedule generated
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
+    /*
      *
      */
     $scope.$on("$ionicView.beforeEnter", function () {
@@ -48,11 +36,7 @@ angular.module('parse-starter.controllers')
       });
       $state.go('main.dashboard');
     }
-<<<<<<< HEAD
-   
-=======
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
     });
 
 
@@ -61,11 +45,7 @@ angular.module('parse-starter.controllers')
 
 
   .controller('conflictMessageCtrl',function(_,$scope,Schedule){
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
     var temp = $scope.conflicts= _.sample(Schedule.getSchedules().conflicts,1);
     if(temp != undefined){
       $scope.conflicts = temp.d;
@@ -75,11 +55,7 @@ angular.module('parse-starter.controllers')
     $scope.conflicts= _.sample(Schedule.getSchedules().conflicts,1)[0].d;
 
      };
-<<<<<<< HEAD
-      
-=======
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
   })
 
 
@@ -89,11 +65,7 @@ angular.module('parse-starter.controllers')
      * Cache basic semester and course catalogs to local storage
      *
      */
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
     $scope.load = function(){
       console.log("Caching....");
       semesterAPI.getAll(cache).then(function(d){
@@ -110,21 +82,13 @@ angular.module('parse-starter.controllers')
         console.log("Courses cached :" + $localstorage.get("courses").length);
         console.log("Done caching...");
       }
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
     }
 
     $scope.clean =function(){
       console.log("Clear caching...");
       $localstorage.clear();
-<<<<<<< HEAD
-     
-=======
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
       console.log("Clear done");
     }
   })
@@ -156,15 +120,8 @@ angular.module('parse-starter.controllers')
           okType: "button button-clear"
         });
       }
-<<<<<<< HEAD
-     
-    }
-    });
-   
-=======
 
     }
     });
 
->>>>>>> e7370271f47019a13ca7cbbcf201f0c153a1b3f0
   })
