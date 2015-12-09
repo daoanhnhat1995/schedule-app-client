@@ -12,9 +12,6 @@ Login with Parse:
 
 
 
-![dashboard](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/sidemenu.png)
-
-
 ![cart](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/cart.PNG)
 
 
