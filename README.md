@@ -8,17 +8,17 @@ ionic serve
 
 Login with Parse:
 
-![Login](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/login.png)
+![Login](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/login.PNG)
 
 
 
 ![dashboard](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/sidemenu.png)
 
 
-![cart](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/cart.png)
+![cart](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/cart.PNG)
 
 
-![Dashboard](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/sidemenu.png)
+![Dashboard](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/sidemenu.PNG)
 
 
 ![Day-view](https://github.com/daoanhnhat1995/schedule-app-client/blob/master/screenshots/calendar.png)
