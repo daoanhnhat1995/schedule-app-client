@@ -1,6 +1,6 @@
 angular.module('parse-starter.controllers')
        .controller('myTimeTableCtrl', function ($scope, $ionicScrollDelegate,$ionicSlideBoxDelegate, $filter, Schedule,blockTimeData) {
-       
+
          $scope.lockSlide = function () {
              $ionicSlideBoxDelegate.enableSlide( false );}
            var startHour = 6;
@@ -121,14 +121,18 @@ angular.module('parse-starter.controllers')
 
            function createClassBlock(arr,classData,left)
            {
-             var starthour = hmsToHours(classData.start_time);
-             var endhour = hmsToHours(classData.end_time);
+             var class_start_time = $filter('date')(classData.start_time, 'HH:mm:ss');
+             var class_end_time = $filter('date')(classData.end_time, 'HH:mm:ss');
+
+             var starthour = hmsToHours(class_start_time);
+             var endhour = hmsToHours(class_end_time);
+
              var name = classData.course_title +"-"+classData.section_id;
              var icon = 'ion-university';
              var class_color = 'rgba(0,157,151,0.75)';
 
              arr.push({eventname: name,
-                     starthour: classData.start_time, endhour: classData.end_time,
+                     starthour: class_start_time, endhour: class_end_time,
                      location : classData.location,
                      eventtype: icon,
 
@@ -139,8 +143,8 @@ angular.module('parse-starter.controllers')
            function createTimeBlock(arr,blockData,left)
            {
 
-             block_start_time = $filter('date')(blockData.startT, 'HH:mm:ss');
-             block_end_time = $filter('date')(blockData.endT, 'HH:mm:ss');
+             var block_start_time = $filter('date')(blockData.start_time, 'HH:mm:ss');
+             var block_end_time = $filter('date')(blockData.end_time, 'HH:mm:ss');
 
              if(blockData.name == "Commute Time")
              {
@@ -163,8 +167,8 @@ angular.module('parse-starter.controllers')
                blocktime_color = 'rgba(255,169,0,0.75)';
              }
 
-             starthour = hmsToHours(block_start_time);
-             endhour = hmsToHours(block_end_time);
+             var starthour = hmsToHours(block_start_time);
+             var endhour = hmsToHours(block_end_time);
 
            if((starthour > 6 && endhour >6) && (endhour < starthour))//23:30 to 7:00
            {

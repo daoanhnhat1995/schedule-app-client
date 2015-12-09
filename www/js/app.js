@@ -6,7 +6,7 @@ angular.module('parse-starter',
 
     $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
-    $urlRouterProvider.otherwise('main/dashboard');
+    $urlRouterProvider.otherwise('login');
     
     $stateProvider
       .state('main', {
