@@ -49,11 +49,6 @@ angular.module('parse-starter.factories')
                    
                     console.log("Caching....");
 
-                    if($localstorage.get("semesters") != undefined){
-                        console.log("Data already loaded!");
-                        cache();
-
-                    } else{
 
                    (function(){
                     semesterAPI.getAll(next).then(function(d){
@@ -82,7 +77,7 @@ angular.module('parse-starter.factories')
                         }
 
                     })();
-                }
+                
 
 
                    
